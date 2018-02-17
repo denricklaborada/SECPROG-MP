@@ -1,7 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.views import login
+from ecommerce.forms import RegistrationForm
 
 def index(request):
+
 	if request.method == 'POST':
-		return login(request, template_name="ecommerce/index.html")
-	return render(request, 'ecommerce/index.html')
+		regform = RegistrationForm(request.POST)
+		if regform.is_valid():
+			regform.save()
+			return redirect('/')
+
+		regform = RegistrationForm()
+		context = {
+        	'regform': regform,
+        }
+		return login(request, context)
+	regform = RegistrationForm()
+	context = {
+		'regform': regform,
+	}
+	return render(request, 'ecommerce/index.html', context)
