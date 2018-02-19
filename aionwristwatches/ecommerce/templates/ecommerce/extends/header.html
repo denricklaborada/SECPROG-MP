@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<script src="{{ STATIC_URL }} /static/js/jquery.min.js"></script>
+    	<script src="{{ STATIC_URL }} /static/js/bootstrap.min.js"></script>
+    	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+		<title>Aion Wristwatches</title>
+	</head>
+
+	<body>
+		<nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #303030;">
+  			<a class="navbar-brand ml-5" href="{% url 'ecommerce:index' %}">
+  				<img src="{{ STATIC_URL }} /static/brand/watch.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
+  				Aion Wristwatches
+  			</a>
+  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    			<span class="navbar-toggler-icon"></span>
+  			</button>
+
+	  		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    		<ul class="navbar-nav ml-auto">
+	    			<li class="nav-item mr-2 mt-1">
+    					<div class="dropdown show">
+	    					<a class="nav-link text-uppercase" href="#" role="button" id="dropdownMenuCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    				<img src="{{ STATIC_URL }} /static/brand/cart.svg" width="25" height="25">
+							</a>
+
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuCart">
+							    <a class="dropdown-item" href="#">Something else here</a>
+							    <a class="dropdown-item" href="#">Something else here</a>
+							    <a class="dropdown-item" href="#">Something else here</a>
+							  </div>
+						</div>
+					</li>
+	    			{% if user.is_authenticated %}
+	    				<li class="nav-item mr-2 mt-1">
+	    					<small><a class="nav-link text-uppercase font-weight-bold" href="#">HI, {{ user.username }}!</a></small>
+	    				</li>
+
+	    				<li class="nav-item mr-5 mt-1">
+	    					<small><a class="nav-link text-uppercase font-weight-bold" href="{% url 'ecommerce:logout' %}">SIGN OUT</a></small>
+	    				</li>
+	    			{% else %}
+		    			<li class="nav-item mr-2 mt-1">
+		    				<div class="dropdown show">
+		    					<a class="nav-link text-uppercase" href="#" role="button" id="dropdownMenuLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><small><strong>SIGN IN</strong></small></a>
+
+		    					<form class="dropdown-menu p-2" aria-labelledby="dropdownMenuLogin" method="post">
+		    						{% csrf_token %}
+									<div class="form-group">
+										<label for="id_username">Username</label>
+										<input type="text" id="id_username" name="username" class="form-control" placeholder="Username" required>
+									</div>
+									<div class="form-group">
+										<label for="id_password">Password</label>
+										<input type="password" id="id_password" name="password" class="form-control" placeholder="Password" required>
+									</div>
+									<button type="submit" class="btn btn-success btn-block"><small><strong>SIGN IN</strong></small></button>
+	                        		<input type="hidden" name="next" value="{{ next }}">
+								</form>
+							</div>
+	    				</li>
+
+	    				<li class="nav-item mr-5 mt-1">
+	    					<a class="btn btn-outline-success text-uppercase" href="#signup" data-toggle="modal"><small><strong>SIGN UP</strong></small></a>
+	    				</li>
+	    			{% endif %}
+	    		</ul>
+	  		</div>
+		</nav>
+
+		<div class="modal fade" id="signup" tabindex="-1" role="dialog">
+	        <div class="modal-dialog" role="document">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h5 class="modal-title"><strong>SIGN UP </strong><small>It's free!</small></h5>
+	                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+	                </div>
+	                <div class="modal-body">
+	                    <form role="form" method="post">
+	                        {% csrf_token %}
+	                        <div class="form-group">
+	                            <input type="text" id="id_first_name" name="first_name" class="form-control input-sm" placeholder="First Name" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="text" id="id_middle_initial" name="middle_initial" class="form-control input-sm" placeholder="Middle Inital" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="text" id="id_last_name" name="last_name" class="form-control input-sm" placeholder="Last Name" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="text" id="id_username" name="username" class="form-control input-sm" placeholder="Username" required>
+	                        </div>
+
+	                        <div class="form-group">
+                                <input type="password" id="id_password1" name="password1" class="form-control input-sm" placeholder="Password" required>
+	                        </div>
+
+	                        <div class="form-group">
+                                <input type="password" id="id_password2" name="password2" class="form-control input-sm" placeholder="Confirm Password" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="email" id="id_email" name="email" class="form-control input-sm" placeholder="Email Address" required>
+	                        </div>
+
+	                        <h6>Billing Address</h6>
+	                        <div class="form-group">
+	                            <input type="text" id="id_bhouse_num" name="bhouse_num" class="form-control input-sm" placeholder="House #" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="text" id="id_bstreet" name="bstreet" class="form-control input-sm" placeholder="Street" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="text" id="id_bsubdivision" name="bsubdivision" class="form-control input-sm" placeholder="Subdivision" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="text" id="id_bcity" name="bcity" class="form-control input-sm" placeholder="City" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="text" id="id_bpc" name="bpc" class="form-control input-sm" placeholder="Postal Code" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="text" id="id_bcountry" name="bcountry" class="form-control input-sm" placeholder="Country" required>
+	                        </div>
+
+	                        <h6>Shipping Address</h6>
+	                        <div class="form-group">
+							    <div class="form-check">
+							     	<input class="form-check-input" type="checkbox" id="sameCheck">
+							     	<label class="form-check-label" for="sameCheck">
+							    		Same as billing address
+							    	</label>
+							    </div>
+							</div>
+	                        <div class="form-group">
+	                            <input type="text" id="id_shouse_num" name="shouse_num" class="form-control input-sm" placeholder="House #" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="text" id="id_sstreet" name="sstreet" class="form-control input-sm" placeholder="Street" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="text" id="id_ssubdivision" name="ssubdivision" class="form-control input-sm" placeholder="Subdivision" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="text" id="id_scity" name="scity" class="form-control input-sm" placeholder="City" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="text" id="id_spc" name="spc" class="form-control input-sm" placeholder="Postal Code" required>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <input type="text" id="id_scountry" name="scountry" class="form-control input-sm" placeholder="Country" required>
+	                        </div>
+
+	                        <button type="submit" class="btn btn-success btn-block"><small><strong>SIGN UP</strong></small></button>
+	                        <input type="hidden" name="next" value="{{ next }}">
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+    	</div>
+    	{% block body %}
+    	{% endblock %}
+	</body>
+</html>
