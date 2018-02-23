@@ -1,10 +1,45 @@
+
+#navbar1 
+{
+  overflow: hidden;
+  background-color: #e3f2fd;
+  max-height: 340px;
+
+}
+
+#navbar1 a {
+  float: left;
+  display: block;
+
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#navbar1 a:hover {
+  color: black;
+}
+
+#navbar1 a.active {
+  color: white;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
 #navbar
 {
     background-color: #303030;
     
 }
-#navbar1
+
+#content
 {
-    background-color: #3D72A4;
-    max-height: 340px;
+   position: relative; 
+    z-index: -1;
 }
