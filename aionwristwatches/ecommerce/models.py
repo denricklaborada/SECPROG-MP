@@ -2,7 +2,18 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 
+class Product(models.Model):
+    prodname = models.CharField(max_length=20)
+    description = models.CharField(max_length=100)
+    price = models.DecimalField(default=0.00, max_digits=20, decimal_places=2,  validators=[MinValueValidator(0)])
+    quantity = models.PositiveIntegerField(default=0)
 
+    def __str__(self):
+        return self.prodName
+    class Meta:
+        verbose_name_plural = "Products"
+
+#User Additional Classes
 middle_initial = models.CharField(blank=True, max_length=5)
 middle_initial.contribute_to_class(User, 'middle_initial')
 
@@ -34,16 +45,11 @@ scity.contribute_to_class(User, 'scity')
 spc.contribute_to_class(User, 'spc')
 scountry.contribute_to_class(User, 'scountry')
 
-class Product(models.Model):
-    prodname = models.CharField(max_length=20)
-    description = models.CharField(max_length=100)
-    price = models.DecimalField(default=0.00, max_digits=20, decimal_places=2,  validators=[MinValueValidator(0)])
-    quantity = models.PositiveIntegerField(default=0)
+cart = models.ManyToManyField(Product, blank=True)
 
-    def __str__(self):
-        return self.prodName
-    class Meta:
-        verbose_name_plural = "Products"
+cart.contribute_to_class(User, 'cart')
+
+
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -57,6 +63,15 @@ class Review(models.Model):
     class Meta:
         verbose_name_plural = "Reviews"
 
+class Transaction(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    prodlist = models.ManyToManyField(Product, blank=True)
+    pubdate = models.DateTimeField(auto_now_add=True)
+    subtotal =  models.DecimalField(default=0.00, max_digits=20, decimal_places=2,  validators=[MinValueValidator(0)])
+    def __str__(self):
+        return "Transaction - " + str(self.id)
+    class Meta:
+        verbose_name_plural = "Transactions"
 class ProductManager(models.Model):
     uname = models.CharField(unique=True, max_length=20)
     password = models.CharField(blank=True, max_length=20)
@@ -77,4 +92,3 @@ class AccountingManager(models.Model):
         return "Accounting Manager - " + str(self.uname)
     class Meta:
         verbose_name_plural = "Accounting Managers"
-        
