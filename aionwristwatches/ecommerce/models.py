@@ -7,6 +7,7 @@ class Product(models.Model):
     description = models.CharField(max_length=100)
     price = models.DecimalField(default=0.00, max_digits=20, decimal_places=2,  validators=[MinValueValidator(0)])
     quantity = models.PositiveIntegerField(default=0)
+    image = models.ImageField(upload_to='ecommerce/static/product_images/', blank=True)
 
     def __str__(self):
         return self.prodName

@@ -5,11 +5,12 @@
     	<script src="{{ STATIC_URL }} /static/js/jquery.min.js"></script>
     	<script src="{{ STATIC_URL }} /static/js/bootstrap.min.js"></script>
     	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
 		<title>Aion Wristwatches</title>
 	</head>
 
 	<body>
-		<nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #303030;">
+		<nav id="navbar" class="navbar sticky-top navbar-expand-lg navbar-dark" >
   			<a class="navbar-brand ml-5" href="{% url 'ecommerce:index' %}">
   				<img src="{{ STATIC_URL }} /static/brand/watch.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
   				Aion Wristwatches
@@ -69,7 +70,13 @@
 	    		</ul>
 	  		</div>
 		</nav>
-
+        <nav id="navbar1" class="navbar full-width-navbar"  >
+            <div class="container">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Active</a>
+              </li>
+            </div>
+        </nav>
 		<div class="modal fade" id="signup" tabindex="-1" role="dialog">
 	        <div class="modal-dialog" role="document">
 	            <div class="modal-content">
