@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 
+
 middle_initial = models.CharField(blank=True, max_length=5)
 middle_initial.contribute_to_class(User, 'middle_initial')
 
@@ -32,3 +33,48 @@ ssubdivision.contribute_to_class(User, 'ssubdivision')
 scity.contribute_to_class(User, 'scity')
 spc.contribute_to_class(User, 'spc')
 scountry.contribute_to_class(User, 'scountry')
+
+class Product(models.Model):
+    prodname = models.CharField(max_length=20)
+    description = models.CharField(max_length=100)
+    price = models.DecimalField(default=0.00, max_digits=20, decimal_places=2,  validators=[MinValueValidator(0)])
+    quantity = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.prodName
+    class Meta:
+        verbose_name_plural = "Products"
+
+class Review(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField(default=0)
+    comment = models.CharField(blank=True, max_length=20)
+    pubdate = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "Review - " + str(self.id)
+    class Meta:
+        verbose_name_plural = "Reviews"
+
+class ProductManager(models.Model):
+    uname = models.CharField(unique=True, max_length=20)
+    password = models.CharField(blank=True, max_length=20)
+    email = models.CharField(unique=True,  max_length=20)
+    datecreated = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return "Product Manager - " + str(self.uname)
+    class Meta:
+        verbose_name_plural = "Product Managers"
+
+class AccountingManager(models.Model):
+    uname = models.CharField(unique=True, max_length=20)
+    password = models.CharField(blank=True, max_length=20)
+    email = models.CharField(unique=True, max_length=20)
+    datecreated = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "Accounting Manager - " + str(self.uname)
+    class Meta:
+        verbose_name_plural = "Accounting Managers"
+        
