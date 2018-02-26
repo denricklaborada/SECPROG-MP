@@ -1,7 +1,4 @@
-body
-{
-    overflow-x:hidden
-}
+
 #navbar1 
 {
   overflow: hidden;
@@ -35,11 +32,6 @@ body
   width: 100%
 }
 
-#navbar
-{
-    background-color: #303030;
-    
-}
 
 #content
 {

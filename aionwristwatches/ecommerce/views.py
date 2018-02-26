@@ -20,3 +20,7 @@ def index(request):
 		'regform': regform,
 	}
 	return render(request, 'ecommerce/index.html', context)
+def checkout(request):
+
+	
+	return render(request, 'ecommerce/checkout.html')
