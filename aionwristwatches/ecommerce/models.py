@@ -7,6 +7,12 @@ class Product(models.Model):
     description = models.CharField(max_length=100)
     price = models.DecimalField(default=0.00, max_digits=20, decimal_places=2,  validators=[MinValueValidator(0)])
     quantity = models.PositiveIntegerField(default=0)
+    CHOICES = (
+        ('Analog', 'Analog'),
+        ('Digital', 'Digital'),
+        ('Smart', 'Smart'),
+    )
+    category = models.CharField(max_length=7, choices=CHOICES)
     image = models.ImageField(upload_to='ecommerce/static/product_images/', blank=True)
 
     def __str__(self):

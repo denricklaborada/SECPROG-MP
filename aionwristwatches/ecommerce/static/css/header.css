@@ -1,4 +1,7 @@
-
+body
+{
+    overflow-x:hidden
+}
 #navbar1 
 {
   overflow: hidden;
@@ -43,3 +46,4 @@
    position: relative; 
     z-index: -1;
 }
+
