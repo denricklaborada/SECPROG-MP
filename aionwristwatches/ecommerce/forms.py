@@ -22,7 +22,7 @@ class RegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = (
+        fields = [
             'username',
             'first_name',
             'middle_initial',
@@ -43,7 +43,7 @@ class RegistrationForm(UserCreationForm):
             'spc',
             'scountry',
             'cart',
-        )
+        ]
 
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)

@@ -75,15 +75,19 @@ class Transaction(models.Model):
     prodlist = models.ManyToManyField(Product, blank=True)
     pubdate = models.DateTimeField(auto_now_add=True)
     subtotal =  models.DecimalField(default=0.00, max_digits=20, decimal_places=2,  validators=[MinValueValidator(0)])
+
     def __str__(self):
         return "Transaction - " + str(self.id)
+
     class Meta:
         verbose_name_plural = "Transactions"
+
 class ProductManager(models.Model):
     uname = models.CharField(unique=True, max_length=20)
     password = models.CharField(blank=True, max_length=20)
     email = models.CharField(unique=True,  max_length=20)
     datecreated = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         return "Product Manager - " + str(self.uname)
     class Meta:
@@ -97,5 +101,6 @@ class AccountingManager(models.Model):
 
     def __str__(self):
         return "Accounting Manager - " + str(self.uname)
+
     class Meta:
         verbose_name_plural = "Accounting Managers"
