@@ -43,6 +43,27 @@
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
         }
+        function checkbox(){
+            var value = $("input[type='checkbox']").prop( "checked" );//.is(":checked");
+            if( value == true){
+                $("#id_shouse_num").attr('value',$("#id_bhouse_num").val());
+                $("#id_sstreet").attr('value',$("#id_bstreet").val());
+                $("#id_ssubdivision").attr('value',$("#id_bsubdivision").val());
+                $("#id_scity").attr('value',$("#id_bcity").val());
+                $("#id_spc").attr('value',$("#id_bpc").val());
+                $("#id_scountry").attr('value',$("#id_bcountry").val());
+
+			}
+			else
+			{
+				$("#id_shouse_num").attr('value',"");
+                $("#id_sstreet").attr('value',"");
+                $("#id_ssubdivision").attr('value','');
+                $("#id_scity").attr('value','');
+                $("#id_spc").attr('value','');
+                $("#id_scountry").attr('value','');
+			}
+		}
         
     </script>
 	<body>
@@ -205,7 +226,7 @@
 	                        <h6>Shipping Address</h6>
 	                        <div class="form-group">
 							    <div class="form-check">
-							     	<input class="form-check-input" type="checkbox" id="sameCheck">
+							     	<input class="form-check-input" onclick="checkbox();" type="checkbox" id="sameCheck">
 							     	<label class="form-check-label" for="sameCheck">
 							    		Same as billing address
 							    	</label>
