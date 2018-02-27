@@ -16,7 +16,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='ecommerce/static/product_images/', blank=True)
 
     def __str__(self):
-        return self.prodName
+        return self.prodname
     class Meta:
         verbose_name_plural = "Products"
 

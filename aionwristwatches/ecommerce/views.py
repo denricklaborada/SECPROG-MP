@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect,reverse
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.views import login
 from django.http import HttpResponseRedirect
 from .forms import RegistrationForm
@@ -39,3 +39,10 @@ def checkout(request):
 def uacct(request):
 
 	return render(request, 'ecommerce/uacct.html')
+
+def product(request, product_id):
+	product_obj = Product.objects.filter(id=product_id)[:1].get()
+	context = {
+		'product_obj': product_obj,
+	}
+	return render(request, 'ecommerce/product.html', context)
