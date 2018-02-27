@@ -20,11 +20,11 @@
             var sticky = navbar.offsetTop;
 
             function myFunction() {
-              if (window.pageYOffset >= sticky) {
-                navbar.classList.add("sticky")
+              if (window.pageYOffset > sticky) {
+                navbar.classList.add("sticky-top")
 
               } else {
-                navbar.classList.remove("sticky");
+                navbar.classList.remove("sticky-top");
               }
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                     document.getElementById("up").style.visibility = "visible";
@@ -140,7 +140,7 @@
               </li>
             </ul>
             <div class="d-flex ml-auto">
-            <form class="navbar-form mt-2" role="search" method="get">
+            <form class="navbar-form mt-1" role="search" method="get">
                 <div class="input-group add-on">
                   <input class="form-control ml-sm-2 p-2" type="search" placeholder="Search" aria-label="Search"/>
                     <button class="btn btn-success my-3 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
