@@ -1,0 +1,57 @@
+{% extends 'ecommerce/extends/header.html' %}
+{%load static%}
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/uacct.css' %}">
+{% endblock %}
+{% block body %}
+<div class="main-container mt-5">
+    <div class="container ml-5 col-3 pull-left" >
+        <div class="card ">
+            <div class="card-header col-auto text-center">
+                <strong>Real Name</strong>
+            </div>
+
+            <div class="card-body text-center">
+                <strong>@username</strong>
+            </div>
+        </div>
+        <div class="card mt-lg-5">
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item"><a href="#" style="text-decoration: none;">Account</a></li>
+              <li class="list-group-item"><a href="#" style="text-decoration: none;">Password</a></li>
+              <li class="list-group-item"><a href="#" style="text-decoration: none;">Billing Address</a></li>
+              <li class="list-group-item"><a href="#" style="text-decoration: none;">Shipping Address</a></li>
+          </ul>
+        </div>
+    </div>
+    <div class="container col-5 " >
+        <div class="card">
+            <div class="card-header"><strong class="p-3">ACCOUNT</strong><a href="#" class="pull-right" style="text-decoration: none;">EDIT</a></div>
+            <div class = "card-body">
+                <ul class="list-group list-group-flush">
+                    <li  class="list-group-item d-inline-flex ">
+                        <div class="col-3">First Name</div>
+                        <input class="col-6" type="text" value="{{user.fname}}"/>
+                    </li>
+                    <li  class="list-group-item d-inline-flex ">
+                        <div class="col-3">Middle Initial</div>
+                        <input class="col-6" type="text" value="{{user.mname}}"/>
+                    </li>
+                    <li  class="list-group-item d-inline-flex ">
+                        <div class="col-3">Last Name</div>
+                        <input class="col-6" type="text" value="{{user.lname}}"/>
+                    </li>
+                    <li  class="list-group-item d-inline-flex ">
+                        <div class="col-3">Username</div>
+                        <input class="col-6" type="text" value="{{user.uname}}"/>
+                    </li>
+                    <li  class="list-group-item d-inline-flex ">
+                        <div class="col-3">Email</div>
+                        <input class="col-6" type="text" value="{{user.email}}"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
