@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import login
-from ecommerce.forms import RegistrationForm
+from .forms import RegistrationForm
 
 def index(request):
 

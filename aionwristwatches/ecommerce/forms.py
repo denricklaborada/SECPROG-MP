@@ -42,6 +42,7 @@ class RegistrationForm(UserCreationForm):
             'scity',
             'spc',
             'scountry',
+            'cart',
         )
 
     def save(self, commit=True):
