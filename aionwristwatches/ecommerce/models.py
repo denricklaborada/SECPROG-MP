@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 
 class Product(models.Model):
-    prodname = models.CharField(max_length=20)
-    description = models.CharField(max_length=100)
+    prodname = models.CharField(max_length=40)
+    description = models.CharField(max_length=300)
     price = models.DecimalField(default=0.00, max_digits=20, decimal_places=2,  validators=[MinValueValidator(0)])
     quantity = models.PositiveIntegerField(default=0)
     CHOICES = (
