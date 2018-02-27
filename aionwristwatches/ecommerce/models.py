@@ -87,7 +87,7 @@ class ProductManager(models.Model):
     password = models.CharField(blank=True, max_length=20)
     email = models.CharField(unique=True,  max_length=20)
     datecreated = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return "Product Manager - " + str(self.uname)
     class Meta:

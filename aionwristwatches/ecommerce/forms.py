@@ -63,7 +63,7 @@ class RegistrationForm(UserCreationForm):
         user.scity = self.cleaned_data['scity']
         user.spc = self.cleaned_data['spc']
         user.scountry = self.cleaned_data['scountry']
-
+        user.cart = None
         if commit:
             user.save()
 
