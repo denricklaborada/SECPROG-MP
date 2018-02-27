@@ -3,6 +3,11 @@
 {% block extrahead %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/uacct.css' %}">
 {% endblock %}
+{% block extrascript%}
+<script>
+    $("#up").disabled = true;
+</script>
+{% endblock %}
 {% block body %}
 <div class="main-container mt-5">
     <div class="container ml-5 col-3 pull-left" >
@@ -80,22 +85,35 @@
     </div>
     <div class="container col-5 " >
         <div class="card">
-            <div class="card-header"><strong class="p-3">BILLING ADDRESS</strong></div>
+            <div class="card-header"><strong class="p-3">BILLING ADDRESS</strong><a href="#" class="pull-right" style="text-decoration: none;">EDIT</a></div>
             <div class = "card-body">
                 <ul class="list-group list-group-flush">
                     <li  class="list-group-item d-inline-flex ">
-                        <div class="col-3"></div>
-                        <input class="col-6" type="password" value="{{user.password}}"/>
+                        <div class="col-3">Address1</div>
+                        <input class="col-6" type="text" value="{{user.fname}}"/>
                     </li>
                     <li  class="list-group-item d-inline-flex ">
-                        <div class="col-3">New Password</div>
-                        <input class="col-6" type="password" value="{{user.mname}}"/>
+                        <div class="col-3">Address2</div>
+                        <input class="col-6" type="text" value="{{user.mname}}"/>
+                    </li>
+                </ul>
+                <div class="text-center mt-1 pt-2"><a href="#" class="btn btn-primary "><strong>SAVE</strong></a></div>
+            </div>
+        </div>
+    </div>
+    <div class="container col-5 " >
+        <div class="card">
+            <div class="card-header"><strong class="p-3">SHIPPING ADDRESS</strong><a href="#" class="pull-right" style="text-decoration: none;">EDIT</a></div>
+            <div class = "card-body">
+                <ul class="list-group list-group-flush">
+                    <li  class="list-group-item d-inline-flex ">
+                        <div class="col-3">Address1</div>
+                        <input class="col-6" type="text" value="{{user.fname}}"/>
                     </li>
                     <li  class="list-group-item d-inline-flex ">
-                        <div class="col-3">Verify Password</div>
-                        <input class="col-6" type="password" value="{{user.lname}}"/>
+                        <div class="col-3">Address2</div>
+                        <input class="col-6" type="text" value="{{user.mname}}"/>
                     </li>
-
                 </ul>
                 <div class="text-center mt-1 pt-2"><a href="#" class="btn btn-primary "><strong>SAVE</strong></a></div>
             </div>
@@ -103,3 +121,4 @@
     </div>
 </div>
 {% endblock %}
+
