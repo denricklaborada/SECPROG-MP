@@ -24,6 +24,7 @@
     </script>
 {% endblock%}
 {% block body %}
+{% if user.is_authenticated %}
 <!--%if cart != empty%}-->
 <div class="d-flex flex-column">
     <div id="continue" class="mt-3">
@@ -108,4 +109,17 @@
     <!--</div>-->
 <!--</div>-->
 <!--%endif%}-->
+{% else %}
+<div class="container">
+    <div class="text-center m-5">
+        <h1>
+
+            <i class="fa fa-exclamation-triangle" style="color: red; font-size: 60px;"></i>
+            <strong >&nbsp; PLEASE LOGIN TO CONTINUE</strong>
+        </h1>
+
+        <a href="#" onclick="prev();" role="button" style="background-color: #17a2b8;" class="mt-3  btn btn-primary btn-lg">CONTINUE SHOPPING</a>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
