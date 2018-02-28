@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'fonts/css/font-awesome.min.css' %}">
 		{% block extrahead %}{% endblock %}
 <!--    TO LOOK FOR ICONS    https://fontawesome.bootstrapcheatsheets.com/#-->
-		<title>Aion Wristwatches</title>
+		<title>{% block title %}Aion Wristwatches{% endblock %}</title>
 	</head>
     <script>
         $(document).ready(function(){
