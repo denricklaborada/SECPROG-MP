@@ -7,8 +7,8 @@
 <script>
     $("#up").disabled = true;
     $(document).ready(function(){
-        document.getElementById("pwdtab").style.visibility = "hidden";
-        document.getElementById("addrtab").style.visibility = "hidden";
+        $("#pwdtab").hide();
+        $("#addrtab").hide();
     });
     function info(tab){
         if(tab=="acct")
@@ -19,15 +19,16 @@
         }
         else if(tab=="pwd")
         {
-            $("#accttab").hide();
             $("#pwdtab").show();
+            $("#accttab").hide();
             $("#addrtab").hide();
         }
         else
         {
+            $("#addrtab").show();
             $("#accttab").hide();
             $("#pwdtab").hide();
-            $("#addrtab").show();
+            
         }
     }
 

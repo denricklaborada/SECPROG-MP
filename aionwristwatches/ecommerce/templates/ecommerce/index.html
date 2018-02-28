@@ -6,143 +6,17 @@
         
 		<h3>Analog</h3>
 		<div class="row">
-
+			{% for product in product_list %}
 			<div class="card col-sm-3">
-	  			<img class="card-img-top" src="http://vanrijkestatejewellers.com/wp-content/uploads/2014/12/gents-iwc-portofino-eight-day-power-reserve-wristwatch-ref-iw510102-sku-6332-e1430234547707.jpg">
+	  			<a href="#"><img class="card-img-top" src="{{ product.image.url }}"></a>
 	  			<div class="card-body">
-	    			<h5 class="card-title">IWC</h5>
-	    			<p class="card-text">IWC Portofino Eight Day Power Reserve</p>
+	    			<a href="#" style="text-decoration: none;"><h5 class="font-weight-bold text-dark card-title">{{ product.prodname }}</h5></a>
+	    			<p class="card-text text-muted">{{ product.category }}</p>
 	    			<div class="text-center"><a href="#" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
 	  			</div>
+	  			
 			</div>
-
-			<div class="card col-sm-3">
-	  			<img class="card-img-top" src="http://retaildesignblog.net/wp-content/uploads/2013/12/Navitimer-Cosmonaute-Blacksteel-watch-03.jpg">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Breitling</h5>
-	    			<p class="card-text">Breitling Navitimer Cosmonaute Blacksteel</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-
-			<div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://assets.instantluxe.co.uk/watches/wrist-watch/rolex/wrist-watch-rolex-silver-gold-unisex-oyster-perpetual-datejust-A117658-1600-g.2.jpg">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Rolex</h5>
-	    			<p class="card-text">Rolex Oyster Perpetual</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-
-			<div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://i.ytimg.com/vi/QqQq3_sga-Y/maxresdefault.jpg">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Omega</h5>
-	    			<p class="card-text">Omega Speedmaster</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-
-			<div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://www.grand-seiko.com/springdrive8day/assets/img/gallery01l.jpg">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Seiko</h5>
-	    			<p class="card-text">Seiko Grand Seiko Spring Drive</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-
-			<div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://www.ahci.ch/wp-content/uploads/2015/02/kari-voutilainen-03.jpg">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Kari Voutilainen</h5>
-	    			<p class="card-text">Kari Voutilainen Observatoire</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-
-			<div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://www.ablogtowatch.com/wp-content/uploads/2013/12/A-Lange-Sohne-Datograph-up-down-20.jpg">
-	  			<div class="card-body">
-	    			<h5 class="card-title">A. Lange & Sohne</h5>
-	    			<p class="card-text">A. Lange & Sohne Datograph Up/Down</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-
-			<div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://www.breguet.com/sites/default/files/gardetemps/variante/soldat/3817st_x2_3zu_face.jpg">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Breguet</h5>
-	    			<p class="card-text">Breguet Type XXI</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-            <div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://cdn.shopify.com/s/files/1/1193/6186/products/GB-CW_ANGLE-redo_1024x1024.jpg?v=1509126837">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Marble Classic</h5>
-	    			<p class="card-text">WHITE MARBLE CLASSIC WATCH</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-            <div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://cdn.shopify.com/s/files/1/1193/6186/products/GB-CW_ANGLE-redo_1024x1024.jpg?v=1509126837">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Marble Classic</h5>
-	    			<p class="card-text">WHITE MARBLE CLASSIC WATCH</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-            <div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://cdn.shopify.com/s/files/1/1193/6186/products/GB-CW_ANGLE-redo_1024x1024.jpg?v=1509126837">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Marble Classic</h5>
-	    			<p class="card-text">WHITE MARBLE CLASSIC WATCH</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-            <div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://cdn.shopify.com/s/files/1/1193/6186/products/GB-CW_ANGLE-redo_1024x1024.jpg?v=1509126837">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Marble Classic</h5>
-	    			<p class="card-text">WHITE MARBLE CLASSIC WATCH</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-            <div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://cdn.shopify.com/s/files/1/1193/6186/products/GB-CW_ANGLE-redo_1024x1024.jpg?v=1509126837">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Marble Classic</h5>
-	    			<p class="card-text">WHITE MARBLE CLASSIC WATCH</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-            <div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://cdn.shopify.com/s/files/1/1193/6186/products/GB-CW_ANGLE-redo_1024x1024.jpg?v=1509126837">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Marble Classic</h5>
-	    			<p class="card-text">WHITE MARBLE CLASSIC WATCH</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-            <div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://cdn.shopify.com/s/files/1/1193/6186/products/GB-CW_ANGLE-redo_1024x1024.jpg?v=1509126837">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Marble Classic</h5>
-	    			<p class="card-text">WHITE MARBLE CLASSIC WATCH</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-            <div class="card col-sm-3">
-	  			<img class="card-img-top" src="https://cdn.shopify.com/s/files/1/1193/6186/products/GB-CW_ANGLE-redo_1024x1024.jpg?v=1509126837">
-	  			<div class="card-body">
-	    			<h5 class="card-title">Marble Classic</h5>
-	    			<p class="card-text">WHITE MARBLE CLASSIC WATCH</p>
-	    			<div class="text-center"><a href="#" role="button" class="card-link text-uppercase text-success font-weight-bold">Add To Cart</a></div>
-	  			</div>
-			</div>
-            
+			{% endfor %}
 		</div>
 	</div>
    

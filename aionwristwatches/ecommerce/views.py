@@ -5,6 +5,7 @@ from .forms import RegistrationForm
 from .models import Product
 
 def index(request):
+	product_list = Product.objects.all()
 	if request.method == 'POST':
 		regform = RegistrationForm(request.POST)
 		print("REQUEST POST")
@@ -15,11 +16,13 @@ def index(request):
 
 		regform = RegistrationForm()
 		context = {
+			'product_list': product_list,
         	'regform': regform,
         }
 		return login(request, context)
 	regform = RegistrationForm()
 	context = {
+		'product_list': product_list,
 		'regform': regform,
 	}
 	return render(request, 'ecommerce/index.html', context)
