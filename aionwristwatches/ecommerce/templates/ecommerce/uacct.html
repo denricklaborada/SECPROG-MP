@@ -11,7 +11,24 @@
         document.getElementById("addrtab").style.visibility = "hidden";
     });
     function info(tab){
-        alert(tab);
+        if(tab=="acct")
+        {
+            $("#accttab").show();
+            $("#pwdtab").hide();
+            $("#addrtab").hide();
+        }
+        else if(tab=="pwd")
+        {
+            $("#accttab").hide();
+            $("#pwdtab").show();
+            $("#addrtab").hide();
+        }
+        else
+        {
+            $("#accttab").hide();
+            $("#pwdtab").hide();
+            $("#addrtab").show();
+        }
     }
 
 </script>
