@@ -24,8 +24,7 @@
           <ul class="list-group list-group-flush">
               <li class="list-group-item"><a href="#" style="text-decoration: none;">Account</a></li>
               <li class="list-group-item"><a href="#" style="text-decoration: none;">Password</a></li>
-              <li class="list-group-item"><a href="#" style="text-decoration: none;">Billing Address</a></li>
-              <li class="list-group-item"><a href="#" style="text-decoration: none;">Shipping Address</a></li>
+              <li class="list-group-item"><a href="#" style="text-decoration: none;">Address</a></li>
           </ul>
         </div>
     </div>
@@ -85,8 +84,9 @@
     </div>
     <div class="container col-5 " >
         <div class="card">
-            <div class="card-header"><strong class="p-3">BILLING ADDRESS</strong><a href="#" class="pull-right" style="text-decoration: none;">EDIT</a></div>
+            <div class="card-header"><strong class="p-3">ADDRESS</strong><a href="#" class="pull-right" style="text-decoration: none;">EDIT</a></div>
             <div class = "card-body">
+                <div class = "card-subtitle"> <strong class="p-3"> Billing Address </strong>
                 <ul class="list-group list-group-flush">
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">Address1</div>
@@ -97,14 +97,8 @@
                         <input class="col-6" type="text" value="{{user.mname}}"/>
                     </li>
                 </ul>
-                <div class="text-center mt-1 pt-2"><a href="#" class="btn btn-primary "><strong>SAVE</strong></a></div>
-            </div>
-        </div>
-    </div>
-    <div class="container col-5 " >
-        <div class="card">
-            <div class="card-header"><strong class="p-3">SHIPPING ADDRESS</strong><a href="#" class="pull-right" style="text-decoration: none;">EDIT</a></div>
-            <div class = "card-body">
+                </div>
+                <div class = "card-subtitle"> <strong class="p-3"> Shipping Address </strong>
                 <ul class="list-group list-group-flush">
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">Address1</div>
@@ -115,10 +109,12 @@
                         <input class="col-6" type="text" value="{{user.mname}}"/>
                     </li>
                 </ul>
+                </div>
                 <div class="text-center mt-1 pt-2"><a href="#" class="btn btn-primary "><strong>SAVE</strong></a></div>
             </div>
         </div>
     </div>
+   
 </div>
 {% endblock %}
 
