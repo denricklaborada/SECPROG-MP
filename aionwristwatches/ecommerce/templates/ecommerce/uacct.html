@@ -6,6 +6,14 @@
 {% block extrascript%}
 <script>
     $("#up").disabled = true;
+    $(document).ready(function(){
+        document.getElementById("pwdtab").style.visibility = "hidden";
+        document.getElementById("addrtab").style.visibility = "hidden";
+    });
+    function info(tab){
+        alert(tab);
+    }
+
 </script>
 {% endblock %}
 {% block body %}
@@ -23,13 +31,13 @@
         </div>
         <div class="card mt-lg-5">
           <ul class="list-group list-group-flush">
-              <li class="list-group-item"><a href="#" style="text-decoration: none;">Account</a></li>
-              <li class="list-group-item"><a href="#" style="text-decoration: none;">Password</a></li>
-              <li class="list-group-item"><a href="#" style="text-decoration: none;">Address</a></li>
+              <li class="list-group-item"><a href="#" onclick="info(this.id);" id="acct" style="text-decoration: none;">Account</a></li>
+              <li class="list-group-item"><a href="#" onclick="info(this.id);" id="pwd" style="text-decoration: none;">Password</a></li>
+              <li class="list-group-item"><a href="#" onclick="info(this.id);" id="addr" style="text-decoration: none;">Address</a></li>
           </ul>
         </div>
     </div>
-    <div class="container col-5 " >
+    <div id="accttab" class="container col-5 " >
         <div class="card">
             <div class="card-header"><strong class="p-3">ACCOUNT</strong><a href="#" class="pull-right" style="text-decoration: none;">EDIT</a></div>
             <div class = "card-body">
@@ -60,7 +68,7 @@
             </div>
         </div>
     </div>
-    <div class="container col-5 " >
+    <div id="pwdtab" class="container col-5 " >
         <div class="card">
             <div class="card-header"><strong class="p-3">PASSWORD</strong></div>
             <div class = "card-body">
@@ -83,7 +91,7 @@
             </div>
         </div>
     </div>
-    <div class="container col-5 " >
+    <div id="addrtab" class="container col-5 " >
         <div class="card">
             <div class="card-header"><strong class="p-3">ADDRESS</strong><a href="#" class="pull-right" style="text-decoration: none;">EDIT</a></div>
             <div class = "card-body">
