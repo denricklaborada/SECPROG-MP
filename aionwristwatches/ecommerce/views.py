@@ -42,6 +42,10 @@ def checkout(request):
 def shipping(request):
     return render(request, 'ecommerce/shipping.html')
 
+
+def acctman(request):
+    return render(request, 'ecommerce/acctman.html')
+
 def uacct(request):
 
 	return render(request, 'ecommerce/uacct.html')
