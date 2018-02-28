@@ -9,6 +9,7 @@
 </script>
 {% endblock %}
 {% block body %}
+{% if user.is_authenticated %}
 <div class="main-container mt-5">
     <div class="container ml-5 col-3 pull-left" >
         <div class="card ">
@@ -117,5 +118,6 @@
     </div>
    
 </div>
+{% endif %}
 {% endblock %}
 
