@@ -7,7 +7,7 @@ from . import views
 app_name = 'ecommerce'
 
 urlpatterns = [
-	url(r'^$', views.shipping, name='shipping'),
+	url(r'^shipping/$',views.shipping, name='shipping'),
 	url(r'^$', views.index, name='index'),
 	url(r'^(?P<product_id>[0-9]+)/cart/$', views.add_to_cart, name='addcart'),
     url(r'^checkout/$', views.checkout, name='checkout'),
