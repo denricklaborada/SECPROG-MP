@@ -36,6 +36,9 @@ def checkout(request):
 	##cart = request.session.get('cart', {})
 	return render(request, 'ecommerce/checkout.html')
 
+def shipping(request):
+    return render(request, 'ecommerce/shipping.html')
+
 def uacct(request):
 
 	return render(request, 'ecommerce/uacct.html')
