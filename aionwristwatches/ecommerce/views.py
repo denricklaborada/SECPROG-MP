@@ -27,6 +27,14 @@ def index(request):
 	}
 	return render(request, 'ecommerce/index.html', context)
 
+def acctman(request):
+	product_list = Product.objects.all()
+	
+	context = {
+		'product_list': product_list,
+	}
+	return render(request, 'ecommerce/index.html', context)
+
 def add_to_cart(request, product_id):
 #     cart = request.session.get('cart',{})
 #     product = Product.objects.get(id=product_id)
