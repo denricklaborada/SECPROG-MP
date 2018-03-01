@@ -28,13 +28,13 @@ def index(request):
 	return render(request, 'ecommerce/index.html', context)
 
 def acctman(request):
-	product_list = Product.objects.all()
-	console.log("hi")
+    product_list = Product.objects.all()
+    console.log("hi")
     console.log(product_list)
-	context = {
-		'product_list': product_list,
+    context = {
+        'product_list': product_list,
 	}
-	return render(request, 'ecommerce/index.html', context)
+    return render(request, 'ecommerce/index.html', context)
 
 def add_to_cart(request, product_id):
 #     cart = request.session.get('cart',{})
