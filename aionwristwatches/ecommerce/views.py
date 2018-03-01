@@ -34,7 +34,7 @@ def acctman(request):
     context = {
         'product_list': product_list,
 	}
-    return render(request, 'ecommerce/index.html', context)
+    return render(request, 'ecommerce/acctman.html', context)
 
 def add_to_cart(request, product_id):
 #     cart = request.session.get('cart',{})
@@ -52,8 +52,6 @@ def shipping(request):
     return render(request, 'ecommerce/shipping.html')
 
 
-def acctman(request):
-    return render(request, 'ecommerce/acctman.html')
 
 def uacct(request):
 
