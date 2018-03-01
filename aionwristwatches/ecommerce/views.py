@@ -29,7 +29,8 @@ def index(request):
 
 def acctman(request):
 	product_list = Product.objects.all()
-	
+	console.log("hi")
+    console.log(product_list)
 	context = {
 		'product_list': product_list,
 	}
