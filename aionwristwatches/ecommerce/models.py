@@ -6,6 +6,7 @@ class Product(models.Model):
     prodname = models.CharField(max_length=40)
     description = models.CharField(max_length=300)
     price = models.DecimalField(default=0.00, max_digits=20, decimal_places=2,  validators=[MinValueValidator(0)])
+    initialstock = models.PositiveIntegerField(default=0)
     quantity = models.PositiveIntegerField(default=0)
     CHOICES = (
         ('Analog', 'Analog'),
