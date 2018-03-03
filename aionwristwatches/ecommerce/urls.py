@@ -7,6 +7,7 @@ from . import views
 app_name = 'ecommerce'
 
 urlpatterns = [
+    url(r'^login/$',views.login, name='login'),
     url(r'^acctman/$',views.acctman, name='acctman'),
 	url(r'^shipping/$',views.shipping, name='shipping'),
 	url(r'^$', views.index, name='index'),

@@ -26,6 +26,9 @@ def index(request):
 		'regform': regform,
 	}
 	return render(request, 'ecommerce/index.html', context)
+def login(request):
+    
+    return render(request, 'ecommerce/login.html')
 
 def acctman(request):
     product_list = Product.objects.all()
