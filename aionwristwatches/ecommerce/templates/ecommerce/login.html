@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{%load static %}
+<html>
+<head>
+    <script src="{{ STATIC_URL }} /static/js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }} /static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+
+    <title> Login </title>
+    
+    
+</head>  
+    
+<body>
+    <div class="main">
+        <div class="text-center"><h5><strong>AION WRISTWATCHES</strong></h5></div>
+        
+        {% if error == True %}
+        <div class="alert alert-danger" role="alert">
+            The username/password you entered did not match our records. Please try again.
+        </div>
+        {% endif %}
+        
+        <div class="container">
+
+          <form class="form-signin">
+            
+            <label for="inputUname" class="sr-only">Username</label>
+            <input id="inputUname" class="form-control mt-3" placeholder="Username" required type="uname">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input id="inputPassword" class="form-control mt-1" placeholder="Password" required type="password">
+             <button type="submit" class="btn btn-block btn-success mt-3">Login</button>
+          </form>
+
+        </div>
+        
+
+        <div id="id_forgot" class="mt-2" >
+            <a href="/forgotpw/">Forgot password?</a>
+        </div>
+    </div>
+</body>
+</html>

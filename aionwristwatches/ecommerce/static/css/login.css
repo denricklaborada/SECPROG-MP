@@ -1,0 +1,52 @@
+body {
+            background: url('../brand/watch1.jpg') no-repeat center center fixed;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            
+        }
+
+        .main {
+            background-color: #fff;
+            width: 25%;
+            height: auto;
+            margin-top: 10%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 10%;
+            padding: 3%;
+            opacity: 0.8;
+            filter: alpha(opacity=50);
+            border-radius: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            width: 95%;
+            border-radius: 6px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+        
+        #label {
+            font-family:"open sans", sans-serif;
+            font-size: 20px;
+            color: green;
+            bottom: -1px;
+            left: 1px;
+        }
+
+        h5 {
+            font-family:"open sans", sans-serif;
+        }
+        #id_forgot
+{
+    text-align: right;
+}
