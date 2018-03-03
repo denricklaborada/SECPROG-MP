@@ -1,0 +1,43 @@
+{% extends 'ecommerce/extends/header2.html' %}
+{% load static %}
+
+{% block body %}  
+  <div class="container-fluid">
+    <div class="card mt-3">
+      <div class="card-header">
+        <i class="fa fa-table"></i> Products
+      </div>
+      <div class="card-body">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-outline-success">Add</button>
+          <button type="button" class="btn btn-outline-secondary">Edit</button>
+          <button type="button" class="btn btn-outline-danger">Delete</button>
+        </div>
+        <table class="table table-bordered mt-3">
+          <thead>
+            <tr>
+              <th scope="col"><input type="checkbox"></th>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Price</th>
+              <th scope="col">Current Stock</th>
+              <th scope="col">Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in product_list %}
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>{{ product.prodname }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.category }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
