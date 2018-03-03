@@ -1,0 +1,61 @@
+
+{% extends 'ecommerce/extends/header3.html' %}
+{% load static %}
+{% block extrahead %}
+   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" > 
+  <link href="{% static 'css/dataTables.bootstrap4.css' %}" rel="stylesheet" type="text/css" >
+<link rel="stylesheet" type="text/css" href="{% static 'css/adminman.css' %}">
+{% endblock%}
+  
+{% block body %}
+<nav id="navbar1" class="navbar navbar-expand-md navbar-dark">
+    <div id="id_bread" >
+        <div class="breadcrumbs">
+            <a id="id_bread" href="/admin/">Home</a>
+            <span style="color:#c4dce8;">›&nbsp;Product Manager</span>
+
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <table class="table table-bordered mt-5">
+      <thead class="thead-inverse text-uppercase">
+        <tr>
+          <th>#</th>
+          <th>Username</th>
+          <th>Email Address</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td><a href="/edit/">@mdo</a></td>
+          <td>markotto@mail.com</td>
+          <td>Mark</td>
+          <td>Otto</td>
+          
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td><a href="#">@fat</a></td>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>jthornton@mail.com</td>
+          
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td><a href="#">@twitter</a></td>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>twitbird@mail.com</td>
+        </tr>
+      </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

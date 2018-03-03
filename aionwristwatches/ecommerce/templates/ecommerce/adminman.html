@@ -1,0 +1,40 @@
+{% extends 'ecommerce/extends/header3.html' %}
+{% load static %}
+{% block extrahead %}
+   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" > 
+  <link href="{% static 'css/dataTables.bootstrap4.css' %}" rel="stylesheet" type="text/css" >
+<link rel="stylesheet" type="text/css" href="{% static 'css/adminman.css' %}">
+{% endblock%}
+  
+{% block body %}
+
+<small><h5 class="mt-4 ml-5" style="color: #666;">Manager Administration</h5></small>
+<div class="container ml-5 mt-4 col-5 pull-left" >
+    <div class="card ">
+        <div class="card-header col-auto text-center" style="background-color: #79aec8; color: white;">
+            Staff Accounts
+        </div>
+        <div class="card-body" style="color: #447e9b;" >
+            <div>
+                <a href="{%url 'ecommerce:prodmng' %}">Product Manager</a>
+                <span  class="pull-right">
+                    <a href="{%url 'ecommerce:addp' %}"><i class="text-success fa fa-user-plus"></i>&nbsp;<small><strong>Add</strong></small></a>&nbsp;
+                    <a href="{%url 'ecommerce:prodmng' %}"><i class=" text-warning fa fa-pencil" ></i>&nbsp;<small><strong>Edit</strong></small></a>
+                </span>
+            </div>
+            <hr/>
+            <div>
+                <a href="#">Account Manager</a>
+                <span  class="pull-right">
+                    <a href="#"><i class="text-success fa fa-user-plus"></i>&nbsp;<small><strong>Add</strong></small></a>&nbsp;
+                    <a href="#"><i class=" text-warning fa fa-pencil" ></i>&nbsp;<small><strong>Edit</strong></small></a>
+                </span>
+            </div>
+           
+        </div>
+
+       
+    </div>
+    
+</div>
+{%endblock%}
