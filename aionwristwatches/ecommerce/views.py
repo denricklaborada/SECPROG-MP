@@ -52,10 +52,14 @@ def checkout(request):
 def shipping(request):
     return render(request, 'ecommerce/shipping.html')
 
-
+def prodman(request):
+	product_list = Product.objects.all()
+	context = {
+		'product_list': product_list,
+	}
+	return render(request, 'ecommerce/prodman.html', context)
 
 def uacct(request):
-
 	return render(request, 'ecommerce/uacct.html')
 
 def product(request, product_id):
