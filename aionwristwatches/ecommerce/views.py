@@ -26,24 +26,7 @@ def index(request):
 		'regform': regform,
 	}
 	return render(request, 'ecommerce/index.html', context)
-def login(request):
-    
-    return render(request, 'ecommerce/login.html')
 
-def adminman(request):
-    
-    return render(request, 'ecommerce/adminman.html')
-
-def prodmng(request):
-    
-    return render(request, 'ecommerce/prodmng.html')
-
-def editp(request):
-    
-    return render(request, 'ecommerce/editpman.html')
-def addp(request):
-    
-    return render(request, 'ecommerce/addpman.html')
 
 def acctman(request):
     product_list = Product.objects.all()
@@ -73,6 +56,24 @@ def prodman(request):
 		'product_list': product_list,
 	}
 	return render(request, 'ecommerce/prodman.html', context)
+def loginmanager(request):
+    
+    return render(request, 'ecommerce/loginmanager.html')
+
+def adminman(request):
+    
+    return render(request, 'ecommerce/adminman.html')
+
+def prodmng(request):
+    
+    return render(request, 'ecommerce/prodmng.html')
+
+def editp(request):
+    
+    return render(request, 'ecommerce/editpman.html')
+def addp(request):
+    
+    return render(request, 'ecommerce/addpman.html')
 
 def uacct(request):
 	return render(request, 'ecommerce/uacct.html')
