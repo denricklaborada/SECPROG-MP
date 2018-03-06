@@ -7,7 +7,6 @@ from .models import Review
 from .models import Transaction
 
 # Register your models here.
-
 admin.site.register(Product)
 admin.site.register(ProductManager)
 admin.site.register(AccountingManager)

@@ -1,8 +1,9 @@
+import re
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.views import login
 from django.http import HttpResponseRedirect
 from .forms import RegistrationForm
-from .models import Product
+from .models import Product, ProductManager, AccountingManager, Admin
 
 def index(request):
 	product_list = Product.objects.all()
@@ -72,8 +73,52 @@ def editp(request):
     
     return render(request, 'ecommerce/editpman.html')
 def addp(request):
-    
-    return render(request, 'ecommerce/addpman.html')
+	context = { 
+		"alert": None
+	}
+
+	if request.method == "POST":
+		pm_inst = ProductManager()
+
+		first = request.POST["first"]
+		last = request.POST["last"]
+		username = request.POST["username"]
+		password = request.POST["password"]
+		cpassword = request.POST["cpassword"]
+		email = request.POST["email"]
+
+		if len(first) > 0 and len(last) > 0 and len(username) > 0 and \
+			len(password) > 0 and len(cpassword) > 0 and len(email) > 0:
+			email_pattern = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+
+			if len(password) < 6 or len(username) < 3:
+				context["alert"] = "Password must be at least 6 characters long and the\
+				username must be at least 3 characters long."
+			elif password != cpassword:
+					context["alert"] = "Passwords do not match."
+			elif not email_pattern.match(email):
+				context["alert"] = "Invalid email address"
+			elif len(ProductManager.objects.filter(uname=username)) > 0 or \
+				len(AccountingManager.objects.filter(uname=username)) > 0 or \
+				len(Admin.objects.filter(uname=username)) > 0:
+				context["alert"] = "The username already exists"
+			elif len(ProductManager.objects.filter(email=email)) > 0 or \
+				len(AccountingManager.objects.filter(email=email)) > 0 or \
+				len(Admin.objects.filter(email=email)) > 0:
+				context["alert"] = "That email is already in use"
+			else:
+				pm_inst.uname = username
+				pm_inst.password = password
+				pm_inst.email = email
+				pm_inst.first = first
+				pm_inst.last = last
+
+				pm_inst.save(force_insert=True)
+				context["alert"] = "Product manager created"
+		else:
+			context["alert"] = "Not enough information was given"
+
+	return render(request, 'ecommerce/addpman.html', context)
 
 def uacct(request):
 	return render(request, 'ecommerce/uacct.html')

@@ -1,6 +1,8 @@
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
+from datetime import timedelta, datetime
 
 class Product(models.Model):
     prodname = models.CharField(max_length=40)
@@ -84,24 +86,55 @@ class Transaction(models.Model):
         verbose_name_plural = "Transactions"
 
 class ProductManager(models.Model):
+    first = models.CharField(max_length=20)
+    last = models.CharField(max_length=20)
     uname = models.CharField(unique=True, max_length=20)
     password = models.CharField(blank=True, max_length=20)
     email = models.CharField(unique=True,  max_length=20)
+    temporary = models.BooleanField(default=True)
     datecreated = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return "Product Manager - " + str(self.uname)
+
+    def is_expired(self):
+        if self.temporary == True and (timezone.now() - self.datecreated) > timedelta(1):
+            return True
+
+        return False
+        
     class Meta:
         verbose_name_plural = "Product Managers"
 
 class AccountingManager(models.Model):
+    first = models.CharField(max_length=20)
+    last = models.CharField(max_length=20)
     uname = models.CharField(unique=True, max_length=20)
     password = models.CharField(blank=True, max_length=20)
     email = models.CharField(unique=True, max_length=20)
+    temporary = models.BooleanField(default=True)
     datecreated = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return "Accounting Manager - " + str(self.uname)
 
+    def is_expired(self):
+        if self.temporary == True and (timezone.now() - self.datecreated) > timedelta(1):
+            return True
+
+        return False
+
     class Meta:
         verbose_name_plural = "Accounting Managers"
+
+class Admin(models.Model):
+    uname = models.CharField(unique=True, max_length=20)
+    password = models.CharField(max_length=20)
+    email = models.EmailField(unique=True)
+    datecreated = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "Admin - " + str(self.uname)
+
+    class Meta:
+        verbose_name_plural = "Admins"
