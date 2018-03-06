@@ -65,11 +65,8 @@ def adminman(request):
     return render(request, 'ecommerce/adminman.html')
 
 def prodmng(request):
-	product_list = Product.objects.all()
-	context = {
-		'product_list': product_list,
-	}
-	return render(request, 'ecommerce/prodmng.html', context)
+	
+	return render(request, 'ecommerce/prodmng.html')
 
 def editp(request):
     
