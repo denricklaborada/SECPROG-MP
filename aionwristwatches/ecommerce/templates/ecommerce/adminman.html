@@ -7,7 +7,7 @@
 {% endblock%}
   
 {% block body %}
-
+{% if user.is_authenticated and user.usertypes == "Administrator" %}
 <small><h5 class="mt-4 ml-5" style="color: #666;">Manager Administration</h5></small>
 <div class="container ml-5 mt-4 col-5 pull-left" >
     <div class="card ">
@@ -37,4 +37,5 @@
     </div>
     
 </div>
+{%endif%}
 {%endblock%}

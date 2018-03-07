@@ -1,7 +1,7 @@
 
 import re
 from django.shortcuts import render, redirect, reverse
-from django.contrib.auth.views import login
+from django.contrib.auth.views import login, logout
 from django.http import HttpResponseRedirect
 from .forms import RegistrationForm
 from .models import Product
@@ -56,6 +56,8 @@ def prodman(request):
 	}
 	return render(request, 'ecommerce/prodman.html', context)
 def loginmanager(request):
+    if request.user.is_authenticated:
+        logout(request)
     if request.method == 'POST': 
         
         login(request)

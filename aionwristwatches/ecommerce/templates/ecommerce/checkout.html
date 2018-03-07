@@ -51,7 +51,7 @@
     </script>
 {% endblock%}
 {% block body %}
-{% if user.is_authenticated %}
+{% if user.is_authenticated and user.usertypes == "Customer" %}
 <!--%if cart != empty%}-->
 
 <div class="d-flex flex-column">
