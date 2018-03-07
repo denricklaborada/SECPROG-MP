@@ -11,34 +11,42 @@
         <div class="card">
             <div id="title" class="card-header"><strong class="p-3">ADD NEW PRODUCT MANAGER</strong></div>
             <div class = "card-body">
+               <form action="#" method="POST">
                 <ul class="list-group list-group-flush">
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">First Name</div>
-                        <input class="col-8" type="text" value=""/>
+                        <input class="col-8" type="text" value="" name="first"/>
                     </li>
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">Last Name</div>
-                        <input class="col-8" type="text" value=""/>
+                        <input class="col-8" type="text" value="" name="last"/>
                     </li>
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">Username</div>
-                        <input class="col-8" type="text" value=""/>
+                        <input class="col-8" type="text" value="" name="username"/>
                     </li>
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">Password</div>
-                        <input class="col-8" type="password" value=""/>
+                        <input class="col-8" type="password" value="" name="password"/>
                     </li>
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">Retype Password</div>
-                        <input class="col-8" type="password" value=""/>
+                        <input class="col-8" type="password" value="" name="cpassword"/>
                     </li>
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">Email</div>
-                        <input class="col-8" type="text" value=""/>
+                        <input class="col-8" type="text" value="" name="email"/>
                     </li>
 
                 </ul>
-                <div class="text-center mt-1 pt-2"><a href="#" class="btn btn-primary "><strong>SAVE</strong></a></div>
+                {% csrf_token %}
+                <div class="text-center mt-1 pt-2">
+                    <input type="submit" class="btn btn-primary" value="SAVE"/>
+                </div>
+                {% if alert %}
+                    {{ alert }}
+                {% endif %}
+               </form>
             </div>
         </div>
     </div>

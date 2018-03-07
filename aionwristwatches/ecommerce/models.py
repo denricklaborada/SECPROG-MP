@@ -25,12 +25,12 @@ class Product(models.Model):
 middle_initial = models.CharField(blank=True, max_length=5)
 middle_initial.contribute_to_class(User, 'middle_initial')
 
-bhouse_num = models.PositiveIntegerField(null=True, validators=[MinValueValidator(1)])
-bstreet = models.CharField(blank=True, max_length=60)
-bsubdivision = models.CharField(blank=True, max_length=60)
-bcity = models.CharField(blank=True, max_length=60)
-bpc = models.PositiveIntegerField(null=True, validators=[MinValueValidator(1)])
-bcountry = models.CharField(blank=True, max_length=60)
+bhouse_num = models.PositiveIntegerField(null=True, validators=[MinValueValidator(1)], default=1)
+bstreet = models.CharField(blank=True, max_length=60, default='')
+bsubdivision = models.CharField(blank=True, max_length=60, default='')
+bcity = models.CharField(blank=True, max_length=60, default='')
+bpc = models.PositiveIntegerField(null=True, validators=[MinValueValidator(1)], default=1)
+bcountry = models.CharField(blank=True, max_length=60, default='')
 
 bhouse_num.contribute_to_class(User, 'bhouse_num')
 bstreet.contribute_to_class(User, 'bstreet')
@@ -39,12 +39,12 @@ bcity.contribute_to_class(User, 'bcity')
 bpc.contribute_to_class(User, 'bpc')
 bcountry.contribute_to_class(User, 'bcountry')
 
-shouse_num = models.PositiveIntegerField(null=True, validators=[MinValueValidator(1)])
-sstreet = models.CharField(blank=True, max_length=60)
-ssubdivision = models.CharField(blank=True, max_length=60)
-scity = models.CharField(blank=True, max_length=60)
-spc = models.PositiveIntegerField(null=True, validators=[MinValueValidator(1)])
-scountry = models.CharField(blank=True, max_length=60)
+shouse_num = models.PositiveIntegerField(null=True, validators=[MinValueValidator(1)], default=1)
+sstreet = models.CharField(blank=True, max_length=60, default='')
+ssubdivision = models.CharField(blank=True, max_length=60, default='')
+scity = models.CharField(blank=True, max_length=60, default='')
+spc = models.PositiveIntegerField(null=True, validators=[MinValueValidator(1)], default=1)
+scountry = models.CharField(blank=True, max_length=60, default='')
 
 shouse_num.contribute_to_class(User, 'shouse_num')
 sstreet.contribute_to_class(User, 'sstreet')
@@ -53,10 +53,18 @@ scity.contribute_to_class(User, 'scity')
 spc.contribute_to_class(User, 'spc')
 scountry.contribute_to_class(User, 'scountry')
 
-cart = models.ManyToManyField(Product, blank=True)
+#cart = models.ManyToManyField(Product, blank=True)
+#
+#cart.contribute_to_class(User, 'cart')
 
-cart.contribute_to_class(User, 'cart')
-
+USERTYPES = (
+        ('Administrator', 'Administrator'),
+        ('ProductManager', 'ProductManager'),
+        ('AccountingManager', 'AccountingManager'),
+        ('Customer', 'Customer'),
+)
+usertypes = models.CharField(max_length=7, choices=USERTYPES,default='Customer')
+usertypes.contribute_to_class(User, 'usertypes')
 
 
 class Review(models.Model):
@@ -83,25 +91,25 @@ class Transaction(models.Model):
     class Meta:
         verbose_name_plural = "Transactions"
 
-class ProductManager(models.Model):
-    uname = models.CharField(unique=True, max_length=20)
-    password = models.CharField(blank=True, max_length=20)
-    email = models.CharField(unique=True,  max_length=20)
-    datecreated = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return "Product Manager - " + str(self.uname)
-    class Meta:
-        verbose_name_plural = "Product Managers"
-
-class AccountingManager(models.Model):
-    uname = models.CharField(unique=True, max_length=20)
-    password = models.CharField(blank=True, max_length=20)
-    email = models.CharField(unique=True, max_length=20)
-    datecreated = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return "Accounting Manager - " + str(self.uname)
-
-    class Meta:
-        verbose_name_plural = "Accounting Managers"
+#class ProductManager(models.Model):
+#    uname = models.CharField(unique=True, max_length=20)
+#    password = models.CharField(blank=True, max_length=20)
+#    email = models.CharField(unique=True,  max_length=20)
+#    datecreated = models.DateTimeField(auto_now_add=True)
+#
+#    def __str__(self):
+#        return "Product Manager - " + str(self.uname)
+#    class Meta:
+#        verbose_name_plural = "Product Managers"
+#
+#class AccountingManager(models.Model):
+#    uname = models.CharField(unique=True, max_length=20)
+#    password = models.CharField(blank=True, max_length=20)
+#    email = models.CharField(unique=True, max_length=20)
+#    datecreated = models.DateTimeField(auto_now_add=True)
+#
+#    def __str__(self):
+#        return "Accounting Manager - " + str(self.uname)
+#
+#    class Meta:
+#        verbose_name_plural = "Accounting Managers"

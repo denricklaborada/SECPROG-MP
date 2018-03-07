@@ -25,13 +25,14 @@
         
         <div class="container">
 
-          <form class="form-signin">
-            
-            <label for="inputUname" class="sr-only">Username</label>
-            <input id="inputUname" class="form-control mt-3" placeholder="Username" required type="uname">
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input id="inputPassword" class="form-control mt-1" placeholder="Password" required type="password">
+          <form class="form-signin" method="post">
+            {% csrf_token %}
+            <label for="id_username" class="sr-only">Username</label>
+            <input id="id_username" name="username" class="form-control mt-3" placeholder="Username" required>
+            <label for="id_password" class="sr-only">Password</label>
+            <input id="id_password" name="password" class="form-control mt-1" placeholder="Password" required type="password">
              <button type="submit" class="btn btn-block btn-success mt-3">Login</button>
+<!--              <input type="hidden" name="next" value="{{ next }}">-->
           </form>
 
         </div>

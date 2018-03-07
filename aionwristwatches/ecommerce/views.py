@@ -1,8 +1,11 @@
+
+import re
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.views import login
 from django.http import HttpResponseRedirect
 from .forms import RegistrationForm
 from .models import Product
+from django.contrib.auth.models import User
 
 def index(request):
 	product_list = Product.objects.all()
@@ -57,7 +60,18 @@ def prodman(request):
 	}
 	return render(request, 'ecommerce/prodman.html', context)
 def loginmanager(request):
-    
+    if request.method == 'POST': 
+        
+        login(request)
+        user = User.objects.filter(username=request.POST['username'])[:1].get()
+        
+        if user.usertypes == 'Administrator':
+            return redirect('/adminman/')
+        if user.usertypes == 'ProductManager':
+            return redirect('/prodman/')
+        if user.usertypes == 'AccountingManager':
+            return redirect('/acctman/')
+        
     return render(request, 'ecommerce/loginmanager.html')
 
 def adminman(request):
@@ -72,7 +86,42 @@ def editp(request):
     
     return render(request, 'ecommerce/editpman.html')
 def addp(request):
+    context = { 
+		"alert": None
+	}
     
+    if request.method == "POST":
+        first = request.POST["first"]
+        last = request.POST["last"]
+        username = request.POST["username"]
+        password = request.POST["password"]
+        cpassword = request.POST["cpassword"]
+        email = request.POST["email"]
+        
+        if len(first) > 0 and len(last) > 0 and len(username) > 0 and \
+            len(password) > 0 and len(cpassword) > 0 and len(email) > 0:
+            email_pattern = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+            
+            if len(password) < 6 or len(username) < 3:
+                context["alert"] = "Password must be at least 6 characters long and the username must be at least 3 characters long."
+            elif password != cpassword:
+                context["alert"] = "Passwords do not match."
+            elif not email_pattern.match(email):
+                context["alert"] = "Invalid email address"
+            elif len(User.objects.filter(username=username)) > 0 :
+                context["alert"] = "The username already exists"
+            elif len(User.objects.filter(email=email)) > 0 :
+                context["alert"] = "That email is already in use"
+            else:
+                pm_inst = User.objects.create_user(username=username,
+                                 email=email,
+                                 password=password, first_name=first ,last_name=last,usertypes='ProductManager')
+
+                pm_inst.save()
+                context["alert"] = "Product manager created"
+        else:
+            context["alert"] = "Not enough information was given"
+            
     return render(request, 'ecommerce/addpman.html')
 
 def uacct(request):
