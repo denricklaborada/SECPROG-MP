@@ -31,12 +31,29 @@
             
         }
     }
+
     function editAcc() {
         $("#fname").attr('disabled', false);
         $("#minitial").attr('disabled', false);
         $("#lname").attr('disabled', false);
         $("#uname").attr('disabled', false);
         $("#email").attr('disabled', false);
+    }
+
+    function editAddr() {
+        $("#bhouse_num").attr('disabled', false);
+        $("#bstreet").attr('disabled', false);
+        $("#bsubdivision").attr('disabled', false);
+        $("#bcity").attr('disabled', false);
+        $("#bpc").attr('disabled', false);
+        $("#bcountry").attr('disabled', false);
+
+        $("#shouse_num").attr('disabled', false);
+        $("#sstreet").attr('disabled', false);
+        $("#ssubdivision").attr('disabled', false);
+        $("#scity").attr('disabled', false);
+        $("#spc").attr('disabled', false);
+        $("#scountry").attr('disabled', false);
     }
 
 </script>
@@ -101,7 +118,7 @@
             <div class="card-header"><strong class="p-3">PASSWORD</strong></div>
             <div class = "card-body">
                 <form method="POST">
-                {% csrf_token %}
+                    {% csrf_token %}
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-inline-flex ">
                             <div class="col-3">Current Password</div>
@@ -125,32 +142,67 @@
         <div class="card">
             <div class="card-header"><strong class="p-3">ADDRESS</strong><a href="#" onclick="editAddr();" class="pull-right" style="text-decoration: none;">EDIT</a></div>
             <div class = "card-body">
-                <div class = "card-subtitle"> <strong class="p-3"> Billing Address </strong>
-                <ul class="list-group list-group-flush">
-                    <li class=" d-inline-flex mt-1 ">
-                        <div class="col-3">Address1</div>
-                        <input class="col-8" type="text" value="{{user.bhouse_num}} {{user.bstreet}} {{user.bsubdivision}}"/>
-                    </li>
-                    <li class=" d-inline-flex mt-1">
-                        <div class="col-3">Address2</div>
-                        <input class="col-8" type="text" value="{{user.bcity}} {{user.bcountry}}"/>
-                    </li>
-                </ul>
-                </div>
-                <hr/>
-                <div class = "card-subtitle mt-2"> <strong class="p-3"> Shipping Address </strong>
-                <ul class="list-group list-group-flush">
-                    <li class=" d-inline-flex mt-1">
-                        <div class="col-3">Address1</div>
-                        <input class="col-8" type="text" value="{{user.fname}}"/>
-                    </li>
-                    <li class="d-inline-flex mt-1">
-                        <div class="col-3">Address2</div>
-                        <input class="col-8" type="text" value="{{user.mname}}"/>
-                    </li>
-                </ul>
-                </div>
-                <div class="text-center mt-1 pt-2"><a href="#" class="btn btn-primary "><strong>SAVE</strong></a></div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class = "card-subtitle"> <strong class="p-3"> Billing Address </strong>
+                        <ul class="list-group list-group-flush">
+                            <li class=" d-inline-flex mt-1 ">
+                                <div class="col-3">House #</div>
+                                <input class="col-8" id="bhouse_num" name="bhouse_num" type="text" value="{{user.bhouse_num}}" disabled />
+                            </li>
+                            <li class=" d-inline-flex mt-1">
+                                <div class="col-3">Street</div>
+                                <input class="col-8" id="bstreet" name="bstreet" type="text" value="{{user.bstreet}}" disabled />
+                            </li>
+                            <li class=" d-inline-flex mt-1 ">
+                                <div class="col-3">Subdivision</div>
+                                <input class="col-8" id="bsubdivision" name="bsubdivision" type="text" value="{{user.bsubdivision}}" disabled />
+                            </li>
+                            <li class=" d-inline-flex mt-1 ">
+                                <div class="col-3">City</div>
+                                <input class="col-8" id="bcity" name="bcity" type="text" value="{{user.bcity}}" disabled />
+                            </li>
+                            <li class=" d-inline-flex mt-1 ">
+                                <div class="col-3">Postal Code</div>
+                                <input class="col-8" id="bpc" name="bpc" type="text" value="{{user.bpc}}" disabled />
+                            </li>
+                            <li class=" d-inline-flex mt-1 ">
+                                <div class="col-3">Country</div>
+                                <input class="col-8" id="bcountry" name="bcountry" type="text" value="{{user.bcountry}}" disabled />
+                            </li>
+                        </ul>
+                    </div>
+                    <hr/>
+                    <div class = "card-subtitle mt-2"> <strong class="p-3"> Shipping Address </strong>
+                        <ul class="list-group list-group-flush">
+                            <li class=" d-inline-flex mt-1 ">
+                                <div class="col-3">House #</div>
+                                <input class="col-8" id="shouse_num" name="shouse_num" type="text" value="{{user.shouse_num}}" disabled />
+                            </li>
+                            <li class=" d-inline-flex mt-1">
+                                <div class="col-3">Street</div>
+                                <input class="col-8" id="sstreet" name="sstreet" type="text" value="{{user.sstreet}}" disabled />
+                            </li>
+                            <li class=" d-inline-flex mt-1 ">
+                                <div class="col-3">Subdivision</div>
+                                <input class="col-8" id="ssubdivision" name="ssubdivision" type="text" value="{{user.ssubdivision}}" disabled />
+                            </li>
+                            <li class=" d-inline-flex mt-1 ">
+                                <div class="col-3">City</div>
+                                <input class="col-8" id="scity" name="scity" type="text" value="{{user.scity}}" disabled />
+                            </li>
+                            <li class=" d-inline-flex mt-1 ">
+                                <div class="col-3">Postal Code</div>
+                                <input class="col-8" id="spc" name="spc" type="text" value="{{user.spc}}" disabled />
+                            </li>
+                            <li class=" d-inline-flex mt-1 ">
+                                <div class="col-3">Country</div>
+                                <input class="col-8" id="scountry" name="scountry" type="text" value="{{user.scountry}}" disabled />
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="text-center mt-1 pt-2"><input type="submit" class="btn btn-primary" value="Save"/></div>
+                </form>
             </div>
         </div>
     </div>
