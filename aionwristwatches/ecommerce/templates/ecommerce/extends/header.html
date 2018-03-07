@@ -12,6 +12,8 @@
 <!--    TO LOOK FOR ICONS    https://fontawesome.bootstrapcheatsheets.com/#-->
 		<title>{% block title %}Aion Wristwatches{% endblock %}</title>
 	</head>
+	{% block extrascript %}
+    {% endblock %}
     <script>
         $(document).ready(function(){
             window.onscroll = function() {myFunction()};
@@ -65,10 +67,33 @@
                 $("#id_scountry").attr('value','');
 			}
 		}
-        
+		$(document).ready(function(){
+			$("#digitaltab").hide();
+			$("#smarttab").hide();
+			});
+		   function category(tab){
+			if(tab=="analog")
+			{
+				$("#analogtab").show();
+				$("#digitaltab").hide();
+				$("#smarttab").hide();
+			}
+			else if(tab=="digital")
+			{
+				$("#digitaltab").show();
+				$("#analogtab").hide();
+				$("#smarttab").hide();
+			}
+			else
+			{
+				$("#smarttab").show();
+				$("#analogtab").hide();
+				$("#digitaltab").hide();
+
+			}
+		}
     </script>
-	{% block extrascript %}
-    {% endblock %}
+
 	<body>
 		<nav id="navbar" class="navbar navbar-expand-lg navbar-dark" >
   			<a class="navbar-brand ml-5" href="{% url 'ecommerce:index' %}">
@@ -130,13 +155,13 @@
               <li class="nav-item col-md-4">
                </li>
               <li class="nav-item col-md-4">
-                <a class="nav-link" href="#ANALOG"><strong>Analog</strong></a>
+                <a class="nav-link" href="#" onclick="category(this.id);" id="analog"><strong>Analog</strong></a>
               </li>
                 <li class="nav-item col-md-4">
-                <a class="nav-link" href="#DIGITAL"><strong>Digital</strong></a>
+                <a class="nav-link" href="#" onclick="category(this.id);" id="digital"><strong>Digital</strong></a>
               </li>
                 <li class="nav-item col-md-4">
-                <a class="nav-link" href="#SMART"><strong>Smart</strong></a>
+                <a class="nav-link" href="#" onclick="category(this.id);" id="smart"><strong>Smart</strong></a>
               </li>
             </ul>
             <div class="d-flex ml-auto">

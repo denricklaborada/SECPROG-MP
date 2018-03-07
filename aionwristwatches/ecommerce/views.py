@@ -38,17 +38,13 @@ def acctman(request):
 	}
     return render(request, 'ecommerce/acctman.html', context)
 
-def add_to_cart(request, product_id):
-#     cart = request.session.get('cart',{})
-#     product = Product.objects.get(id=product_id)
-#     cart[product_id] = product
-#     request.session['cart'] = cart
-	return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-#Cart View
-def checkout(request):
-	##cart = request.session.get('cart', {})
-	return render(request, 'ecommerce/checkout.html')
+def checkout(request, product_id):
+    if request.method == "POST":
+        prodid = request.POST["productid"]
+        qty = request.POST["quantity"]
+        #do the transaction part :)
+    product = Product.objects.get(id=product_id)
+    return render(request, 'ecommerce/checkout.html',{'product': product})
 
 def shipping(request):
     return render(request, 'ecommerce/shipping.html')
