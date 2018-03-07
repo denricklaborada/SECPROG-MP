@@ -31,6 +31,13 @@
             
         }
     }
+    function editAcc() {
+        $("#fname").attr('disabled', false);
+        $("#minitial").attr('disabled', false);
+        $("#lname").attr('disabled', false);
+        $("#uname").attr('disabled', false);
+        $("#email").attr('disabled', false);
+    }
 
 </script>
 {% endblock %}
@@ -57,32 +64,35 @@
     </div>
     <div id="accttab" class="container col-5 " >
         <div class="card">
-            <div class="card-header"><strong class="p-3">ACCOUNT</strong><a href="#" class="pull-right" style="text-decoration: none;">EDIT</a></div>
+            <div class="card-header"><strong class="p-3">ACCOUNT</strong><a href="#" onclick="editAcc();" class="pull-right" style="text-decoration: none;">EDIT</a></div>
             <div class = "card-body">
-                <ul class="list-group list-group-flush">
-                    <li  class="list-group-item d-inline-flex ">
-                        <div class="col-3">First Name</div>
-                        <input class="col-8" type="text" value="{{user.first_name}}"/>
-                    </li>
-                    <li  class="list-group-item d-inline-flex ">
-                        <div class="col-3">Middle Initial</div>
-                        <input class="col-8" type="text" value="{{user.middle_initial}}"/>
-                    </li>
-                    <li  class="list-group-item d-inline-flex ">
-                        <div class="col-3">Last Name</div>
-                        <input class="col-8" type="text" value="{{user.last_name}}"/>
-                    </li>
-                    <li  class="list-group-item d-inline-flex ">
-                        <div class="col-3">Username</div>
-                        <input class="col-8" type="text" value="{{user.username}}"/>
-                    </li>
-                    <li  class="list-group-item d-inline-flex ">
-                        <div class="col-3">Email</div>
-                        <input class="col-8" type="text" value="{{user.email}}"/>
-                    </li>
+                <form method="POST">
+                    {% csrf_token %}
+                    <ul class="list-group list-group-flush">
+                        <li  class="list-group-item d-inline-flex ">
+                            <div class="col-3">First Name</div>
+                            <input id="fname" name="fname" class="col-8" type="text" value="{{user.first_name}}" disabled />
+                        </li>
+                        <li  class="list-group-item d-inline-flex ">
+                            <div class="col-3">Middle Initial</div>
+                            <input id="minitial" name="minitial" class="col-8" type="text" value="{{user.middle_initial}}" disabled />
+                        </li>
+                        <li  class="list-group-item d-inline-flex ">
+                            <div class="col-3">Last Name</div>
+                            <input id="lname" name="lname" class="col-8" type="text" value="{{user.last_name}}" disabled />
+                        </li>
+                        <li  class="list-group-item d-inline-flex ">
+                            <div class="col-3">Username</div>
+                            <input id="uname" name="uname" class="col-8" type="text" value="{{user.username}}" disabled />
+                        </li>
+                        <li  class="list-group-item d-inline-flex ">
+                            <div class="col-3">Email</div>
+                            <input id="email" name="email" class="col-8" type="text" value="{{user.email}}" disabled />
+                        </li>
 
-                </ul>
-                <div class="text-center mt-1 pt-2"><a href="#" class="btn btn-primary "><strong>SAVE</strong></a></div>
+                    </ul>
+                    <div class="text-center mt-1 pt-2"><input type="submit" class="btn btn-primary" value="Save"/></div>
+                </form>
             </div>
         </div>
     </div>
@@ -90,28 +100,30 @@
         <div class="card">
             <div class="card-header"><strong class="p-3">PASSWORD</strong></div>
             <div class = "card-body">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-inline-flex ">
-                        <div class="col-3">Current Password</div>
-                        <input class="col-8" type="password" value="{{user.password}}"/>
-                    </li>
-                    <li  class="list-group-item d-inline-flex ">
-                        <div class="col-3">New Password</div>
-                        <input class="col-8" type="password" value=""/>
-                    </li>
-                    <li class="list-group-item d-inline-flex ">
-                        <div class="col-3">Verify Password</div>
-                        <input class="col-8" type="password" value=""/>
-                    </li>
-
-                </ul>
-                <div class="text-center mt-1 pt-2"><a href="#" class="btn btn-primary "><strong>SAVE</strong></a></div>
+                <form method="POST">
+                {% csrf_token %}
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-inline-flex ">
+                            <div class="col-3">Current Password</div>
+                            <input class="col-8" id="currpass" name="currpass" type="password" value=""/>
+                        </li>
+                        <li  class="list-group-item d-inline-flex ">
+                            <div class="col-3">New Password</div>
+                            <input class="col-8" id="pass1" name="pass1" type="password" value=""/>
+                        </li>
+                        <li class="list-group-item d-inline-flex ">
+                            <div class="col-3">Verify Password</div>
+                            <input class="col-8" id="pass2" name="pass2" type="password" value=""/>
+                        </li>
+                    </ul>
+                </form>
+                <div class="text-center mt-1 pt-2"><input type="submit" class="btn btn-primary" value="Save"/></div>
             </div>
         </div>
     </div>
     <div id="addrtab" class="container col-5 " >
         <div class="card">
-            <div class="card-header"><strong class="p-3">ADDRESS</strong><a href="#" class="pull-right" style="text-decoration: none;">EDIT</a></div>
+            <div class="card-header"><strong class="p-3">ADDRESS</strong><a href="#" onclick="editAddr();" class="pull-right" style="text-decoration: none;">EDIT</a></div>
             <div class = "card-body">
                 <div class = "card-subtitle"> <strong class="p-3"> Billing Address </strong>
                 <ul class="list-group list-group-flush">
