@@ -38,6 +38,7 @@
         $("#lname").attr('disabled', false);
         $("#uname").attr('disabled', false);
         $("#email").attr('disabled', false);
+        $("#acctsub").attr('disabled', false);
     }
 
     function editAddr() {
@@ -47,6 +48,7 @@
         $("#bcity").attr('disabled', false);
         $("#bpc").attr('disabled', false);
         $("#bcountry").attr('disabled', false);
+        $("#addrsub").attr('disabled', false);
 
         $("#shouse_num").attr('disabled', false);
         $("#sstreet").attr('disabled', false);
@@ -64,11 +66,11 @@
     <div class="container ml-5 col-3 pull-left" >
         <div class="card ">
             <div class="card-header col-auto text-center">
-                <strong>Real Name</strong>
+                <strong>Username</strong>
             </div>
 
             <div class="card-body text-center">
-                <strong>@username</strong>
+                <strong>@{{user.username}}</strong>
             </div>
         </div>
         <div class="card mt-lg-5">
@@ -108,7 +110,8 @@
                         </li>
 
                     </ul>
-                    <div class="text-center mt-1 pt-2"><input type="submit" class="btn btn-primary" value="Save"/></div>
+                    <div class="text-center mt-1 pt-2"><input type="submit" id="acctsub" class="btn btn-success" value="Save" disabled /></div>
+                    <input type="hidden" name="next" value="{{ next }}">
                 </form>
             </div>
         </div>
@@ -133,8 +136,9 @@
                             <input class="col-8" id="pass2" name="pass2" type="password" value=""/>
                         </li>
                     </ul>
+                    <div class="text-center mt-1 pt-2"><input type="submit" class="btn btn-success" value="Save"/></div>
+                    <input type="hidden" name="next" value="{{ next }}">
                 </form>
-                <div class="text-center mt-1 pt-2"><input type="submit" class="btn btn-primary" value="Save"/></div>
             </div>
         </div>
     </div>
@@ -201,7 +205,8 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="text-center mt-1 pt-2"><input type="submit" class="btn btn-primary" value="Save"/></div>
+                    <div class="text-center mt-1 pt-2"><input type="submit" id="addrsub" class="btn btn-success" value="Save" disabled /></div>
+                    <input type="hidden" name="next" value="{{ next }}">
                 </form>
             </div>
         </div>

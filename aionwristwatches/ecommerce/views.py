@@ -127,6 +127,78 @@ def addp(request):
     return render(request, 'ecommerce/addpman.html')
 
 def uacct(request):
+
+	if request.method == "POST":
+		user = request.user
+		try:
+			fname = request.POST['fname']
+			minitial = request.POST['minitial']
+			lname = request.POST['lname']
+			uname = request.POST['uname']
+			email = request.POST['email']
+			email_pattern = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+
+			if len(fname) > 0 and len(minitial) == 1 and len(lname) > 0 and len(uname) > 0 and len(email) > 0 and email_pattern.match(email):
+				user.first_name = fname
+				user.middle_initial = minitial
+				user.last_name = lname
+				user.username = uname
+				user.email = email
+				user.save()
+
+
+		except:
+			print('not account')
+
+			try:
+				currpass = request.POST['currpass']
+				pass1 = request.POST['pass1']
+				pass2 = request.POST['pass2']
+
+				if user.check_password(currpass) and len(pass1) > 0 and len(pass2) > 0 and pass1 == pass2:
+					user.set_password(pass1)
+					user.save()
+
+					return redirect('/')
+
+			except:
+				print('not password')
+
+				try:
+					bhouse_num = request.POST['bhouse_num']
+					bstreet = request.POST['bstreet']
+					bsubdivision = request.POST['bsubdivision']
+					bcity = request.POST['bcity']
+					bpc = request.POST['bpc']
+					bcountry = request.POST['bcountry']
+
+					shouse_num = request.POST['shouse_num']
+					sstreet = request.POST['sstreet']
+					ssubdivision = request.POST['ssubdivision']
+					scity = request.POST['scity']
+					spc = request.POST['spc']
+					scountry = request.POST['scountry']
+
+					if len(bhouse_num) > 0 and len(bstreet) > 0 and len(bsubdivision) > 0 and len(bcity) > 0 and len(bpc) > 0 and len(bcountry) > 0 and len(shouse_num) > 0 and len(sstreet) > 0 and len(ssubdivision) > 0 and len(scity) > 0 and len(spc) > 0 and len(scountry) > 0:
+						user.bhouse_num = bhouse_num
+						user.bstreet = bstreet
+						user.bsubdivision = bsubdivision
+						user.bcity = bcity
+						user.bpc = bpc
+						user.bcountry = bcountry
+
+						user.shouse_num = shouse_num
+						user.sstreet = sstreet
+						user.ssubdivision = ssubdivision
+						user.scity = scity
+						user.spc = spc
+						user.sbcountry = scountry
+
+						user.save()
+
+				except:
+					print('not address')
+
 	return render(request, 'ecommerce/uacct.html')
 
 def product(request, product_id):
