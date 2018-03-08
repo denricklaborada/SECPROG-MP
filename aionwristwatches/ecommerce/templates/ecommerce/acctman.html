@@ -32,7 +32,7 @@
                   <th>Product</th>
                   <th>Type</th>
                   <th>Initial Stock</th>
-                  <th>Current Stock</th>
+                  <th># of Items Sold</th>
                   <th>Sale Price</th>
                   <th>Total Sales</th>
                 </tr>
@@ -46,7 +46,7 @@
                   <td>{{ product.initialstock }}</td>
                   <td>{{ product.quantity }}</td>
                   <td>{{ product.price }}</td>
-                  <td>{% widthratio product.price 1 product_diff %}</td>
+                  <td>{% widthratio product.price 1 product.quantity %}</td>
                 </tr>
                   {% endfor %}
               </tbody>
