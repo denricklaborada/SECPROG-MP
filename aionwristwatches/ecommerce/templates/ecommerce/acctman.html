@@ -46,7 +46,7 @@
                   <td>{{ product.initialstock }}</td>
                   <td>{{ product.quantity }}</td>
                   <td>{{ product.price }}</td>
-                  <td>{{ product.price|multiply:product.quantity}}</td>
+                  <td>{% widthratio product.price 1 product.quantity %}</td>
                 </tr>
                   {% endfor %}
               </tbody>
