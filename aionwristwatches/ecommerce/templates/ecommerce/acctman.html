@@ -46,7 +46,7 @@
                   <td>{{ product.initialstock }}</td>
                   <td>{{ product.quantity }}</td>
                   <td>{{ product.price }}</td>
-                  <td>{{ product.price|add:"100"}}</td>
+                  <td>{{ product.price|subtract:"100"}}</td>
                 </tr>
                   {% endfor %}
               </tbody>
