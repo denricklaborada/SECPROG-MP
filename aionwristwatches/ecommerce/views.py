@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.views import login, logout
 from django.http import HttpResponseRedirect
 from .forms import RegistrationForm
-from .models import Product
+from .models import Product, Transaction
 from django.contrib.auth.models import User
 
 def index(request):
@@ -30,6 +30,14 @@ def index(request):
 	}
 	return render(request, 'ecommerce/index.html', context)
 
+def myorders(request):
+	if request.user.is_authenticated:
+		trans = Transaction.objects.filter(user=request.user)
+
+		return render(request, 'ecommerce/myorders.html', {'trans': trans,})
+
+	return redirect('/')
+
 
 def acctman(request):
     product_list = Product.objects.all()
@@ -43,15 +51,22 @@ def acctman(request):
     return render(request, 'ecommerce/acctman.html', context)
 
 def checkout(request, product_id):
-    if request.method == "POST":
-        prodid = request.POST["productid"]
-        qty = request.POST["quantity"]
-        #do the transaction part :)
     product = Product.objects.get(id=product_id)
-    return render(request, 'ecommerce/checkout.html',{'product': product})
 
-def shipping(request):
-    return render(request, 'ecommerce/shipping.html')
+    if request.method == "POST":
+    	user = request.user
+    	qty = request.POST['quantity']
+    	total = request.POST['total']
+
+    	trans_inst = Transaction.objects.create(user=user, product=product, quantity=qty, subtotal=total)
+    	trans_inst.save()
+
+    	product.quantity = product.quantity - int(qty)
+    	product.save()
+
+    	return redirect('/')
+    
+    return render(request, 'ecommerce/checkout.html',{'product': product})
 
 def prodman(request):
 	product_list = Product.objects.all()

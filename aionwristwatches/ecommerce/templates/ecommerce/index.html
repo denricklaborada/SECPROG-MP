@@ -10,12 +10,12 @@
 			{% for product in product_list %}
 			{%if product.category == 'Analog'%}
 			<div class="card col-sm-3">
-	  			<a href="{% url 'ecommerce:product' product.id %}"><img class="card-img-top" src="{{ product.image.url }}"></a>
+	  			<a href="{% url 'ecommerce:product' product.id %}" class="text-center"><img class="card-img-top" src="{{ product.image.url }}" style="max-width: 200px;"></a>
 	  			<div class="card-body">
 	    			<a href="{% url 'ecommerce:product' product.id %}" style="text-decoration: none;"><h5 class="font-weight-bold text-dark card-title">{{ product.prodname }}</h5></a>
 	    			<p class="card-text text-muted">{{ product.category }}</p>
 	    			<p class="card-text text-muted">{{ product.quantity }} item/s left</p>
-					<center><a href="{% url 'ecommerce:checkout' product.id %}" class=" card-link  font-weight-bold"><button id="id_buy" class="btn btn-outline-success text-uppercase text-center">Buy Now</button></a></center>
+					<center><a href="{% url 'ecommerce:checkout' product.id %}" class="card-link font-weight-bold"><button id="id_buy" class="btn btn-success text-uppercase">Buy Now</button></a></center>
 	  			</div>
 	  			
 			</div>
@@ -38,9 +38,8 @@
 	    			<a href="{% url 'ecommerce:product' product.id %}" style="text-decoration: none;"><h5 class="font-weight-bold text-dark card-title">{{ product.prodname }}</h5></a>
 	    			<p class="card-text text-muted">{{ product.category }}</p>
 	    			<p class="card-text text-muted">{{ product.quantity }} item/s left</p>
-	    			<center><button id="id_buy" class="btn btn-success text-center"><a href="#" class=" card-link text-uppercase  text-white font-weight-bold">Buy Now</a></button></center>
+	    			<center><button id="id_buy" class="btn btn-success text-center"><a href="#" class="card-link text-uppercase font-weight-bold">Buy Now</a></button></center>
 	  			</div>
-
 			</div>
 			{%endif%}
 			{% endfor %}

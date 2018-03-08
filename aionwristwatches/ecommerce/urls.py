@@ -9,7 +9,7 @@ app_name = 'ecommerce'
 urlpatterns = [
     
 	url(r'^$', views.index, name='index'),
-
+    url(r'^myorders/$', views.myorders, name='myorders'),
     url(r'^uacct/$', views.uacct, name='uacct'),
     url(r'^prodman/$', views.prodman, name='prodman'),
     url(r'^loginmanager/$',views.loginmanager, name='loginmanager'),
@@ -18,7 +18,6 @@ urlpatterns = [
     url(r'^adminman/prodmng/editp/$',views.editp, name='editp'),
     url(r'^adminman/prodmng/addp/$',views.addp, name='addp'),
     url(r'^acctman/$',views.acctman, name='acctman'),
-	url(r'^shipping/$',views.shipping, name='shipping'),
     url(r'^product/(?P<product_id>[0-9]+)/$', views.product, name='product'),
     url(r'^checkout/(?P<product_id>[0-9]+)/$', views.checkout, name='checkout'),
 	url(r'^logout/$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),

@@ -82,6 +82,7 @@ class Review(models.Model):
 class Transaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+    quantity = models.PositiveIntegerField(null=True, validators=[MinValueValidator(1)], default=1)
     pubdate = models.DateTimeField(auto_now_add=True)
     subtotal =  models.DecimalField(default=0.00, max_digits=20, decimal_places=2,  validators=[MinValueValidator(0)])
 

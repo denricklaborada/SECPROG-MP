@@ -114,7 +114,7 @@
 
                                 <div class="dropdown-menu  dropdown-menu-right list-group-flush" aria-labelledby="usernameMenu">
                                     <a class="dropdown-item font-weight-bold list-group-item" href="/uacct/"><i class="fa fa-user"></i><span>    </span>My Account</a>
-                                    <a class="dropdown-item font-weight-bold list-group-item" href="#"><i class="fa fa-list-alt"></i><span>    </span>My Orders</a>
+                                    <a class="dropdown-item font-weight-bold list-group-item" href="{% url 'ecommerce:myorders' %}"><i class="fa fa-list-alt"></i><span>    </span>My Orders</a>
                                     <a class="dropdown-item  font-weight-bold list-group-item" href="{% url 'ecommerce:logout' %}"><i class="fa fa-sign-out"></i><span>    </span>LOG OUT</a>
                                   </div>
                             </div>
@@ -170,13 +170,6 @@
                 </div>
               
             </form>
-            <ul class="navbar-nav">
-                <li class="nav-item mr-4">
-                    <a class="nav-link text-uppercase" href="/checkout/" role="button" id="dropdownMenuCart" >
-                    <i class="fa fa-shopping-cart" style="font-size:30px"></i>
-                    </a>
-                </li>
-            </ul>
             </div>
 
         </nav>
