@@ -37,8 +37,9 @@
                   <th>Total Sales</th>
                 </tr>
               </tfoot>
-                {% for product in product_list %}
+                
               <tbody>
+                  {% for product in product_list %}
                 <tr>
                   <td>{{ product.prodname }}</td>
                   <td>{{ product.category }}</td>
@@ -47,8 +48,9 @@
                   <td>{{ product.price }}</td>
                   <td>6000</td>
                 </tr>
+                  {% endfor %}
               </tbody>
-                {% endfor %}
+                
             </table>
           </div>
         </div>
