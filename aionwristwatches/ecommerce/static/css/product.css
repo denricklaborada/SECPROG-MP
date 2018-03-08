@@ -26,11 +26,8 @@ body {
 	background: #dee1e3;
 }
 
-/** ====================
- * Lista de Comentarios
- =======================*/
 .comments-container {
-	margin: 60px auto 15px;
+	margin: 30px auto 15px;
 	width: 768px;
 }
 
@@ -50,9 +47,6 @@ body {
 	position: relative;
 }
 
-/**
- * Lineas / Detalles
- -----------------------*/
 .comments-list:before {
 	content: '';
 	width: 2px;
