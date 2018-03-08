@@ -1,5 +1,5 @@
 {% extends 'ecommerce/extends/header.html' %}
-
+{% load static %}
 {% block title %}{{ product_obj.prodname }}{% endblock %}
 {% block extrascript%}
 <script>
@@ -79,3 +79,6 @@
 	</div>
 {% endblock %}
         
+{% block extrascript%}
+
+    <script src="{{ STATIC_URL }} /static/js/bootstrap.min.js"></script>
