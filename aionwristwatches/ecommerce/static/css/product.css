@@ -28,7 +28,7 @@ body {
 
 .comments-container {
 	margin: 60px auto 15px;
-	width: 800px;
+	width: 768px;
 }
 
 .comments-container h1 {
@@ -101,11 +101,9 @@ body {
 	display: block;
 	clear: both;
 }
-/**
- * Caja del Comentario
- ---------------------------*/
+
 .comments-list .comment-box {
-	width: 680px;
+	width: 700px;
 	float: right;
 	position: relative;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
@@ -202,9 +200,6 @@ body {
 	border-radius: 3px;
 }
 
-/** =====================
- * Responsive
- ========================*/
 @media only screen and (max-width: 766px) {
 	.comments-container {
 		width: 480px;
