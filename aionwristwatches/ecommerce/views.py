@@ -33,8 +33,12 @@ def index(request):
 
 def acctman(request):
     product_list = Product.objects.all()
+    prod = Product.objects.get(pk=1)
+    product_diff = prod.initialstock - prod.quantity
     context = {
+        'prod': prod,
         'product_list': product_list,
+        'product_diff': product_diff,
 	}
     return render(request, 'ecommerce/acctman.html', context)
 
