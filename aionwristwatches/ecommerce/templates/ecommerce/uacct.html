@@ -75,15 +75,15 @@
         </div>
         <div class="card mt-lg-5">
           <ul class="list-group list-group-flush">
-              <li class="list-group-item"><a href="#" onclick="info(this.id);" id="acct" style="text-decoration: none;">Account</a></li>
-              <li class="list-group-item"><a href="#" onclick="info(this.id);" id="pwd" style="text-decoration: none;">Password</a></li>
-              <li class="list-group-item"><a href="#" onclick="info(this.id);" id="addr" style="text-decoration: none;">Address</a></li>
+              <li class="list-group-item"><a href="#" onclick="info(this.id);" id="acct" class="text-success" style="text-decoration: none;">Account</a></li>
+              <li class="list-group-item"><a href="#" onclick="info(this.id);" id="pwd" class="text-success" style="text-decoration: none;">Password</a></li>
+              <li class="list-group-item"><a href="#" onclick="info(this.id);" id="addr" class="text-success" style="text-decoration: none;">Address</a></li>
           </ul>
         </div>
     </div>
     <div id="accttab" class="container col-5 " >
         <div class="card">
-            <div class="card-header"><strong class="p-3">ACCOUNT</strong><a href="#" onclick="editAcc();" class="pull-right" style="text-decoration: none;">EDIT</a></div>
+            <div class="card-header"><strong class="p-3">ACCOUNT</strong><a href="#" onclick="editAcc();" class="pull-right text-success" style="text-decoration: none;">EDIT</a></div>
             <div class = "card-body">
                 <form method="POST">
                     {% csrf_token %}
@@ -144,7 +144,7 @@
     </div>
     <div id="addrtab" class="container col-5 " >
         <div class="card">
-            <div class="card-header"><strong class="p-3">ADDRESS</strong><a href="#" onclick="editAddr();" class="pull-right" style="text-decoration: none;">EDIT</a></div>
+            <div class="card-header"><strong class="p-3">ADDRESS</strong><a href="#" onclick="editAddr();" class="pull-right text-success" style="text-decoration: none;">EDIT</a></div>
             <div class = "card-body">
                 <form method="POST">
                     {% csrf_token %}
