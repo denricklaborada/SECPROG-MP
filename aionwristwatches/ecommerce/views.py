@@ -33,8 +33,10 @@ def index(request):
 
 def acctman(request):
     product_list = Product.objects.all()
-    product_diff = Product.initialstock - Product.quantity
+    prod = Product.objects.get(pk=1)
+    product_diff = prod.initialstock - prod.quantity
     context = {
+        'prod': prod,
         'product_list': product_list,
         'product_diff': product_diff,
 	}
