@@ -2,6 +2,8 @@
 {% load static %}
 {% block title %}{{ product_obj.prodname }}{% endblock %}
 {% block extrascript%}
+
+    <script src="{{ STATIC_URL }} /static/js/bootstrap.min.js"></script>
 <script>
 	$(document).ready(function() {
         $("#navbar1").hide();
@@ -78,7 +80,3 @@
 		</div>
 	</div>
 {% endblock %}
-        
-{% block extrascript%}
-
-    <script src="{{ STATIC_URL }} /static/js/bootstrap.min.js"></script>
