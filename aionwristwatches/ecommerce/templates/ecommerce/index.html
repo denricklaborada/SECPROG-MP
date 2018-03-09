@@ -38,7 +38,7 @@
 	    			<a href="{% url 'ecommerce:product' product.id %}" style="text-decoration: none;"><h5 class="font-weight-bold text-dark card-title">{{ product.prodname }}</h5></a>
 	    			<p class="card-text text-muted">{{ product.category }}</p>
 	    			<p class="card-text text-muted">{{ product.quantity }} item/s left</p>
-	    			<center><button id="id_buy" class="btn btn-success text-center"><a href="#" class="card-link text-uppercase font-weight-bold">Buy Now</a></button></center>
+	    			<center><a href="{% url 'ecommerce:checkout' product.id %}" class="card-link font-weight-bold"><button id="id_buy" class="btn btn-success text-uppercase">Buy Now</button></a></center>
 	  			</div>
 			</div>
 			{%endif%}
@@ -60,7 +60,7 @@
 	    			<a href="{% url 'ecommerce:product' product.id %}" style="text-decoration: none;"><h5 class="font-weight-bold text-dark card-title">{{ product.prodname }}</h5></a>
 	    			<p class="card-text text-muted">{{ product.category }}</p>
 	    			<p class="card-text text-muted">{{ product.quantity }} item/s left</p>
-	    			<center><button id="id_buy" class="btn btn-success ntext-center"><a href="#" class=" card-link text-uppercase  text-white font-weight-bold">Buy Now</a></button></center>
+	    			<center><a href="{% url 'ecommerce:checkout' product.id %}" class="card-link font-weight-bold"><button id="id_buy" class="btn btn-success text-uppercase">Buy Now</button></a></center>
 	  			</div>
 
 			</div>
