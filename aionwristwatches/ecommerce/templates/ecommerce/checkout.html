@@ -15,11 +15,13 @@
     $(document).ready( function(){
         var price = document.getElementById('price').value;
         var install = price/24.0;
-        $("#subtotal").html(parseFloat(price).toLocaleString());
+        $("#subtotal").html(parseFloat(price).toFixed(2).toLocaleString());
         $("#install").html(install.toFixed(2).toLocaleString());
-        $("#grandtotal").html(parseFloat(price).toLocaleString());
+        $("#grandtotal").html(parseFloat(price).toFixed(2).toLocaleString());
         $("#total").attr("value", parseFloat(price));
+		
     });
+	
 
     $(document).on('click','#spinner div',function(){
         var qty = document.getElementsByClassName('qty');
@@ -42,15 +44,20 @@
         subtotal = parseFloat(parseInt(qty[i].getAttribute('value'))*price);
         install = subtotal/24.0;
 
-        $("#subtotal").html(subtotal.toLocaleString());
+        $("#subtotal").html(subtotal.toFixed(2).toLocaleString());
         $("#install").html(install.toFixed(2).toLocaleString());
-        $("#grandtotal").html(subtotal.toLocaleString());
+        $("#grandtotal").html(subtotal.toFixed(2).toLocaleString());
         $("#total").attr("value", subtotal);
 
     });
 
-    function submit() {
-        $("#submit").submit();
+    function formsubmit() {
+		
+    
+		if(document.getElementById("myForm").checkValidity()){
+			
+		}
+    
     }
 
     </script>
@@ -58,7 +65,8 @@
 {% block body %}
 {% if user.is_authenticated and user.usertypes == "Customer" %}
 <!--%if cart != empty%}-->
-
+ <form action="#" method="POST" id="myForm">
+    {% csrf_token %}
 <div class="d-flex flex-column">
     <div id="continue" class="mt-3">
         <a href="/" role="button" class="pull-left text-success" style="text-decoration: none;">
@@ -67,8 +75,7 @@
 
     </div>
 
-    <form action="#" method="POST" id="myForm">
-    {% csrf_token %}
+   
     <div class="d-flex container-fluid">
         <div class="col-md-9 col">
 
@@ -145,7 +152,8 @@
 
             <div class="col-5">
                 <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                <input type="text" class="form-control" id="cc-number" size="16" maxlength="16" pattern="\d{16}$" title="Must contain 16 numerical digits" placeholder="" required>
+				<small class="text-muted">Must contain 16 numerical digits</small>
                 <div class="invalid-feedback">
                   Credit card number is required
                 </div>
@@ -200,15 +208,16 @@
 
             <div class="col-2">
                 <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                <div class="invalid-feedback">
+                <input type="text" class="form-control" id="cc-cvv" size="3" maxlength="3" pattern="\d{3}$" title="Must contain 3 numerical digits" placeholder="" required>
+                <small class="text-muted">Must contain 3 numerical digits</small>
+				<div class="invalid-feedback">
                     Security code required
                 </div>
             </div>
 
         </div>
     </div>
-    </form>
+    
 </div>
 
 <div class="content modal fade" id="confirm" tabindex="-1" role="dialog">
@@ -219,13 +228,13 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body text-right">
-                <button onclick="submit();" class="btn btn-success">Proceed</button>
+                <button onclick="formsubmit();" class="btn btn-success">Proceed</button>
                 <button data-dismiss="modal" class="btn btn-danger">Cancel</button>
             </div>
         </div>
     </div>
 </div>
-
+</form>
 <script>
     (function() {
         'use strict';
@@ -246,6 +255,7 @@
           });
         }, false);
       })();
+	  
 </script>
 <!--%else%}-->
 <!--<div class="container">-->
