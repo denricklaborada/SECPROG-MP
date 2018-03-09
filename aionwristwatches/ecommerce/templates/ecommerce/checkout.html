@@ -64,7 +64,8 @@
 {% endblock%}
 {% block body %}
 {% if user.is_authenticated and user.usertypes == "Customer" %}
-<!--%if cart != empty%}-->
+{% if product.quantity > 0 %}
+
  <form action="#" method="POST" id="myForm">
     {% csrf_token %}
 <div class="d-flex flex-column">
@@ -217,7 +218,22 @@
 
         </div>
     </div>
-    
+	 
+	<div class="container ml-5 mt-3">
+        <div class="row">
+             <div class="col-12">
+                <h3><strong>Billing Details</strong></h3>
+            </div>
+            
+            <div class="col-3">
+                <label for="cc-name">House #</label>
+                <input type="text" class="form-control" id="cc-name" value="{{user.bhouse_num}}" required>
+                <div class="invalid-feedback">
+                    This is field is required
+                </div>
+            </div>
+		</div>
+	</div>
 </div>
 
 <div class="content modal fade" id="confirm" tabindex="-1" role="dialog">
@@ -264,7 +280,13 @@
         <!--<a href="#" onclick="prev();" role="button" style="background-color: #17a2b8;" class="mt-3  btn btn-primary btn-lg">CONTINUE SHOPPING</a>-->
     <!--</div>-->
 <!--</div>-->
-<!--%endif%}-->
+
+{%else%}
+<div class="container mt-5 text-center">
+	<i class=" fa fa-exclamation-circle" style="color:red;  font-size: 60px;"></i>
+	<h1 ><strong>OUT OF STOCK</strong></h1>
+</div>
+{%endif%}
 {% else %}
 <div class="container">
     <div class="text-center m-5">
