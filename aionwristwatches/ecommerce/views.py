@@ -218,7 +218,24 @@ def uacct(request):
 
 def product(request, product_id):
 	product_obj = Product.objects.filter(id=product_id)[:1].get()
+	if request.method == 'POST':
+		regform = RegistrationForm(request.POST)
+		print("REQUEST POST")
+		if regform.is_valid():
+			print("FORM VALID")
+			regform.save()
+			return redirect('/')
+
+		regform = RegistrationForm()
+		context = {
+        	'regform': regform,
+			'product_obj': product_obj,
+        }
+		login(request)
+		return render(request, 'ecommerce/product.html', context)
+	regform = RegistrationForm()
 	context = {
+		'regform': regform,
 		'product_obj': product_obj,
 	}
 	return render(request, 'ecommerce/product.html', context)
