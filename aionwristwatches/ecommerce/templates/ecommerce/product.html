@@ -89,7 +89,7 @@
                     </div>
                     
                     
-                    
+                    {% if user.is_authenticated %}
                     <div class="container aaa">
                         <div class="row">
                             <div class="col-md-9">
@@ -98,7 +98,25 @@
                                         <form>
                                             <textarea placeholder="Write your review here..." ></textarea>
                                             <ul>
-                                                <li><a title="" data-placement="bottom" data-original-title="Audio"><i class=""></i></a></li>
+						<span class="rating">
+							<label>
+								<input type="radio" name="rating" value="5" title="5 stars"> 5
+							</label>
+							<label>
+								<input type="radio" name="rating" value="4" title="4 stars"> 4
+							</label>
+							<label>
+								<input type="radio" name="rating" value="3" title="3 stars"> 3
+							</label>
+							<label>
+								<input type="radio" name="rating" value="2" title="2 stars"> 2
+							</label>
+							<label>
+								<input type="radio" name="rating" value="1" title="1 stars"> 1
+							</label>
+						 </span>
+						    
+                                                
                                             </ul>
                                             <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Review</button>
                                         </form>
@@ -107,7 +125,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    {% endif %}
                     
                     <small><h6>{{ product_obj.reviews }}</h6></small></div>
 			</div>
