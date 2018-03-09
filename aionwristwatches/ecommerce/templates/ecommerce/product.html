@@ -88,7 +88,7 @@
                     </div>
                     
                     
-                    
+                    {% if user.is_authenticated %}
                     <div class="container aaa">
                         <div class="row">
                             <div class="col-md-9">
@@ -124,7 +124,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    {% endif %}
                     
                     <small><h6>{{ product_obj.reviews }}</h6></small></div>
 			</div>
