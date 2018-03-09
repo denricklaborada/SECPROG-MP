@@ -56,36 +56,24 @@
                     
                     
                     <div class="comments-container">
+					{% for review in reviews_obj %}
                         <ul id="comments-list" class="comments-list">
                             <li>
                                 <div class="comment-main-level">
                                     <div class="comment-box">
                                         <div class="comment-head">
-                                            <h6 class="comment-name by-author"><a href="">John Doe</a></h6>
-                                            <span>Posted Yesterday</span>
+                                            <h6 class="comment-name by-author"><a href="">{{ review.user }}</a></h6>
+                                            <span>Posted {{ review.pubdate }}</span>
                                             <i class="fa fa-star"></i>
                                         </div>
                                         <div class="comment-content">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="comment-main-level">
-                                    <div class="comment-box">
-                                        <div class="comment-head">
-                                            <h6 class="comment-name by-author"><a href="">Mary Jane</a></h6>
-                                            <span>Posted June 20</span>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="comment-content">
-                                            Adipisicing elit consectetur lorem ipsum dolor sit amet .
+                                            {{ review.comment }}
                                         </div>
                                     </div>
                                 </div>
                             </li>
                         </ul>
+						{% endfor %}
                     </div>
                     
                     
