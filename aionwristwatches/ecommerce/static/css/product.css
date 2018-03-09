@@ -100,7 +100,7 @@ ul {
 	display: block;
 	border-width: 10px 12px 10px 0;
 	border-style: solid;
-	border-color: transparent #FCFCFC;
+	border-color: transparent #e7e7e7;;
 	top: 8px;
 	left: -11px;
 }
@@ -112,7 +112,7 @@ ul {
 }
 
 .comment-box .comment-head {
-	background: #FCFCFC;
+	background: #e7e7e7;;
 	padding: 10px 12px;
 	border-bottom: 1px solid #E5E5E5;
 	overflow: hidden;
