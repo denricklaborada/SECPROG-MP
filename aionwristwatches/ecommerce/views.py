@@ -218,7 +218,7 @@ def uacct(request):
 
 def product(request, product_id):
 	product_obj = Product.objects.filter(id=product_id)[:1].get()
-	reviews_obj = Review.objects.all()
+	reviews_obj = Review.objects.filter(product=product_obj)
 	if request.method == 'POST':
 		regform = RegistrationForm(request.POST)
 		print("REQUEST POST")
