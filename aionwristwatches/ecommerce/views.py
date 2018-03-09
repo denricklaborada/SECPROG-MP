@@ -230,7 +230,8 @@ def product(request, product_id):
 		regform = RegistrationForm()
 		context = {
         	'regform': regform,
-			'product_obj': product_obj,
+		'product_obj': product_obj,
+		'reviews_obj': reviews_obj,
         }
 		login(request)
 		return render(request, 'ecommerce/product.html', context)
