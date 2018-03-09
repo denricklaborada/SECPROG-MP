@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.views import login, logout
 from django.http import HttpResponseRedirect
 from .forms import RegistrationForm
-from .models import Product, Transaction
+from .models import Product, Transaction, Review
 from django.contrib.auth.models import User
 
 def index(request):
@@ -218,6 +218,7 @@ def uacct(request):
 
 def product(request, product_id):
 	product_obj = Product.objects.filter(id=product_id)[:1].get()
+	reviews_obj = Review.objects.all()
 	if request.method == 'POST':
 		regform = RegistrationForm(request.POST)
 		print("REQUEST POST")
@@ -237,5 +238,6 @@ def product(request, product_id):
 	context = {
 		'regform': regform,
 		'product_obj': product_obj,
+		'review_obj': review_obj,
 	}
 	return render(request, 'ecommerce/product.html', context)
