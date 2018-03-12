@@ -1,7 +1,8 @@
-from django.conf.urls import include, url
-from django.contrib.auth.views import logout
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
+from django.contrib.auth.views import logout
+
 from . import views
 
 app_name = 'ecommerce'
@@ -17,6 +18,7 @@ urlpatterns = [
     url(r'^adminman/prodmng/$',views.prodmng, name='prodmng'),
     url(r'^adminman/prodmng/editp/$',views.editp, name='editp'),
     url(r'^adminman/prodmng/addp/$',views.addp, name='addp'),
+    url(r'^adminman/acctmng/adda/$',views.adda, name='adda'),
     url(r'^acctman/$',views.acctman, name='acctman'),
     url(r'^product/(?P<product_id>[0-9]+)/$', views.product, name='product'),
     url(r'^checkout/(?P<product_id>[0-9]+)/$', views.checkout, name='checkout'),

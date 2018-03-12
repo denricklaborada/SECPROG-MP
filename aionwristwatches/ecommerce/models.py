@@ -1,11 +1,12 @@
-from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
+from django.db import models
+
 
 class Product(models.Model):
     prodname = models.CharField(max_length=40)
     description = models.CharField(max_length=300)
-    price = models.DecimalField(default=0.00, max_digits=20, decimal_places=2,  validators=[MinValueValidator(0)])
+    price = models.DecimalField(default=0.00, max_digits=20, decimal_places=2, validators=[MinValueValidator(0)])
     initialstock = models.PositiveIntegerField(default=0)
     quantity = models.PositiveIntegerField(default=0)
     CHOICES = (
@@ -18,10 +19,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.prodname
+
     class Meta:
         verbose_name_plural = "Products"
 
-#User Additional Classes
+
+# User Additional Classes
 middle_initial = models.CharField(blank=True, max_length=5)
 middle_initial.contribute_to_class(User, 'middle_initial')
 
@@ -53,19 +56,25 @@ scity.contribute_to_class(User, 'scity')
 spc.contribute_to_class(User, 'spc')
 scountry.contribute_to_class(User, 'scountry')
 
-#cart = models.ManyToManyField(Product, blank=True)
+# cart = models.ManyToManyField(Product, blank=True)
 #
-#cart.contribute_to_class(User, 'cart')
+# cart.contribute_to_class(User, 'cart')
 
 USERTYPES = (
-        ('Administrator', 'Administrator'),
-        ('ProductManager', 'ProductManager'),
-        ('AccountingManager', 'AccountingManager'),
-        ('Customer', 'Customer'),
+    ('Administrator', 'Administrator'),
+    ('ProductManager', 'ProductManager'),
+    ('AccountingManager', 'AccountingManager'),
+    ('Customer', 'Customer'),
 )
-usertypes = models.CharField(max_length=7, choices=USERTYPES,default='Customer')
+
+usertypes = models.CharField(max_length=7, choices=USERTYPES, default='Customer')
 usertypes.contribute_to_class(User, 'usertypes')
 
+temporary = models.BooleanField(default=False)
+temporary.contribute_to_class(User, 'temporary')
+
+expired = models.BooleanField(default=False)
+expired.contribute_to_class(User, 'expired')
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -76,41 +85,20 @@ class Review(models.Model):
 
     def __str__(self):
         return "Review - " + str(self.id)
+
     class Meta:
         verbose_name_plural = "Reviews"
+
 
 class Transaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     quantity = models.PositiveIntegerField(null=True, validators=[MinValueValidator(1)], default=1)
     pubdate = models.DateTimeField(auto_now_add=True)
-    subtotal =  models.DecimalField(default=0.00, max_digits=20, decimal_places=2,  validators=[MinValueValidator(0)])
+    subtotal = models.DecimalField(default=0.00, max_digits=20, decimal_places=2, validators=[MinValueValidator(0)])
 
     def __str__(self):
         return "Transaction - " + str(self.id)
 
     class Meta:
         verbose_name_plural = "Transactions"
-
-#class ProductManager(models.Model):
-#    uname = models.CharField(unique=True, max_length=20)
-#    password = models.CharField(blank=True, max_length=20)
-#    email = models.CharField(unique=True,  max_length=20)
-#    datecreated = models.DateTimeField(auto_now_add=True)
-#
-#    def __str__(self):
-#        return "Product Manager - " + str(self.uname)
-#    class Meta:
-#        verbose_name_plural = "Product Managers"
-#
-#class AccountingManager(models.Model):
-#    uname = models.CharField(unique=True, max_length=20)
-#    password = models.CharField(blank=True, max_length=20)
-#    email = models.CharField(unique=True, max_length=20)
-#    datecreated = models.DateTimeField(auto_now_add=True)
-#
-#    def __str__(self):
-#        return "Accounting Manager - " + str(self.uname)
-#
-#    class Meta:
-#        verbose_name_plural = "Accounting Managers"
