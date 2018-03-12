@@ -1,16 +1,73 @@
 {% extends 'ecommerce/extends/header3.html' %}
 {% load static %}
 
-{% block body %}  
-  <div class="container-fluid">
+{% block body %}
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="savemodal" id="savemodal" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <form action="#" method="GET" enctype="multipart/form-data" id="form">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                {% csrf_token %}
+               <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Product Name:</label>
+                        <input type="text" class="form-control" name="name" id="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" rows="5" name="description" id="description" style="resize: none;"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input class="form-control" type="number" min="0" name="price" id="price"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stock">Stock:</label>
+                        <input class="form-control" type="number" min="0" name="stock" id="stock"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select name="category" name="category" id="category" class="form-control">
+                            <option value="Digital">Digital</option>
+                            <option value="Smart">Smart</option>
+                            <option value="Analog">Analog</option>
+                        </select>
+                    </div>
+
+                   <div class="form-group">
+                        <label for="category">Image</label>
+                       <input class="form-control-file" type="file" name="image" id="image" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <input type="submit" id="btnSave" class="btn btn-primary" value="Save">
+                    <input type="reset" class="btn btn-secondary" data-dismiss="modal" value="Close">
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
     <div class="card mt-3">
       <div class="card-header">
         <i class="fa fa-table"></i> Products
       </div>
       <div class="card-body">
         <div class="btn-group" role="group">
-          <button type="button" class="btn btn-outline-success">Add</button>
-          <button type="button" class="btn btn-outline-secondary">Edit</button>
+          <button type="button" class="btn btn-outline-success" id="btnAdd">Add</button>
+          <button type="button" class="btn btn-outline-secondary" id="btnEdit">Edit</button>
           <button type="button" class="btn btn-outline-danger" id="btnDelete">Delete</button>
         </div>
         <table class="table table-bordered mt-3">
@@ -28,18 +85,18 @@
             {% for product in product_list %}
               <tr>
                 <td><input type="checkbox" data-type="check_product" data-id="{{ product.id }}"></td>
-                <td>{{ product.prodname }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.quantity }}</td>
-                <td>{{ product.category }}</td>
+                <td data-id="{{ product.id }}" data-type="name">{{ product.prodname }}</td>
+                <td data-id="{{ product.id }}" data-type="description">{{ product.description }}</td>
+                <td data-id="{{ product.id }}" data-type="price">{{ product.price }}</td>
+                <td data-id="{{ product.id }}" data-type="quantity">{{ product.quantity }}</td>
+                <td data-id="{{ product.id }}" data-type="category">{{ product.category }}</td>
               </tr>
             {% endfor %}
           </tbody>
         </table>
       </div>
     </div>
-  </div>
+    </div>
 
     <script src="{% static 'js/products_manager.js' %}"></script>
 {% endblock %}

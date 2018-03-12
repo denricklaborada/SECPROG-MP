@@ -112,6 +112,7 @@ def prodmng(request):
 def editp(request):
     return render(request, 'ecommerce/editpman.html')
 
+
 def proddelete(request):
     ids = request.GET.getlist("ids[]")
 
@@ -120,6 +121,54 @@ def proddelete(request):
         product.delete()
 
     return HttpResponse('Success')
+
+
+def prodadd(request):
+    if (request.method == "POST"):
+        name = request.POST["name"]
+        desc = request.POST["description"]
+        price = request.POST["price"]
+        stock = request.POST["stock"]
+        cat = request.POST["category"]
+
+        product = Product
+        product.prodname = name
+        product.description = desc
+        product.category = cat
+        product.price = price
+        product.quantity = stock
+
+        if (len(request.FILES) > 0):
+            product.image = request.FILES["image"]
+
+        product.save(force_insert=True)
+
+    return HttpResponse('Success')
+
+
+def prodedit(request):
+    if request.method == "POST":
+        id = request.POST['id']
+        name = request.POST["name"]
+        desc = request.POST["description"]
+        price = request.POST["price"]
+        stock = request.POST["stock"]
+        cat = request.POST["category"]
+
+        product = Product.objects.get(id=id)
+        product.prodname = name
+        product.description = desc
+        product.category = cat
+        product.price = price
+        product.quantity = stock
+
+        if (len(request.FILES) > 0):
+            product.image = request.FILES["image"]
+
+        product.save()
+
+    return HttpResponse('Success')
+
 
 def addp(request):
     context = {
@@ -162,7 +211,8 @@ def addp(request):
 
     return render(request, 'ecommerce/addpman.html')
 
-def adda (request):
+
+def adda(request):
     context = {
         "alert": None
     }
@@ -203,6 +253,7 @@ def adda (request):
             context["alert"] = "Not enough information was given"
 
     return render(request, 'ecommerce/addaman.html', context)
+
 
 def uacct(request):
     if request.method == "POST":
@@ -259,7 +310,7 @@ def uacct(request):
 
                     if len(bhouse_num) > 0 and len(bstreet) > 0 and len(bsubdivision) > 0 and len(bcity) > 0 and len(
                             bpc) > 0 and len(bcountry) > 0 and len(shouse_num) > 0 and len(sstreet) > 0 and len(
-                            ssubdivision) > 0 and len(scity) > 0 and len(spc) > 0 and len(scountry) > 0:
+                        ssubdivision) > 0 and len(scity) > 0 and len(spc) > 0 and len(scountry) > 0:
                         user.bhouse_num = bhouse_num
                         user.bstreet = bstreet
                         user.bsubdivision = bsubdivision
