@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^myorders/$', views.myorders, name='myorders'),
     url(r'^uacct/$', views.uacct, name='uacct'),
     url(r'^prodman/$', views.prodman, name='prodman'),
+    url(r'^prodman/delete/$', views.proddelete, name='proddelete'),
     url(r'^loginmanager/$',views.loginmanager, name='loginmanager'),
     url(r'^adminman/$',views.adminman, name='adminman'),
     url(r'^adminman/prodmng/$',views.prodmng, name='prodmng'),

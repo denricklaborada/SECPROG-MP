@@ -2,6 +2,7 @@ import re
 
 from django.contrib.auth.models import User
 from django.contrib.auth.views import login, logout
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from .forms import RegistrationForm
@@ -111,6 +112,14 @@ def prodmng(request):
 def editp(request):
     return render(request, 'ecommerce/editpman.html')
 
+def proddelete(request):
+    ids = request.GET.getlist("ids[]")
+
+    for id in ids:
+        product = Product.objects.get(id=id)
+        product.delete()
+
+    return HttpResponse('Success')
 
 def addp(request):
     context = {

@@ -11,7 +11,7 @@
         <div class="btn-group" role="group">
           <button type="button" class="btn btn-outline-success">Add</button>
           <button type="button" class="btn btn-outline-secondary">Edit</button>
-          <button type="button" class="btn btn-outline-danger">Delete</button>
+          <button type="button" class="btn btn-outline-danger" id="btnDelete">Delete</button>
         </div>
         <table class="table table-bordered mt-3">
           <thead>
@@ -27,7 +27,7 @@
           <tbody>
             {% for product in product_list %}
               <tr>
-                <td><input type="checkbox"></td>
+                <td><input type="checkbox" data-type="check_product" data-id="{{ product.id }}"></td>
                 <td>{{ product.prodname }}</td>
                 <td>{{ product.description }}</td>
                 <td>{{ product.price }}</td>
@@ -40,4 +40,6 @@
       </div>
     </div>
   </div>
+
+    <script src="{% static 'js/products_manager.js' %}"></script>
 {% endblock %}
