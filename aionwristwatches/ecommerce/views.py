@@ -341,8 +341,13 @@ def product(request, product_id):
         if regform.is_valid():
             print("FORM VALID")
             regform.save()
-            revform.save()
             return redirect('/')
+        if revform.is_valid():
+            print("REVFORM VALID")
+            rev = revform.save(commit=False)
+            rev.pubdate = timezone.now()
+            rev.user = request.user
+            rev.save()
 
         regform = RegistrationForm()
         revform = ReviewForm()
