@@ -44,39 +44,9 @@ def myorders(request):
 
 def acctman(request):
     product_list = Product.objects.all()
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-#    prod = Product.objects.get(pk=3)
-#    product_diff = prod.initialstock - prod.quantity
-=======
-    prod = Product.objects.get(pk=1)
-    product_diff = prod.initialstock - prod.quantity
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
+    
     context = {
-        'prod': prod,
         'product_list': product_list,
-<<<<<<< HEAD
-        'product_diff': 0,
-=======
-        'product_diff': product_diff,
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
-=======
-    prod = Product.objects.get(pk=1)
-    product_diff = prod.initialstock - prod.quantity
-    context = {
-        'prod': prod,
-        'product_list': product_list,
-        'product_diff': product_diff,
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
-=======
-    prod = Product.objects.get(pk=1)
-    product_diff = prod.initialstock - prod.quantity
-    context = {
-        'prod': prod,
-        'product_list': product_list,
-        'product_diff': product_diff,
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
     }
     return render(request, 'ecommerce/acctman.html', context)
 
@@ -158,19 +128,7 @@ def prodadd(request):
         stock = request.POST["stock"]
         cat = request.POST["category"]
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         product = Product()
-=======
-        product = Product
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
-=======
-        product = Product
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
-=======
-        product = Product
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
         product.prodname = name
         product.description = desc
         product.category = cat
@@ -180,19 +138,7 @@ def prodadd(request):
         if (len(request.FILES) > 0):
             product.image = request.FILES["image"]
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         product.save()
-=======
-        product.save(force_insert=True)
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
-=======
-        product.save(force_insert=True)
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
-=======
-        product.save(force_insert=True)
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
 
     return HttpResponse('Success')
 
