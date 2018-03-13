@@ -85,7 +85,6 @@ def loginmanager(request):
 
         login(request)
         user = User.objects.filter(username=request.POST['username'])[:1].get()
-        print(user.usertypes)
 
         if not user.expired:
             if user.usertypes == 'Administrator':
