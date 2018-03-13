@@ -1,7 +1,8 @@
 {% extends 'ecommerce/extends/header3.html' %}
 {% load static %}
+{% load humanize %}
+{% load mathfilters %}
 {% block extrahead %}
-   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" > 
   <link href="{% static 'css/dataTables.bootstrap4.css' %}" rel="stylesheet" type="text/css" >
 {% endblock%}
   
@@ -45,8 +46,8 @@
                   <td>{{ product.category }}</td>
                   <td>{{ product.initialstock }}</td>
                   <td>{{ product.quantity }}</td>
-                  <td>{{ product.price }}</td>
-                  <!-- <td>{% widthratio product.price 1 product_diff %}</td> change dis --> 
+                  <td>{{ product.price|intcomma }}</td>
+                  <td>{{product.initialstock|sub:product.quantity|mul:product.price|intcomma}} </td>
                 </tr>
                   {% endfor %}
               </tbody>

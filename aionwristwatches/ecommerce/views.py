@@ -43,6 +43,7 @@ def myorders(request):
 
 
 def acctman(request):
+
     product_list = Product.objects.all()
     
     context = {
@@ -88,17 +89,14 @@ def loginmanager(request):
 
         login(request)
         user = User.objects.filter(username=request.POST['username'])[:1].get()
-        print(user.usertypes)
-        user.usertypes = 'Administrator'
-        user.save
-        print(user.usertypes)
-        #if not user.expired:
-        if user.usertypes == 'Administrator':
-            return redirect('/adminman/')
-        if user.usertypes == 'ProductManager':
-            return redirect('/prodman/')
-        if user.usertypes == 'AccountingManager':
-            return redirect('/acctman/')
+
+        if not user.expired:
+            if user.usertypes == 'Administrator':
+                return redirect('/adminman/')
+            if user.usertypes == 'ProductManager':
+                return redirect('/prodman/')
+            if user.usertypes == 'AccountingManager':
+                return redirect('/acctman/')
 
     return render(request, 'ecommerce/loginmanager.html')
 
