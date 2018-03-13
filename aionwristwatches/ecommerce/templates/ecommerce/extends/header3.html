@@ -15,7 +15,7 @@
     {% block extrascript %}
     {% endblock %}
 	<body>
-        {% if user.is_authenticated and user.usertypes != 'Customer'%}
+        {% if user.is_authenticated and user.usertypes != 'Customer' %}
 		<nav id="navbar" class="navbar navbar-expand-lg navbar-dark" >
             {% if user.usertypes == 'Administrator'%}
   			<a id="id_title" class="navbar-brand ml-5" href="/adminman/">
@@ -24,12 +24,12 @@
   			</a>
 
 			{% elif user.usertypes == 'ProductManager'%}
-			<a id="id_title" class="navbar-brand ml-5" href="/prodman/">
+			<a id="id_title1" class="navbar-brand ml-5" href="/prodman/">
   				<img src="{{ STATIC_URL }} /static/brand/watch.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
   				Aion Wristwatches Staff
   			</a>
 			{% else %}
-			<a id="id_title" class="navbar-brand ml-5" href="/acctman/">
+			<a id="id_title2" class="navbar-brand ml-5" href="/acctman/">
   				<img src="{{ STATIC_URL }} /static/brand/watch.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
   				Aion Wristwatches Staff
   			</a>

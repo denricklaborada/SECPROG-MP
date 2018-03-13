@@ -9,7 +9,7 @@
 {% block body %}
    
 <!--<body class="fixed-nav sticky-footer bg-dark" id="page-top">-->
-  
+  {% if user.is_authenticated and user.usertypes == "AccountingManager" %}
     <div class="container-fluid">
       
       <div class="card mt-3">
@@ -57,6 +57,7 @@
         </div>
       </div>
     </div>
+    {%endif%}
     {% endblock %}
     {% block extrascript%}
    <!-- Bootstrap core JavaScript-->
