@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Review
 
 class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(required=True)
@@ -66,3 +67,15 @@ class RegistrationForm(UserCreationForm):
             user.save()
 
         return user
+    
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = [
+            'product',
+            'user',
+            'rating',
+            'comment',
+            'pubdate',
+        ]
