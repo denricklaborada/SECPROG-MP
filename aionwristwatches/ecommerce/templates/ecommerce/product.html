@@ -69,7 +69,7 @@
                                 <div class="comment-main-level">
                                     <div class="comment-box">
                                         <div class="comment-head">
-                                            <h6 class="comment-name by-author"><a href="">{{ review.user }}</a></h6>
+                                            <h6 class="comment-name by-author">{{ review.user }}</h6>
                                             <span>Posted {{ review.pubdate }}</span>
                                             <i class="fa fa-star"></i>
                                         </div>
@@ -94,7 +94,7 @@
                                             {% csrf_token %}
                                             {{ revform }}
                                             <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Review</button><!--
-                                            <textarea placeholder="Write your review here..." ></textarea>
+                                            
                                             <ul class="rating">
                                                     <label>
                                                         <input type="radio" name="rating" value="5" title="5 stars"> 5
