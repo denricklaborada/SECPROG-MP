@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^loginmanager/$',views.loginmanager, name='loginmanager'),
     url(r'^adminman/$',views.adminman, name='adminman'),
     url(r'^adminman/prodmng/$',views.prodmng, name='prodmng'),
+    url(r'^adminman/acctmng/$',views.acctmng, name='acctmng'),
     url(r'^adminman/prodmng/editp/$',views.editp, name='editp'),
     url(r'^adminman/prodmng/addp/$',views.addp, name='addp'),
     url(r'^adminman/acctmng/adda/$',views.adda, name='adda'),

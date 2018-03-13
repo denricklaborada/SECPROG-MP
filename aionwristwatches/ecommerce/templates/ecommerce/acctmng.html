@@ -12,7 +12,7 @@
     <div id="id_bread" >
         <div class="breadcrumbs">
             <a id="id_bread" href="/adminman/">Home</a>
-            <span style="color:#c4dce8;">›&nbsp;Product Manager</span>
+            <span style="color:#c4dce8;">›&nbsp;Account Manager</span>
 
         </div>
     </div>
@@ -20,12 +20,12 @@
 <div class="container-fluid">
     <div class="card mt-3">
       <div class="card-header">
-        <i class="fa fa-table"></i> Product Manager
+        <i class="fa fa-table"></i> Account Manager
       </div>
       <div class="card-body">
         <div class="btn-group" role="group">
-          <a href="{%url 'ecommerce:addp' %}"><button type="button" class="btn btn-outline-success">Add</button></a>
-
+            <a href="{%url 'ecommerce:adda' %}"><button type="button" class="btn btn-outline-success">Add</button></a>
+         
         </div>
         <table class="table table-bordered mt-3">
           <thead class="thead-inverse text-uppercase">
@@ -39,7 +39,7 @@
             </tr>
           </thead>
           <tbody>
-          {% for account in prodmanaccts %}
+          {% for account in acctmanaccts %}
             <tr>
 
               <td><a href="/edit/">@{{account.username}}</a></td>

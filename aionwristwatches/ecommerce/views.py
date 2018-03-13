@@ -71,7 +71,10 @@ def checkout(request, product_id):
 
 
 def prodman(request):
+    
     product_list = Product.objects.all()
+    product_list.delete()
+    
     context = {
         'product_list': product_list,
     }
@@ -85,14 +88,17 @@ def loginmanager(request):
 
         login(request)
         user = User.objects.filter(username=request.POST['username'])[:1].get()
-
-        if not user.expired:
-            if user.usertypes == 'Administrator':
-                return redirect('/adminman/')
-            if user.usertypes == 'ProductManager':
-                return redirect('/prodman/')
-            if user.usertypes == 'AccountingManager':
-                return redirect('/acctman/')
+        print(user.usertypes)
+        user.usertypes = 'Administrator'
+        user.save
+        print(user.usertypes)
+        #if not user.expired:
+        if user.usertypes == 'Administrator':
+            return redirect('/adminman/')
+        if user.usertypes == 'ProductManager':
+            return redirect('/prodman/')
+        if user.usertypes == 'AccountingManager':
+            return redirect('/acctman/')
 
     return render(request, 'ecommerce/loginmanager.html')
 
@@ -102,8 +108,18 @@ def adminman(request):
 
 
 def prodmng(request):
-    return render(request, 'ecommerce/prodmng.html')
+    prodmanaccts = User.objects.filter(usertypes="ProductManager")
+    context={
+        'prodmanaccts':prodmanaccts
+    }
+    return render(request, 'ecommerce/prodmng.html',context)
 
+def acctmng(request):
+    acctmanaccts = User.objects.filter(usertypes="AccountingManager")
+    context={
+        'acctmanaccts':acctmanaccts
+    }
+    return render(request, 'ecommerce/acctmng.html',context)
 
 def editp(request):
     return render(request, 'ecommerce/editpman.html')
