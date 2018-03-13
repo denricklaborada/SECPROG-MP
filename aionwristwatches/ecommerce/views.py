@@ -5,7 +5,7 @@ from django.contrib.auth.views import login, logout
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from .forms import RegistrationForm
+from .forms import RegistrationForm, ReviewForm
 from .models import Product, Transaction, Review
 
 
@@ -387,25 +387,32 @@ def uacct(request):
 def product(request, product_id):
     product_obj = Product.objects.filter(id=product_id)[:1].get()
     reviews_obj = Review.objects.filter(product=product_obj)
+        
     if request.method == 'POST':
         regform = RegistrationForm(request.POST)
+        revform = ReviewForm(request.POST)
         print("REQUEST POST")
         if regform.is_valid():
             print("FORM VALID")
             regform.save()
+            revform.save()
             return redirect('/')
 
         regform = RegistrationForm()
+        revform = ReviewForm()
         context = {
             'regform': regform,
+            'revform': revform,
             'product_obj': product_obj,
             'reviews_obj': reviews_obj,
         }
         login(request)
         return render(request, 'ecommerce/product.html', context)
     regform = RegistrationForm()
+    revform = ReviewForm()
     context = {
         'regform': regform,
+        'revform': revform,
         'product_obj': product_obj,
         'reviews_obj': reviews_obj,
     }
