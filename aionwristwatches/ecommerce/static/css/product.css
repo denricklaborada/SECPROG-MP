@@ -291,27 +291,27 @@ margin-right: 7px;
 
 
 
-.rating {
+#id_rating {
 	unicode-bidi: bidi-override;
-     direction: rtl;
+     direction: ltr;
 }
-.status-upload ul > span {
+.status-upload ul{
 float: left;
 margin: 15px 0 10px 10px;
 }
 
 
-.rating input {
+ul#id_rating li label input {
     position: absolute;
     left: -999999px;
 }
 
-.rating label {
+ul#id_rating li label {
     display: inline-block;
     font-size: 0;
 }
 
-.rating > label:before {
+ul#id_rating li label:before {
     position: relative;
     font: 24px/1 FontAwesome;
     display: block;
@@ -322,15 +322,13 @@ margin: 15px 0 10px 10px;
     -webkit-text-fill-color: transparent;
 }
 
-.rating > label:hover:before,
-.rating > label:hover ~ label:before,
-.rating > label.selected:before,
-.rating > label.selected ~ label:before {
+ul#id_rating li label:hover:before,
+ul#id_rating li label:hover ~ label:before,
+ul#id_rating li label.selected:before,
+ul#id_rating li label.selected ~ label:before {
     color: #f0ad4e;
     background: -webkit-linear-gradient(-45deg, #fcb551 0%, #d69a45 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
-
 

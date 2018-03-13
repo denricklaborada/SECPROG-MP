@@ -8,9 +8,9 @@
 <script>
 	$(document).ready(function() {
         $("#navbar1").hide();
-        $('.rating input').change(function () {
+        $('ul#rating li label input').change(function () {
   var $radio = $(this);
-  $('.rating .selected').removeClass('selected');
+  $('ul#id_rating .selected').removeClass('selected');
   $radio.closest('label').addClass('selected');
 });
     });
@@ -92,9 +92,10 @@
                                     <div class="status-upload">
                                         <form role="form" method="post">
                                             {% csrf_token %}
+                                            {{ revform }}
+                                            <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Review</button><!--
                                             <textarea placeholder="Write your review here..." ></textarea>
-                                            <ul>
-                                                <span class="rating">
+                                            <ul class="rating">
                                                     <label>
                                                         <input type="radio" name="rating" value="5" title="5 stars"> 5
                                                     </label>
@@ -110,9 +111,8 @@
                                                     <label>
                                                         <input type="radio" name="rating" value="1" title="1 stars"> 1
                                                     </label>
-                                                 </span>
                                             </ul>
-                                            <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Review</button>
+                                            -->
                                         </form>
                                     </div>
                                 </div>

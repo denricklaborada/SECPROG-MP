@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import Textarea, widgets
 from .models import Review
 
 class RegistrationForm(UserCreationForm):
@@ -69,12 +70,30 @@ class RegistrationForm(UserCreationForm):
         return user
     
 
+
+STAR_CHOICES = [
+    ('5', '5'),
+    ('4', '4'),
+    ('3', '3'),
+    ('2', '2'),
+    ('1', '1'),
+]
 class ReviewForm(forms.ModelForm):
+    rating = forms.CharField(label='', widget=forms.RadioSelect(attrs={'class':'id_rating'}, choices=STAR_CHOICES))
     class Meta:
         model = Review
-        fields = [
+        exclude = [
             'product',
             'user',
-            'rating',
-            'comment',
         ]
+        fields = [
+            'comment',
+            'rating',
+        ]
+        widgets = {
+            'comment': Textarea(attrs={'cols':80, 'rows':20, 'placeholder':'Write your review here...'}),
+            #'rating': forms.TextInput('required': True),
+        }
+        labels = {
+            'comment': '',
+        }

@@ -345,7 +345,6 @@ def product(request, product_id):
         if revform.is_valid():
             print("REVFORM VALID")
             rev = revform.save(commit=False)
-            rev.pubdate = timezone.now()
             rev.user = request.user
             rev.save()
 
