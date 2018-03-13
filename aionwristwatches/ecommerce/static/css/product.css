@@ -311,7 +311,7 @@ ul#id_rating li label {
     font-size: 0;
 }
 
-ul#id_rating li label:before {
+ul#id_rating > li label:before {
     position: relative;
     font: 24px/1 FontAwesome;
     display: block;
@@ -322,10 +322,10 @@ ul#id_rating li label:before {
     -webkit-text-fill-color: transparent;
 }
 
-ul#id_rating li label:hover:before,
-ul#id_rating li label:hover ~ label:before,
-ul#id_rating li label.selected:before,
-ul#id_rating li label.selected ~ label:before {
+ul#id_rating > li label:hover:before,
+ul#id_rating > li label:hover ~ li label:before,
+ul#id_rating > li label.selected:before,
+ul#id_rating > li label.selected ~ li label:before {
     color: #f0ad4e;
     background: -webkit-linear-gradient(-45deg, #fcb551 0%, #d69a45 100%);
     -webkit-background-clip: text;

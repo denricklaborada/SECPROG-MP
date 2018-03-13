@@ -8,9 +8,9 @@
 <script>
 	$(document).ready(function() {
         $("#navbar1").hide();
-        $('ul#rating li label input').change(function () {
+        $('ul.id_rating input').change(function () {
   var $radio = $(this);
-  $('ul#id_rating .selected').removeClass('selected');
+  $('ul.id_rating .selected').removeClass('selected');
   $radio.closest('label').addClass('selected');
 });
     });

@@ -345,6 +345,7 @@ def product(request, product_id):
         if revform.is_valid():
             print("REVFORM VALID")
             rev = revform.save(commit=False)
+            rev.product = product_obj
             rev.user = request.user
             rev.save()
 
