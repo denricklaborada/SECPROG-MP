@@ -77,5 +77,4 @@ class ReviewForm(forms.ModelForm):
             'user',
             'rating',
             'comment',
-            'pubdate',
         ]
