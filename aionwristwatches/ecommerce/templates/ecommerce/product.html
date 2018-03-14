@@ -41,11 +41,12 @@
 				<h5 class="card-text">₱ {{ product_obj.price|intcomma }}</h5>
 				<h5 class="card-text">{{ product_obj.quantity }} item/s left!</h5>
 			</div>
-            {%if product_obj.is_active and product_obj.quantity > 0%}
+                    {%if product_obj.is_active and product_obj.quantity > 0%}
 			<a href="{% url 'ecommerce:checkout' product_obj.id %}" class=" card-link font-weight-bold"><button class="btn btn-outline-success text-uppercase btn-block">Buy Now</button></a>
-            {% else%}
-            <h2 class="font-weight-bold text-center text-uppercase btn-block">OUT OF STOCK</h2>
-            {%endif%}
+                     {%endif%}
+                    {% else%}
++            <h2 class="font-weight-bold text-center text-uppercase btn-block">OUT OF STOCK</h2>
++            {%endif%}
 		</div>
 	</div>
 	</div>
@@ -75,7 +76,37 @@
                                         <div class="comment-head">
                                             <h6 class="comment-name by-author">{{ review.user }}</h6>
                                             <span>Posted {{ review.pubdate }}</span>
+                                            {% if review.rating == 5 %}
                                             <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            {% elif review.rating == 4 %}
+                                            <i class="fa fa-star nofill"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            {% elif review.rating == 3 %}
+                                            <i class="fa fa-star nofill"></i>
+                                            <i class="fa fa-star nofill"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            {% elif review.rating == 2 %}
+                                            <i class="fa fa-star nofill"></i>
+                                            <i class="fa fa-star nofill"></i>
+                                            <i class="fa fa-star nofill"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            {% elif review.rating == 1 %}
+                                            <i class="fa fa-star nofill"></i>
+                                            <i class="fa fa-star nofill"></i>
+                                            <i class="fa fa-star nofill"></i>
+                                            <i class="fa fa-star nofill"></i>
+                                            <i class="fa fa-star"></i>
+                                            {% endif %}
                                         </div>
                                         <div class="comment-content">
                                             {{ review.comment }}
@@ -88,7 +119,7 @@
                     </div>
                     
                     
-                    {% if user.is_authenticated and reviews_obj %}
+                    {% if user.is_authenticated and t_obj %}
                     <div class="container aaa">
                         <div class="row">
                             <div class="col-md-9">
@@ -97,26 +128,7 @@
                                         <form role="form" method="post">
                                             {% csrf_token %}
                                             {{ revform }}
-                                            <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Review</button><!--
-                                            
-                                            <ul class="rating">
-                                                    <label>
-                                                        <input type="radio" name="rating" value="5" title="5 stars"> 5
-                                                    </label>
-                                                    <label>
-                                                        <input type="radio" name="rating" value="4" title="4 stars"> 4
-                                                    </label>
-                                                    <label>
-                                                        <input type="radio" name="rating" value="3" title="3 stars"> 3
-                                                    </label>
-                                                    <label>
-                                                        <input type="radio" name="rating" value="2" title="2 stars"> 2
-                                                    </label>
-                                                    <label>
-                                                        <input type="radio" name="rating" value="1" title="1 stars"> 1
-                                                    </label>
-                                            </ul>
-                                            -->
+                                            <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Review</button>
                                         </form>
                                     </div>
                                 </div>

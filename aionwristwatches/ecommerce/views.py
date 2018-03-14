@@ -347,11 +347,11 @@ def uacct(request):
 
     return render(request, 'ecommerce/uacct.html')
 
-
 def product(request, product_id):
     product_obj = Product.objects.filter(id=product_id)[:1].get()
     reviews_obj = Review.objects.filter(product=product_obj)
-        
+    t_obj = Transaction.objects.filter(product=product_obj)
+    
     if request.method == 'POST':
         regform = RegistrationForm(request.POST)
         revform = ReviewForm(request.POST)

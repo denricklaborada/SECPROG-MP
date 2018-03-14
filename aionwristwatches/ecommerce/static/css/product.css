@@ -115,20 +115,20 @@ ul {
 	border-radius: 4px 4px 0 0;
 }
 
-.comment-box .comment-head i {
+.comment-box .comment-head i{
 	float: right;
-	margin-left: 14px;
+	margin-left: 2px;
 	position: relative;
 	top: 2px;
-	color: #A6A6A6;
-	cursor: pointer;
+	color: #fcb551;
+    font-size: 2em;
 	-webkit-transition: color 0.3s ease;
 	-o-transition: color 0.3s ease;
 	transition: color 0.3s ease;
 }
 
-.comment-box .comment-head i:hover {
-	color: #03658c;
+.comment-head i.nofill {
+	color: #A6A6A6;
 }
 
 .comment-box .comment-name {
