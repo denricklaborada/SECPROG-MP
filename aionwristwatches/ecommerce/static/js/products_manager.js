@@ -77,28 +77,9 @@ $(document).ready( function() {
             event.preventDefault();
 
             var data = new FormData(this);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
             $.ajax({
                 url: "/prodman/add/",
-=======
-=======
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
-=======
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
-            data.append("id", id);
-
-            $.ajax({
-                url: "/prodman/edit/",
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
-=======
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
-=======
->>>>>>> 8c6a508b7b6e4a51b682310a452a02429b2ebcb9
                 method: "POST",
                 data: data,
                 async: false,

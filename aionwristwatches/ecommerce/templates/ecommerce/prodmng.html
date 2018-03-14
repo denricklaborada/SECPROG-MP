@@ -24,13 +24,14 @@
       </div>
       <div class="card-body">
         <div class="btn-group" role="group">
-          <a href="{%url 'ecommerce:addp' %}"><button type="button" class="btn btn-outline-success">Add</button></a>
-
+          <button type="button" class="btn btn-outline-success">Add</button>
+          <button type="button" class="btn btn-outline-secondary">Edit</button>
+          <button type="button" class="btn btn-outline-danger">Delete</button>
         </div>
         <table class="table table-bordered mt-3">
           <thead class="thead-inverse text-uppercase">
             <tr>
-
+              <th>#</th>
               <th>Username</th>
               <th>Email Address</th>
               <th>First Name</th>
@@ -39,17 +40,29 @@
             </tr>
           </thead>
           <tbody>
-          {% for account in prodmanaccts %}
             <tr>
-
-              <td><a href="/edit/">@{{account.username}}</a></td>
-              <td>{{account.email}}</td>
-              <td>{{account.first_name}}</td>
-              <td>{{account.last_name}}</td>
+              <th scope="row">1</th>
+              <td><a href="/edit/">@mdo</a></td>
+              <td>markotto@mail.com</td>
+              <td>Mark</td>
+              <td>Otto</td>
 
             </tr>
-          {% endfor %}
+            <tr>
+              <th scope="row">2</th>
+              <td><a href="#">@fat</a></td>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>jthornton@mail.com</td>
 
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td><a href="#">@twitter</a></td>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>twitbird@mail.com</td>
+            </tr>
           </tbody>
         </table>
     </div>
