@@ -127,7 +127,8 @@ def proddelete(request):
 
     for id in ids:
         product = Product.objects.get(id=id)
-        product.delete()
+        product.is_active = False
+        product.save()
 
     return HttpResponse('Success')
 
