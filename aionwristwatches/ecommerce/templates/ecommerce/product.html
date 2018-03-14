@@ -41,7 +41,7 @@
 				<h5 class="card-text">₱ {{ product_obj.price|intcomma }}</h5>
 				<h5 class="card-text">{{ product_obj.quantity }} item/s left!</h5>
 			</div>
-                    {%if product.is_active%}
+                    {%if product_obj.is_active%}
 			<a href="{% url 'ecommerce:checkout' product_obj.id %}" class=" card-link font-weight-bold"><button class="btn btn-outline-success text-uppercase btn-block">Buy Now</button></a>
                      {%endif%}
 		</div>

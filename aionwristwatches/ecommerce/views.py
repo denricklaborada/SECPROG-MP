@@ -149,6 +149,8 @@ def prodadd(request):
         product.price = price
         product.quantity = stock
         product.initialstock = stock
+        product.is_active = True
+
 
         if (len(request.FILES) > 0):
             product.image = request.FILES["image"]
