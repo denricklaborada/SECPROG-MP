@@ -71,7 +71,7 @@ $(document).ready( function() {
         $("#description").val("");
         $("#price").val(0);
         $("#stock").val(0);
-        $("#category").val("Digital");
+        $("#category").val("");
 
         form.on("submit", function (event) {
             event.preventDefault();
