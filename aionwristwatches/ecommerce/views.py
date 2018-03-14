@@ -347,7 +347,6 @@ def uacct(request):
 def product(request, product_id):
     product_obj = Product.objects.filter(id=product_id)[:1].get()
     reviews_obj = Review.objects.filter(product=product_obj)
-    transaction_obj = Transaction.objects.filter(product=reviews_obj)
         
     if request.method == 'POST':
         regform = RegistrationForm(request.POST)
@@ -371,7 +370,6 @@ def product(request, product_id):
             'revform': revform,
             'product_obj': product_obj,
             'reviews_obj': reviews_obj,
-            'transaction_obj': transactions_obj,
         }
         login(request)
         return render(request, 'ecommerce/product.html', context)
@@ -382,6 +380,5 @@ def product(request, product_id):
         'revform': revform,
         'product_obj': product_obj,
         'reviews_obj': reviews_obj,
-        'transaction_obj': transactions_obj,
     }
     return render(request, 'ecommerce/product.html', context)
