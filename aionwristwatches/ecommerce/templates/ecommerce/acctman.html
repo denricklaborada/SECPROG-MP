@@ -46,8 +46,8 @@
                   <td>{{ product.category }}</td>
                   <td>{{ product.initialstock }}</td>
                   <td>{{ product.quantity }}</td>
-                  <td>{{ product.price|intcomma }}</td>
-                  <td>{{product.initialstock|sub:product.quantity|mul:product.price|intcomma}} </td>
+                  <td>&#x20B1 {{ product.price|intcomma }}</td>
+                  <td>&#x20B1 {{product.initialstock|sub:product.quantity|mul:product.price|intcomma}} </td>
                 </tr>
                   {% endfor %}
               </tbody>
