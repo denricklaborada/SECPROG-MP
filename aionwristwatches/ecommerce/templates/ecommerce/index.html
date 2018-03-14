@@ -15,8 +15,13 @@
 	    			<a href="{% url 'ecommerce:product' product.id %}" style="text-decoration: none;"><h5 class="font-weight-bold text-dark card-title">{{ product.prodname }}</h5></a>
 	    			<p class="card-text text-muted">{{ product.category }}</p>
 	    			<p class="card-text text-muted">{{ product.quantity }} item/s left</p>
+					{% if product.quantity > 0 %}
 					<a href="{% url 'ecommerce:checkout' product.id %}" class="card-link font-weight-bold"><button id="id_buy" class="btn btn-success text-uppercase">Buy Now</button></a>
-	  			</div>
+	  				{% else %}
+					<div class="font-weight-bold text-center text-uppercase btn-block">OUT OF STOCK</div>
+					{%endif%}
+
+				</div>
 
 			</div>
 			{%endif%}
@@ -38,7 +43,11 @@
 	    			<a href="{% url 'ecommerce:product' product.id %}" style="text-decoration: none;"><h5 class="font-weight-bold text-dark card-title">{{ product.prodname }}</h5></a>
 	    			<p class="card-text text-muted">{{ product.category }}</p>
 	    			<p class="card-text text-muted">{{ product.quantity }} item/s left</p>
-	    			<center><a href="{% url 'ecommerce:checkout' product.id %}" class="card-link font-weight-bold"><button id="id_buy" class="btn btn-success text-uppercase">Buy Now</button></a></center>
+	    			{% if product.quantity > 0 %}
+					<a href="{% url 'ecommerce:checkout' product.id %}" class="card-link font-weight-bold"><button id="id_buy" class="btn btn-success text-uppercase">Buy Now</button></a>
+					{% else %}
+					<div class="font-weight-bold text-center text-uppercase btn-block">OUT OF STOCK</div>
+					{%endif%}
 	  			</div>
 			</div>
 			{%endif%}
@@ -60,8 +69,12 @@
 	    			<a href="{% url 'ecommerce:product' product.id %}" style="text-decoration: none;"><h5 class="font-weight-bold text-dark card-title">{{ product.prodname }}</h5></a>
 	    			<p class="card-text text-muted">{{ product.category }}</p>
 	    			<p class="card-text text-muted">{{ product.quantity }} item/s left</p>
-	    			<center><a href="{% url 'ecommerce:checkout' product.id %}" class="card-link font-weight-bold"><button id="id_buy" class="btn btn-success text-uppercase">Buy Now</button></a></center>
-	  			</div>
+	    			{% if product.quantity > 0 %}
+					<a href="{% url 'ecommerce:checkout' product.id %}" class="card-link font-weight-bold"><button id="id_buy" class="btn btn-success text-uppercase">Buy Now</button></a>
+	  				{% else %}
+					<div class="font-weight-bold text-center text-uppercase btn-block">OUT OF STOCK</div>
+					{%endif%}
+			</div>
 
 			</div>
 			{%endif%}
