@@ -1,13 +1,13 @@
 {% extends 'ecommerce/extends/header3.html' %}
 {% load static %}
-
+{% load humanize %}
 {% block body %}
     <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="savemodal" id="savemodal" aria-hidden="true">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <form action="#" method="GET" enctype="multipart/form-data" id="form">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h5 class="modal-title">Product Information</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -27,7 +27,7 @@
 
                     <div class="form-group">
                         <label for="price">Price:</label>
-                        <input class="form-control" type="number" min="0" name="price" id="price"/>
+                        <input class="form-control" type="number" min="0" step="0.01" name="price" id="price"/>
                     </div>
 
                     <div class="form-group">
@@ -89,7 +89,7 @@
                 <td><input type="checkbox" data-type="check_product" data-id="{{ product.id }}"></td>
                 <td data-id="{{ product.id }}" data-type="name">{{ product.prodname }}</td>
                 <td data-id="{{ product.id }}" data-type="description">{{ product.description }}</td>
-                <td data-id="{{ product.id }}" data-type="price">{{ product.price }}</td>
+                <td data-id="{{ product.id }}" data-type="price">&#x20B1 {{ product.price|intcomma }}</td>
                 <td data-id="{{ product.id }}" data-type="quantity">{{ product.quantity }}</td>
                 <td data-id="{{ product.id }}" data-type="category">{{ product.category }}</td>
               </tr>

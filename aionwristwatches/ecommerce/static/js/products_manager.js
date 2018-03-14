@@ -34,7 +34,7 @@ $(document).ready( function() {
 
             $("#name").val(product);
             $("#description").val(description);
-            $("#price").val(price);
+            $("#price").val(parseFloat(price.replace("₱","").replace(",","")));
             $("#stock").val(quantity);
             $("#category").val(category);
 
