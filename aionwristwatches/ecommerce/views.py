@@ -338,7 +338,7 @@ def uacct(request):
                         user.ssubdivision = ssubdivision
                         user.scity = scity
                         user.spc = spc
-                        user.sbcountry = scountry
+                        user.scountry = scountry
 
                         user.save()
 
