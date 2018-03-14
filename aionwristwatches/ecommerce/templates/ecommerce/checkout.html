@@ -209,7 +209,7 @@
 
             <div class="col-2">
                 <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" size="3" maxlength="3" pattern="\d{3}$" title="Must contain 3 numerical digits" placeholder="" required>
+                <input type="text" class="form-control " id="cc-cvv" size="3" maxlength="3" pattern="\d{3}$" title="Must contain 3 numerical digits" placeholder="" required>
                 <small class="text-muted">Must contain 3 numerical digits</small>
 				<div class="invalid-feedback">
                     Security code required
@@ -225,11 +225,23 @@
                 <h3><strong>Billing Details</strong></h3>
             </div>
             
-            <div class="col-3">
-                <label for="cc-name">House #</label>
-                <input type="text" class="form-control" id="cc-name" value="{{user.bhouse_num}}" required>
-                <label for="cc-name">Street</label>
-                <input type="text" class="form-control" id="cc-name" value="{{user.bhouse_num}}" required>
+            <div class="col-7">
+                <label for="cc-name">Billing Address</label>
+                <input type="text" class="form-control " id="cc-name" value="{{user.bhouse_num}} {{user.bstreet}} St., {{user.bsubdivision}} {{user.bcity}} City, {{user.bcountry}}  {{user.bpc}}" disabled>
+
+            </div>
+		</div>
+	</div>
+    <div class="container ml-5 mt-3 pb-5">
+        <div class="row">
+             <div class="col-12">
+                <h3><strong>Shipping Details</strong></h3>
+            </div>
+
+            <div class="col-7">
+                <label for="cc-name">Shipping Address</label>
+                <input type="text" class="form-control " id="cc-name" value="{{user.shouse_num}} {{user.sstreet}} St., {{user.ssubdivision}} {{user.scity}} City, {{user.scountry}}  {{user.spc}}" disabled>
+
             </div>
 		</div>
 	</div>
