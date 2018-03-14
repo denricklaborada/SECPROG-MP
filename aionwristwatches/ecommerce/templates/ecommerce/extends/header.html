@@ -68,28 +68,39 @@
 			}
 		}
 		$(document).ready(function(){
-			$("#digitaltab").hide();
-			$("#smarttab").hide();
-			});
+			if (JSON.parse({{ searched|safe }})) {
+				$("#analogtab").hide();
+				$("#digitaltab").hide();
+				$("#smarttab").hide();
+			}
+			else {
+				$("#digitaltab").hide();
+				$("#smarttab").hide();
+				$("#alltab").hide();
+			}
+		});
+
 		   function category(tab){
 			if(tab=="analog")
 			{
 				$("#analogtab").show();
 				$("#digitaltab").hide();
 				$("#smarttab").hide();
+				$("#alltab").hide();
 			}
 			else if(tab=="digital")
 			{
 				$("#digitaltab").show();
 				$("#analogtab").hide();
 				$("#smarttab").hide();
+				$("#alltab").hide();
 			}
 			else
 			{
 				$("#smarttab").show();
 				$("#analogtab").hide();
 				$("#digitaltab").hide();
-
+				$("#alltab").hide();
 			}
 		}
     </script>
@@ -169,10 +180,9 @@
             <div class="d-flex ml-auto">
             <form class="navbar-form mt-1" role="search" method="get">
                 <div class="input-group add-on">
-                  <input class="form-control ml-sm-2 p-2" type="search" placeholder="Search" aria-label="Search"/>
+                 	<input class="form-control ml-sm-2 p-2" type="search" name="search" placeholder="Search" aria-label="Search" value="{{ request.GET.search }}" />
                     <button class="btn btn-outline-secondary my-3 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
                 </div>
-              
             </form>
             </div>
 

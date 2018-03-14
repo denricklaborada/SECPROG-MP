@@ -83,5 +83,40 @@
 	</div>
 
 </div>
+<div id="alltab" class="main-container">
+	<div class="ml-5 mt-3">
+        <h3>
+        	<a href="/" role="button" class="pull-left text-success" style="text-decoration: none;">
+            	<i id="continuebtn" class="fa fa-angle-left ml-5" ></i>&nbsp;&nbsp;<strong>Return</strong>
+        	</a>
+    	</h3>
+    </div>
+	<div id="content" class="container py-5">
+		
+
+		<h3>Searched for: {{ query }}</h3>
+		<div class="row">
+			{% for product in product_list %}
+			{%if product.is_active%}
+			<div class="card col-sm-3">
+	  			<a href="{% url 'ecommerce:product' product.id %}"><img class="card-img-top" src="{{ product.image.url }}"></a>
+	  			<div class="card-body">
+	    			<a href="{% url 'ecommerce:product' product.id %}" style="text-decoration: none;"><h5 class="font-weight-bold text-dark card-title">{{ product.prodname }}</h5></a>
+	    			<p class="card-text text-muted">{{ product.category }}</p>
+	    			<p class="card-text text-muted">{{ product.quantity }} item/s left</p>
+	    			{% if product.quantity > 0 %}
+					<a href="{% url 'ecommerce:checkout' product.id %}" class="card-link font-weight-bold"><button id="id_buy" class="btn btn-success text-uppercase">Buy Now</button></a>
+	  				{% else %}
+					<div class="font-weight-bold text-center text-uppercase btn-block">OUT OF STOCK</div>
+					{%endif%}
+			</div>
+
+			</div>
+			{%endif%}
+			{% endfor %}
+		</div>
+	</div>
+
+</div>
 
 {% endblock %}

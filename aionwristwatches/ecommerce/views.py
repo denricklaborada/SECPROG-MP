@@ -1,4 +1,4 @@
-import re
+import re, json
 
 from django.contrib.auth.models import User
 from django.contrib.auth.views import login, logout
@@ -11,6 +11,14 @@ from .models import Product, Transaction, Review
 
 def index(request):
     product_list = Product.objects.all()
+
+    search = request.GET.get('search')
+    searched = False
+
+    if search:
+    	product_list = product_list.filter(prodname__icontains=search).distinct()
+    	searched = True
+
     if request.method == 'POST':
         regform = RegistrationForm(request.POST)
         print("REQUEST POST")
@@ -23,12 +31,16 @@ def index(request):
         context = {
             'product_list': product_list,
             'regform': regform,
+            'searched': searched,
+            'query': search,
         }
         return login(request, context)
     regform = RegistrationForm()
     context = {
         'product_list': product_list,
         'regform': regform,
+        'searched': json.dumps(searched),
+        'query': search,
     }
     return render(request, 'ecommerce/index.html', context)
 
@@ -386,3 +398,4 @@ def product(request, product_id):
         'reviews_obj': reviews_obj,
     }
     return render(request, 'ecommerce/product.html', context)
+    
