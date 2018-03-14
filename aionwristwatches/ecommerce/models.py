@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Product(models.Model):
-    prodname = models.CharField(max_length=60)
+    prodname = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
     price = models.DecimalField(default=0.00, max_digits=20, decimal_places=2, validators=[MinValueValidator(0)])
     initialstock = models.PositiveIntegerField(default=0)
@@ -80,7 +80,7 @@ class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.PositiveIntegerField(default=0)
-    comment = models.CharField(blank=True, max_length=100)
+    comment = models.CharField(blank=True, max_length=150)
     pubdate = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
