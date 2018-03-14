@@ -74,7 +74,6 @@ def checkout(request, product_id):
 def prodman(request):
     
     product_list = Product.objects.all()
-    product_list.delete()
     
     context = {
         'product_list': product_list,
@@ -147,6 +146,7 @@ def prodadd(request):
         product.category = cat
         product.price = price
         product.quantity = stock
+        product.initialstock = stock
 
         if (len(request.FILES) > 0):
             product.image = request.FILES["image"]
@@ -170,6 +170,7 @@ def prodedit(request):
         product.description = desc
         product.category = cat
         product.price = price
+        product.initialstock = int(product.initialstock) + (int(stock) - int(product.quantity))
         product.quantity = stock
 
         if (len(request.FILES) > 0):
