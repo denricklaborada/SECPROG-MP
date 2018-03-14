@@ -43,7 +43,6 @@
 			</div>
                     {%if product_obj.is_active and product_obj.quantity > 0%}
 			<a href="{% url 'ecommerce:checkout' product_obj.id %}" class=" card-link font-weight-bold"><button class="btn btn-outline-success text-uppercase btn-block">Buy Now</button></a>
-                     {%endif%}
                     {% else%}
 +            <h2 class="font-weight-bold text-center text-uppercase btn-block">OUT OF STOCK</h2>
 +            {%endif%}
