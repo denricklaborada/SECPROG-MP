@@ -118,8 +118,8 @@ def acctmng(request):
     }
     return render(request, 'ecommerce/acctmng.html',context)
 
-def editp(request):
-    return render(request, 'ecommerce/editpman.html')
+def changepass(request):
+    return render(request, 'ecommerce/changepass.html')
 
 
 def proddelete(request):

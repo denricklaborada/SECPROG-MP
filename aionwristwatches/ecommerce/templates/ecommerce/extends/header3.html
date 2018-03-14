@@ -48,7 +48,7 @@
                  <small>
                      <bold id="id_navitems">Welcome,</bold>
                     <strong id="id_navitems" class="text-uppercase">{{user.username}}</strong>.        
-                    <a id="id_navitem" href="#">Change password</a> /
+                    <a id="id_navitem" href="{% url 'ecommerce:changepass' %}">Change password</a> /
                     <a id="id_navitem" href="{% url 'ecommerce:loginmanager' %}">Log out</a>
                 </small>
             </div>
