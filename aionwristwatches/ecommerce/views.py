@@ -132,7 +132,21 @@ def acctmng(request):
     return render(request, 'ecommerce/acctmng.html',context)
 
 def changepass(request):
-    return render(request, 'ecommerce/changepass.html')
+	user = request.user
+	try:
+		currpass = request.POST['currpass']
+		pass1 = request.POST['pass1']
+		pass2 = request.POST['pass2']
+
+		if user.check_password(currpass) and len(pass1) > 0 and len(pass2) > 0 and pass1 == pass2:
+			user.set_password(pass1)
+			user.save()
+
+			return redirect('/loginmanager/')
+
+	except:
+		print('not changed')
+	return render(request, 'ecommerce/changepass.html')
 
 
 def proddelete(request):
