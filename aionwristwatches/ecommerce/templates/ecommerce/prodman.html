@@ -87,7 +87,7 @@
             {% for product in product_list %}
               <tr>
                 <td><input type="checkbox" data-type="check_product" data-id="{{ product.id }}"></td>
-                <td data-id="{{ product.id }}" data-type="name">{{ product.prodname }}</td>
+                <td data-id="{{ product.id }}" data-type="name">{{ product.prodname }}{% if not product.is_active %} (Disabled){% endif %}</td>
                 <td data-id="{{ product.id }}" data-type="description">{{ product.description }}</td>
                 <td data-id="{{ product.id }}" data-type="price">&#x20B1 {{ product.price|intcomma }}</td>
                 <td data-id="{{ product.id }}" data-type="quantity">{{ product.quantity }}</td>
