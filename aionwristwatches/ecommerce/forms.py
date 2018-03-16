@@ -72,6 +72,7 @@ class RegistrationForm(UserCreationForm):
 
 
 STAR_CHOICES = [
+    ('0', '0'),
     ('1', '1'),
     ('2', '2'),
     ('3', '3'),
@@ -79,7 +80,7 @@ STAR_CHOICES = [
     ('5', '5'),
 ]
 class ReviewForm(forms.ModelForm):
-    rating = forms.CharField(label='', widget=forms.RadioSelect(attrs={'class':'id_rating'}, choices=STAR_CHOICES))
+    rating = forms.CharField(label='', widget=forms.RadioSelect(attrs={'class':'id_rating'}, choices=STAR_CHOICES),initial=0)
     class Meta:
         model = Review
         exclude = [
