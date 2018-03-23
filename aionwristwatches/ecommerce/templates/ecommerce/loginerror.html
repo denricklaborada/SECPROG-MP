@@ -1,0 +1,17 @@
+{% extends 'ecommerce/extends/header.html' %}
+
+{% block extrascript %}
+<script>
+	$(document).ready(function() {
+		$("#navbar1").hide();
+	});
+</script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div class="alert alert-danger" role="alert">
+		Invalid username and/or password!
+	</div>
+</div>
+{% endblock %}

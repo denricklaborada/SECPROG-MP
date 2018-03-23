@@ -21,12 +21,13 @@ urlpatterns = [
     url(r'^adminman/prodmng/$',views.prodmng, name='prodmng'),
     url(r'^adminman/acctmng/$',views.acctmng, name='acctmng'),
     url(r'^changepass/$', views.changepass, name='changepass'),
-    url(r'^adminman/prodmng/addp/$',views.addp, name='addp'),
-    url(r'^adminman/acctmng/adda/$',views.adda, name='adda'),
-    url(r'^acctman/$',views.acctman, name='acctman'),
+    url(r'^adminman/prodmng/addp/$', views.addp, name='addp'),
+    url(r'^adminman/acctmng/adda/$', views.adda, name='adda'),
+    url(r'^acctman/$', views.acctman, name='acctman'),
     url(r'^product/(?P<product_id>[0-9]+)/$', views.product, name='product'),
     url(r'^checkout/(?P<product_id>[0-9]+)/$', views.checkout, name='checkout'),
 	url(r'^logout/$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
+    url(r'^loginerror/$', views.loginerror, name='loginerror'),
 ]
 
 if settings.DEBUG:
