@@ -8,7 +8,15 @@ from django.shortcuts import render, redirect
 from .forms import RegistrationForm, ReviewForm
 from .models import Product, Transaction, Review
 
-
+ 
+def error_404(request):
+        data = {}
+        return render(request,'ecommerce/404.html', data)
+ 
+def error_500(request):
+        data = {}
+        return render(request,'ecommerce/500.html', data)
+    
 def index(request):
     product_list = Product.objects.all()
 
