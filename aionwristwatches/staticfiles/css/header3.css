@@ -1,0 +1,32 @@
+
+#navbar
+{
+    background-color: #417690;
+    
+    
+}
+
+button
+{
+  cursor: pointer;
+}
+button:hover
+{
+    opacity: 0.8;
+}
+#user-tools {
+    
+    float: right;
+    padding: 0;
+    margin: 0 0 0 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: right;
+}
+#id_navitems{
+    color: #ffc;
+}
+#id_navitem
+{
+    color: white;
+}

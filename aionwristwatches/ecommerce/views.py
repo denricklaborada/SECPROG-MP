@@ -10,9 +10,9 @@ from .models import Product, Transaction, Review
 
  
 def error_404(request):
-        data = {}
-        return render(request,'ecommerce/404.html', data)
- 
+        print(request)
+        return render(request,'ecommerce/404.html')
+    
 def error_500(request):
         data = {}
         return render(request,'ecommerce/500.html', data)
@@ -415,7 +415,13 @@ def product(request, product_id):
             'reviews_obj': reviews_obj,
             't_obj': t_obj,
         }
-        login(request)
+        try:
+            print("try")
+            login(request)
+        except:
+            print("except")
+            loginerror(request)
+            
         return render(request, 'ecommerce/product.html', context)
     regform = RegistrationForm()
     revform = ReviewForm()

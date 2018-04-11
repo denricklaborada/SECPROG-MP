@@ -1,0 +1,21 @@
+a{
+    color: #447e9b;
+    text-decoration: none;  
+}
+a:focus,a:hover{
+    color: #036;
+    text-decoration: none;  
+}
+#navbar1
+{
+    background-color: #79aec8;
+}
+
+#id_title
+{
+    color: #f5dd5d;
+}
+#id_bread
+{
+    color: white;
+}
