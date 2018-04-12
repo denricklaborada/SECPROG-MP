@@ -1,14 +1,15 @@
-import re, json
+import re, json, logging
 
 from django.contrib.auth.models import User
 from django.contrib.auth.views import login, logout
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
+from django.utils import timezone
 from .forms import RegistrationForm, ReviewForm
 from .models import Product, Transaction, Review
 
- 
+logger = logging.getLogger(__name__)
+
 def error_404(request):
         print(request)
         return render(request,'ecommerce/404.html')
@@ -65,6 +66,10 @@ def myorders(request):
 
 
 def acctman(request):
+    user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "AccountingManager":
+        logger.error('Error 403 Forbidden')
+        return render(request, 'ecommerce/403.html')
 
     product_list = Product.objects.all()
     
