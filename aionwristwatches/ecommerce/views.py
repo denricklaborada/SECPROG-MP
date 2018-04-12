@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import login, logout
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.utils import timezone
 from .forms import RegistrationForm, ReviewForm
 from .models import Product, Transaction, Review
 

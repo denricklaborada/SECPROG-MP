@@ -166,7 +166,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class':'logging.handlers.RotatingFileHandler',
-            'filename': 'logfile.log',
+            'filename': 'aionwristwatches/var/log/logfile.log',
             'maxBytes': 1024*1024*5, # 5 MB
             'backupCount': 5,
             'formatter': 'simple',
