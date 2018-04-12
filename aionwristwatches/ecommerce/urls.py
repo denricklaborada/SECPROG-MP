@@ -28,7 +28,6 @@ urlpatterns = [
     url(r'^checkout/(?P<product_id>[0-9]+)/$', views.checkout, name='checkout'),
 	url(r'^logout/$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     url(r'^loginerror/$', views.loginerror, name='loginerror'),
-]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

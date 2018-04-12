@@ -21,6 +21,7 @@ from django.conf.urls import handler404, handler500
 urlpatterns = [
 	url(r'^admin/', admin.site.urls),
 	url(r'^', include('ecommerce.urls', namespace='ecommerce')),
+	url(r'session_security/', include('session_security.urls')),
 ]
 
 handler404 = ecommerce_views.error_404

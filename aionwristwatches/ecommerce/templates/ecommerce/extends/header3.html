@@ -15,47 +15,36 @@
     {% block extrascript %}
     {% endblock %}
 	<body>
-        {% if user.is_authenticated and user.usertypes != 'Customer' %}
+    {% include 'session_security/all.html' %}
+    {% if user.is_authenticated and user.usertypes != 'Customer' %}
 		<nav id="navbar" class="navbar navbar-expand-lg navbar-dark" >
-            {% if user.usertypes == 'Administrator'%}
+      {% if user.usertypes == 'Administrator'%}
   			<a id="id_title" class="navbar-brand ml-5" href="/adminman/">
   				<img src="{{ STATIC_URL }} /static/brand/watch.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
   				Aion Wristwatches Staff 
   			</a>
-
 			{% elif user.usertypes == 'ProductManager'%}
-			<a id="id_title1" class="navbar-brand ml-5" href="/prodman/">
+			  <a id="id_title1" class="navbar-brand ml-5" href="/prodman/">
   				<img src="{{ STATIC_URL }} /static/brand/watch.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
   				Aion Wristwatches Staff
   			</a>
 			{% else %}
-			<a id="id_title2" class="navbar-brand ml-5" href="/acctman/">
+			  <a id="id_title2" class="navbar-brand ml-5" href="/acctman/">
   				<img src="{{ STATIC_URL }} /static/brand/watch.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
   				Aion Wristwatches Staff
   			</a>
 			{% endif %}
-<!--
-	  		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    		<ul class="navbar-nav ml-auto">
-	    			
-	    			{% if user.is_authenticated %}
-	    				
-	    			{% endif %}
-	    		</ul>
-	  		</div>
--->
-             <div id="user-tools" class="col-9">
-                 <small>
-                     <bold id="id_navitems">Welcome,</bold>
-                    <strong id="id_navitems" class="text-uppercase">{{user.username}}</strong>.        
-                    <a id="id_navitem" href="{% url 'ecommerce:changepass' %}">Change password</a> /
-                    <a id="id_navitem" href="{% url 'ecommerce:loginmanager' %}">Log out</a>
-                </small>
-            </div>
+       <div id="user-tools" class="col-9">
+           <small>
+             <bold id="id_navitems">Welcome,</bold>
+              <strong id="id_navitems" class="text-uppercase">{{user.username}}</strong>.        
+              <a id="id_navitem" href="{% url 'ecommerce:changepass' %}">Change password</a> /
+              <a id="id_navitem" href="{% url 'ecommerce:loginmanager' %}">Log out</a>
+          </small>
+      </div>
 		</nav>
       {%endif%}
-     
-	
+      
     	{% block body %}
     	{% endblock %}
 	</body>
