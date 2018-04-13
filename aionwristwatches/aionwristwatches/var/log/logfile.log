@@ -1,2 +1,20 @@
-ERROR 13-Apr-2018 01:24:49 views 8096 ecommerce.views: Error 403 Forbidden
-ERROR 13-Apr-2018 01:23:39 views 7268 ecommerce.views: Error 403 Forbidden
+ERROR 13-Apr-2018 15:05:29 5256 : <WSGIRequest: GET '/adminman/'> 500 Internal Server Error 
+ERROR 13-Apr-2018 15:06:17 11880 : <WSGIRequest: GET '/adminman/'> 403 Forbidden error 
+ERROR 13-Apr-2018 15:06:38 11880 : <WSGIRequest: GET '/static/css/uacct.css'> 404 Page not found 
+ERROR 13-Apr-2018 15:07:00 11880 : <WSGIRequest: GET '/static/css/uacct.css'> 404 Page not found 
+ERROR 13-Apr-2018 15:07:05 11880 : <WSGIRequest: GET '/static/css/uacct.css'> 404 Page not found 
+ERROR 13-Apr-2018 15:15:56 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/dp38-sheffield-rg_3.jpeg'> 404 Page not found 
+ERROR 13-Apr-2018 15:15:56 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/michael-kors-petite-norie-mother-of-pearl-dial-ladies-wa_Otj30ra.jpg'> 404 Page not found 
+ERROR 13-Apr-2018 15:15:57 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/watch2_GNT9GNA.JPG'> 404 Page not found 
+ERROR 13-Apr-2018 15:15:57 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/nya2021_s.jpg'> 404 Page not found 
+ERROR 13-Apr-2018 15:15:57 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/Charter_Club_Crystal_Bracelet_Watch_33mm_Created_for_Macys.jpeg'> 404 Page not found 
+ERROR 13-Apr-2018 15:15:58 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/Men_Fashion_Silicone_strap_Sport_Cool_Quartz_Hours_Wrist_JPHrFMS.jpg'> 404 Page not found 
+ERROR 13-Apr-2018 15:15:58 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/Newyork_Army_NYA189_Couples_Gold_Display_Steel_Watch_.jpeg'> 404 Page not found 
+ERROR 13-Apr-2018 15:15:59 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/Childrens_Timex_Kids_Analog_x_Peanuts_Snoopy_Flowers_Watch_.jpeg'> 404 Page not found 
+ERROR 13-Apr-2018 15:15:59 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/fossil-6050-435449-1.jpg'> 404 Page not found 
+ERROR 13-Apr-2018 15:16:00 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/download_w7nS86F.jpg'> 404 Page not found 
+ERROR 13-Apr-2018 15:16:00 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/watch4_WEnx9hk.jpeg'> 404 Page not found 
+ERROR 13-Apr-2018 15:16:00 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/Blaze_Black_Elastomer_Band_Fitness_Watch_40mm.jpeg'> 404 Page not found 
+ERROR 13-Apr-2018 15:16:01 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/8999313_fpx.jpeg'> 404 Page not found 
+ERROR 13-Apr-2018 15:16:01 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/Garmin_Unisex_Forerunner_35_Blue_Silicone_Strap_GPS_Sma_kCD1lwr.jpeg'> 404 Page not found 
+ERROR 13-Apr-2018 15:16:02 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/Alta_HR_Heart_Rate_Wristband_Smart_Watch.jpeg'> 404 Page not found 

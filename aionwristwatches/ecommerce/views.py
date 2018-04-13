@@ -11,16 +11,16 @@ logger = logging.getLogger(__name__)
 
 
 def error_403(request):
-    print(request)
+    logger.error(str(request)+ ' 403 Forbidden error '+ request.user.username)
     return render(request, 'ecommerce/403.html')
 
 def error_404(request):
-        print(request)
-        return render(request,'ecommerce/404.html')
+    logger.error(str(request)+ ' 404 Page not found ' + request.user.username)
+    return render(request,'ecommerce/404.html')
     
 def error_500(request):
-        data = {}
-        return render(request,'ecommerce/500.html', data)
+    logger.error(str(request)+ ' 500 Internal Server Error ' + request.user.username)
+    return render(request,'ecommerce/500.html')
     
 def index(request):
     product_list = Product.objects.all()
@@ -72,8 +72,7 @@ def myorders(request):
 def acctman(request):
     user = request.user
     if not user.is_authenticated or user.is_authenticated and user.usertypes != "AccountingManager":
-        logger.error('Error 403 Forbidden')
-        return render(request, 'ecommerce/403.html')
+       return error_403(request)
 
     product_list = Product.objects.all()
     
@@ -133,10 +132,17 @@ def loginmanager(request):
 
 
 def adminman(request):
+    user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "Administrator":
+       return error_403(request)
+
     return render(request, 'ecommerce/adminman.html')
 
 
 def prodmng(request):
+    user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "ProductManager":
+        return error_403(request)
     prodmanaccts = User.objects.filter(usertypes="ProductManager")
     context={
         'prodmanaccts':prodmanaccts
@@ -144,6 +150,9 @@ def prodmng(request):
     return render(request, 'ecommerce/prodmng.html',context)
 
 def acctmng(request):
+    user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "AccountingManager":
+        return error_403(request)
     acctmanaccts = User.objects.filter(usertypes="AccountingManager")
     context={
         'acctmanaccts':acctmanaccts
@@ -163,8 +172,8 @@ def changepass(request):
 
 			return redirect('/loginmanager/')
 
-	except:
-		print('not changed')
+	except :pass
+
 	return render(request, 'ecommerce/changepass.html')
 
 
