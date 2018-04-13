@@ -35,3 +35,14 @@
   position: relative;
 }
 
+.progress-bar-warning {
+    background-color: yellow;
+}
+
+.progress-bar-danger {
+    background-color: red;
+}
+
+.progress-bar-success {
+    background-color: green;
+}

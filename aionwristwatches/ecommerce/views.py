@@ -36,6 +36,7 @@ def index(request):
         regform = RegistrationForm(request.POST)
         print("REQUEST POST")
         if regform.is_valid():
+            password=regform.cleaned_data['password1']
             print("FORM VALID")
             regform.save()
             return redirect('/')
@@ -414,6 +415,7 @@ def product(request, product_id):
         revform = ReviewForm(request.POST)
         print("REQUEST POST")
         if regform.is_valid():
+            password=regform.cleaned_data['password1']
             print("FORM VALID")
             regform.save()
             return redirect('/')

@@ -3,9 +3,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import Textarea, widgets
 from .models import Review
+from zxcvbn_password.fields import PasswordField, PasswordConfirmationField
 
 class RegistrationForm(UserCreationForm):
-    first_name = forms.CharField(required=True)
+    first_name = forms.CharField(required=True, label='')
     middle_initial = forms.CharField(required=True)
     last_name = forms.CharField(required=True)
     email = forms.CharField(required=True)
@@ -21,17 +22,19 @@ class RegistrationForm(UserCreationForm):
     scity = forms.CharField(required=True)
     spc = forms.IntegerField(required=True, min_value=1)
     scountry = forms.CharField(required=True)
+    password1 = PasswordField()
+    password2 = PasswordConfirmationField(confirm_with='password1')
 
     class Meta:
         model = User
         fields = [
-            'username',
             'first_name',
             'middle_initial',
             'last_name',
+            'username',
+            'email',
             'password1',
             'password2',
-            'email',
             'bhouse_num',
             'bstreet',
             'bsubdivision',
