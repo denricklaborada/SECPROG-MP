@@ -9,6 +9,11 @@ from .models import Product, Transaction, Review
 
 logger = logging.getLogger(__name__)
 
+
+def error_403(request):
+    print(request)
+    return render(request, 'ecommerce/403.html')
+
 def error_404(request):
         print(request)
         return render(request,'ecommerce/404.html')

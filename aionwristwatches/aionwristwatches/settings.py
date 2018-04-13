@@ -155,14 +155,7 @@ LOGGING = {
             },
     },
     'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
-        'stream_to_console': {
-            'level': 'ERROR',
-            'class': 'logging.StreamHandler'
-        },
+
         'file': {
             'level': 'DEBUG',
             'class':'logging.handlers.RotatingFileHandler',
@@ -173,11 +166,6 @@ LOGGING = {
         },
     },
     'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins', 'stream_to_console'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
         'ecommerce.views': {
             'handlers': ['file'],
             'level': 'DEBUG',
