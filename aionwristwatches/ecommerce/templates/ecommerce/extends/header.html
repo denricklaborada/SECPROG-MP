@@ -217,13 +217,17 @@
 	                        </div>
                             
                             <div class="form-group">
-	                            <input type="text" id="id_username1" name="username" class="form-control input-sm" placeholder="Username" required>
+	                            <input type="text" id="id_username1" name="username" class="form-control input-sm" placeholder="Username" onChange="checkCommonUsername();" required>
 	                        </div>
+                            
+                            <div style="margin-top: 10px;" class="registrationFormAlert" id="divCheckCommonUsername"></div>
                             
                             <div class="form-group">
                                 <div class=" ">
-                                    <input type="password" placeholder="Password" name="password1" class=" form-control password_strength" id="id_password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" for="inputError" required>
+                                    <input type="password" placeholder="Password" name="password1" class=" form-control password_strength" id="id_password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" onChange="checkPassword();" required>
+                                    
                                     <div style="margin-top: 10px;" class="registrationFormAlert" id="divCheckPassword"></div>
+                                    
                                     <div class="progress-bloc" style="margin-top: 10px;">
                                         <div class="progress" style="margin-bottom: 10px;">
                                             <div class="progress-bar password_strength_bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="2" style="width: 0%;"></div>
@@ -238,12 +242,12 @@
 -->
                                         
                                         <div id="message">
-                              <h5>Password must contain the following:</h5>
-                              <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                              <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                              <p id="number" class="invalid">A <b>number</b></p>
-                              <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-                            </div>
+                                          <h5>Password must contain the following:</h5>
+                                          <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                                          <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                                          <p id="number" class="invalid">A <b>number</b></p>
+                                          <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -371,6 +375,15 @@
                 $("#divCheckPasswordMatch").html("");
         }
         
+        function checkCommonUsername() {
+            var username = $("#id_username1").val();
+
+            if (username === "admin" || username === "administrator" || username === "root" || username === "system" || username === "guest" || username === "guest" || username === "operator" ||username === "super" || username === "gg" || username === "test" || username === "test1" || username === "testing")
+                $("#divCheckCommonUsername").html("Username entered is prohibited!");
+            else
+                $("#divCheckCommonUsername").html("");
+        }
+        
         function checkPassword() {
             var password = $("#id_password1").val();
             var username = $("#id_username1").val()
@@ -389,6 +402,7 @@
 
         $(document).ready(function () {
            $("#id_password1").keyup(checkPassword);
+           $("#id_username1").keyup(checkCommonUsername);
            $("#id_password1, #id_password2").keyup(checkPasswordMatch);
         });
 
