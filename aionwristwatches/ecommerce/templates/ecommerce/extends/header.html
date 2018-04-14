@@ -225,7 +225,7 @@
                                     <input type="password" placeholder="Password" name="password1" class=" form-control password_strength" id="id_password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" for="inputError" required>
                                     <div class="progress-bloc" style="margin-top: 10px;">
                                         <div class="progress" style="margin-bottom: 10px;">
-                                            <div class="progress-bar password_strength_bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="4" style="width: 0%;"></div>
+                                            <div class="progress-bar password_strength_bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="2" style="width: 0%;"></div>
                                         </div>
 <!--
                                         <p class="text-muted password_strength_info">
@@ -250,17 +250,19 @@
                             
                             <div class="form-group">
                                 <div class=" ">
-                                    <input type="password" placeholder="Confirm Password" name="password2" class=" form-control password_confirmation" data-confirm-with="id_password1" required="" id="id_password2">
-                                    <div style="margin-top: 10px;" class="hidden password_strength_info">
+                                    <input type="password" placeholder="Confirm Password" name="password2" class=" form-control password_confirmation" data-confirm-with="id_password1" required="" id="id_password2" onChange="checkPasswordMatch();">
+                                    <div style="margin-top: 10px;" class="registrationFormAlert" id="divCheckPasswordMatch">
+</div>
 <!--
+                                    <div style="margin-top: 10px;" class="hidden password_strength_info">
                                         <p class="text-muted">
                                             <span class="label label-danger">
                                                 Warning
                                             </span>
                                             <span style="margin-left:5px;">Your passwords don't match.</span>
                                         </p>
--->
                                     </div>
+-->
                                 </div>
                             </div>
                              {% block js %}
@@ -359,6 +361,24 @@
     	{% endblock %}
 	</body>
     <script>
+        
+        function checkPasswordMatch() {
+    var password = $("#id_password1").val();
+    var confirmPassword = $("#id_password2").val();
+
+    if (password != confirmPassword)
+        $("#divCheckPasswordMatch").html("Passwords do not match!");
+    else
+        $("#divCheckPasswordMatch").html("Passwords match.");
+}
+
+$(document).ready(function () {
+   $("#txtNewPassword, #txtConfirmPassword").keyup(checkPasswordMatch);
+});
+
+        
+        
+        
 var myInput = document.getElementById("id_password1");
 var letter = document.getElementById("letter");
 var capital = document.getElementById("capital");
