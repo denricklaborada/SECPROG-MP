@@ -142,7 +142,7 @@ def adminman(request):
 
 def prodmng(request):
     user = request.user
-    if not user.is_authenticated or user.is_authenticated and user.usertypes != "ProductManager":
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "Administrator":
         return error_403(request)
     prodmanaccts = User.objects.filter(usertypes="ProductManager")
     context={
@@ -152,7 +152,7 @@ def prodmng(request):
 
 def acctmng(request):
     user = request.user
-    if not user.is_authenticated or user.is_authenticated and user.usertypes != "AccountingManager":
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "Administrator":
         return error_403(request)
     acctmanaccts = User.objects.filter(usertypes="AccountingManager")
     context={
