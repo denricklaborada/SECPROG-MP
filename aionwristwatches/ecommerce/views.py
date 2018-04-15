@@ -2,7 +2,7 @@ import re, json, logging
 
 from django.contrib.auth.models import User
 from django.contrib.auth.views import login, logout
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, ReviewForm
 from .models import Product, Transaction, Review
@@ -161,21 +161,19 @@ def acctmng(request):
     return render(request, 'ecommerce/acctmng.html',context)
 
 def changepass(request):
-	user = request.user
-	try:
-		currpass = request.POST['currpass']
-		pass1 = request.POST['pass1']
-		pass2 = request.POST['pass2']
-
-		if user.check_password(currpass) and len(pass1) > 0 and len(pass2) > 0 and pass1 == pass2:
-			user.set_password(pass1)
-			user.save()
-
-			return redirect('/loginmanager/')
-
-	except :pass
-
-	return render(request, 'ecommerce/changepass.html')
+    user = request.user
+    try:
+        currpass = request.POST['currpass']
+        pass1 = request.POST['pass1']
+        pass2 = request.POST['pass2']
+        if not user.check_password(currpass):
+            return HttpResponseNotFound('<h1>Incorrect Password</h1>')                              # <---- ERROR PAGE HERE
+        if user.check_password(currpass) and len(pass1) > 0 and len(pass2) > 0 and pass1 == pass2:
+            user.set_password(pass1)
+            user.save()
+            return redirect('/loginmanager/')
+    except :pass
+    return render(request, 'ecommerce/changepass.html')
 
 
 def proddelete(request):

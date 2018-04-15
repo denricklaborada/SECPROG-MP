@@ -104,6 +104,84 @@
 				$("#alltab").hide();
 			}
 		}
+        
+        
+        function checkForm(form) {
+            if(form.username.value == "") {
+              alert("Error: Username cannot be blank!");
+              form.username.focus();
+              return false;
+            }
+            if (form.username.value === "admin" || form.username.value === "administrator" || form.username.value === "root" || form.username.value === "system" || form.username.value === "guest" || form.username.value === "guest" || form.username.value === "operator" ||form.username.value === "super" || form.username.value === "gg" || form.username.value === "test" || form.username.value === "test1" || form.username.value === "testing") {
+                  alert("Error: Prohibited username entered!")
+                  form.username.focus();
+                  return false;
+              }
+            re = /^\w+$/;
+            if(!re.test(form.username.value)) {
+              alert("Error: Username must contain only letters, numbers and underscores!");
+              form.username.focus();
+              return false;
+            }
+
+            if(form.password1.value != "" && form.password1.value == form.password2.value) {
+              if(form.password1.value.length < 8) {
+                alert("Error: Password must contain at least eight characters!");
+                form.password1.focus();
+                return false;
+              }
+              if(form.password1.value == form.username.value) {
+                alert("Error: Password must be different from Username!");
+                form.password1.focus();
+                return false;
+              }
+              re = /[0-9]/;
+              if(!re.test(form.password1.value)) {
+                alert("Error: password must contain at least one number (0-9)!");
+                form.pwd1.focus();
+                return false;
+              }
+              re = /[a-z]/;
+              if(!re.test(form.password1.value)) {
+                alert("Error: password must contain at least one lowercase letter (a-z)!");
+                form.password1.focus();
+                return false;
+              }
+              re = /[A-Z]/;
+              if(!re.test(form.password1.value)) {
+                alert("Error: password must contain at least one uppercase letter (A-Z)!");
+                form.password1.focus();
+                return false;
+              }
+              if ((form.password1.value).includes(form.username.value) && !(form.username.value === '')) {
+                  alert("Error: passwords should not contain your first name, last name, or username!");
+                form.password1.focus();
+                return false;
+              }
+              if ((form.password1.value).includes(form.first_.name.value) && !(form.first_name.value === '')) {
+                  alert("Error: passwords should not contain your first name, last name, or username!");
+                form.password1.focus();
+                return false;
+              }
+                
+              if ((form.password1.value).includes(form.last_name.value) && !(form.last_name.value === '')) {
+                  alert("Error: passwords should not contain your first name, last name, or username!");
+                form.password1.focus();
+                return false;
+              }
+                } 
+//            else {
+//              alert("Error: Please check that you've entered and confirmed your password!");
+//              form.pwd1.focus();
+//              return false;
+//            }
+//
+//            alert("You entered a valid password: " + form.pwd1.value);
+//            return true;
+          }
+        
+        
+        
     </script>
 
 	<body>
@@ -202,7 +280,7 @@
 	                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
 	                </div>
 	                <div class="modal-body">
-	                    <form role="form" method="post">
+	                    <form role="form" method="post" onsubmit="return checkForm(this);">
                             {% csrf_token %}
 	                        <div class="form-group">
 	                            <input type="text" id="id_first_name" name="first_name" class="form-control input-sm" placeholder="First Name" required>
@@ -224,7 +302,7 @@
                             
                             <div class="form-group">
                                 <div class=" ">
-                                    <input type="password" placeholder="Password" name="password1" class=" form-control password_strength" id="id_password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" onChange="checkPassword();" required>
+                                    <input type="password" placeholder="Password" name="password1" class=" form-control password_strength" id="id_password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters. Password strength meter must be filled." onChange="checkPassword();" required>
                                     
                                     <div style="margin-top: 10px;" class="registrationFormAlert" id="divCheckPassword"></div>
                                     
@@ -379,9 +457,12 @@
         
         function checkCommonUsername() {
             var username = $("#id_username1").val();
-
+            re = /^\w+$/;
             if (username === "admin" || username === "administrator" || username === "root" || username === "system" || username === "guest" || username === "guest" || username === "operator" ||username === "super" || username === "gg" || username === "test" || username === "test1" || username === "testing")
                 $("#divCheckCommonUsername").html("Username entered is prohibited!");
+            
+            else if(!re.test(username) && !(username === ''))
+                $("#divCheckCommonUsername").html("Username must contain only letters, numbers and underscores!");
             else
                 $("#divCheckCommonUsername").html("");
         }
