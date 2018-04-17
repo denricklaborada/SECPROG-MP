@@ -150,8 +150,13 @@ def index(request):
         }
         uname = request.POST['username']
         login(request, context)
-        if request.user.is_authenticated and request.user.usertypes == 'Customer':
-            logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
+        if request.user.is_authenticated:
+            if request.user.usertypes == 'Customer':
+                logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
+            else:
+                logger.warning(str(request) + '  User:' + uname + " login failed !")
+                logout(request)
+                erroruser = True
         else:
             logger.warning(str(request) + '  User:' + uname + " login failed !")
             erroruser = True
@@ -210,6 +215,9 @@ def checkout(request, product_id):
 
 
 def prodman(request):
+    user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "ProductManager":
+        return error_403(request)
     
     product_list = Product.objects.all()
     
@@ -228,19 +236,23 @@ def loginmanager(request):
     if request.method == 'POST':
         uname = request.POST['username']
         login(request)
-        if request.user.is_authenticated and( request.user.usertypes == 'Administrator' or request.user.usertypes == 'ProductManager' or request.user.usertypes == 'AccountingManager'):
-            logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
-            user = User.objects.filter(username=request.POST['username'])[:1].get()
-            print(user.usertypes)
-            print(user.is_active)
-            if not user.expired:
-                if user.usertypes == 'Administrator':
-                    return redirect('/adminman/')
-                if user.usertypes == 'ProductManager':
-                    return redirect('/prodman/')
-                if user.usertypes == 'AccountingManager':
-                    return redirect('/acctman/')
-
+        if request.user.is_authenticated:
+            if request.user.usertypes == 'Administrator' or request.user.usertypes == 'ProductManager' or request.user.usertypes == 'AccountingManager':
+                logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
+                user = User.objects.filter(username=request.POST['username'])[:1].get()
+                print(user.usertypes)
+                print(user.is_active)
+                if not user.expired:
+                    if user.usertypes == 'Administrator':
+                        return redirect('/adminman/')
+                    if user.usertypes == 'ProductManager':
+                        return redirect('/prodman/')
+                    if user.usertypes == 'AccountingManager':
+                        return redirect('/acctman/')
+            else:
+                logger.warning(str(request) + '  User:' + uname + " login failed !")
+                logout(request)
+                erroruser = True
         else:
             logger.warning(str(request) + '  User:' + uname + " login failed !")
             erroruser = True
