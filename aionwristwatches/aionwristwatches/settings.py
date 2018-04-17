@@ -60,6 +60,12 @@ MIDDLEWARE = [
     'ecommerce.middleware.UsersMiddleware',
 ]
 
+IGNORABLE_404_URLS = [
+    re.compile(r'^.*\.(jpg|JPG|jpeg|JPEG|PNG|png)$'),
+    re.compile(r'^/favicon\.ico$'),
+    re.compile(r'^/robots\.txt$'),
+]
+
 ROOT_URLCONF = 'aionwristwatches.urls'
 
 TEMPLATES = [
@@ -183,10 +189,3 @@ LOGGING = {
         },
     }
 }
-#
-# IGNORABLE_404_URLS = [
-#     re.compile(r'^/apple-touch-icon.*\.png$'),
-#     re.compile(r'^/favicon\.ico$'),
-#     re.compile(r'^/robots\.txt$'),
-#     re.compile(r'^*\.jpg$'),
-# ]
