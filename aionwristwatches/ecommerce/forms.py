@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.forms import Textarea, widgets
 from .models import Review
 from zxcvbn_password.fields import PasswordField, PasswordConfirmationField
+#from .validators import validate_password_strength, validate_blacklisted
 
 class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(required=True, label='')
@@ -22,8 +23,12 @@ class RegistrationForm(UserCreationForm):
     scity = forms.CharField(required=True)
     spc = forms.IntegerField(required=True, min_value=1)
     scountry = forms.CharField(required=True)
-    password1 = PasswordField()
-    password2 = PasswordConfirmationField(confirm_with='password1')
+    password1 = forms.CharField(required=True)
+    password2 = forms.CharField(required=True)
+#    password1 = forms.CharField(validators=[validate_password_strength], widget=forms.PasswordInput)
+#    username = forms.CharField(validators=[validate_blacklisted])
+#    password1 = PasswordField()
+#    password2 = PasswordConfirmationField(confirm_with='password1')
 
     class Meta:
         model = User
