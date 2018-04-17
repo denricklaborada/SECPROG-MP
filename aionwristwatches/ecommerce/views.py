@@ -185,7 +185,7 @@ def myorders(request):
 def acctman(request):
     user = request.user
     if not user.is_authenticated or user.is_authenticated and user.usertypes != "AccountingManager":
-       return error_403(request)
+        return error_403(request)
 
     product_list = Product.objects.all()
     
@@ -218,7 +218,6 @@ def prodman(request):
     user = request.user
     if not user.is_authenticated or user.is_authenticated and user.usertypes != "ProductManager":
         return error_403(request)
-    
     product_list = Product.objects.all()
     
     context = {
@@ -266,8 +265,7 @@ def loginmanager(request):
 def adminman(request):
     user = request.user
     if not user.is_authenticated or user.is_authenticated and user.usertypes != "Administrator":
-       return error_403(request)
-
+        return error_403(request)
     return render(request, 'ecommerce/adminman.html')
 
 
@@ -293,6 +291,8 @@ def acctmng(request):
 
 def changepass(request):
     user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes == 'Customer':
+        return error_403(request)
     try:
         currpass = request.POST['currpass']
         pass1 = request.POST['pass1']
@@ -308,6 +308,9 @@ def changepass(request):
 
 
 def proddelete(request):
+    user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "ProductManager":
+        return error_403(request)
     ids = request.GET.getlist("ids[]")
 
     for id in ids:
@@ -319,6 +322,9 @@ def proddelete(request):
 
 
 def prodadd(request):
+    user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "ProductManager":
+        return error_403(request)
     if (request.method == "POST"):
         name = request.POST["name"]
         desc = request.POST["description"]
@@ -345,6 +351,9 @@ def prodadd(request):
 
 
 def prodedit(request):
+    user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "ProductManager":
+        return error_403(request)
     if request.method == "POST":
         id = request.POST['id']
         name = request.POST["name"]
@@ -370,6 +379,9 @@ def prodedit(request):
 
 
 def addp(request):
+    user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "Administrator":
+        return error_403(request)
     context = {
         "alert": None
     }
@@ -412,6 +424,9 @@ def addp(request):
 
 
 def adda(request):
+    user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "Administrator":
+        return error_403(request)
     context = {
         "alert": None
     }
@@ -455,6 +470,9 @@ def adda(request):
 
 
 def uacct(request):
+    user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "Customer":
+        return error_403(request)
     if request.method == "POST":
         user = request.user
         try:
@@ -574,3 +592,7 @@ def product(request, product_id):
     }
     return render(request, 'ecommerce/product.html', context)
     
+
+
+
+
