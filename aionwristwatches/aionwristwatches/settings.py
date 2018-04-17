@@ -23,8 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'us=i3c7x$a^z&ma#qjb_1w4*9v7tdtrnxfxgtxu^&am!i)di2-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'mathfilters',
-    'zxcvbn_password',
+#    'zxcvbn_password',
 
 ]
 
@@ -107,9 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-#        'OPTIONS': {
-#            'min_length': 9,
-#        }
+        'OPTIONS': {
+            'min_length': 8,
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -117,13 +117,13 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
-    {
-        'NAME': 'zxcvbn_password.ZXCVBNValidator',
-        'OPTIONS': {
-            'min_score': 3,
-            'user_attributes': ('username', 'email', 'first_name', 'last_name')
-        }
-    }
+#    {
+#        'NAME': 'zxcvbn_password.ZXCVBNValidator',
+#        'OPTIONS': {
+#            'min_score': 3,
+#            'user_attributes': ('username', 'email', 'first_name', 'last_name')
+#        }
+#    }
 ]
 
 # Internationalization
