@@ -27,7 +27,7 @@ def index(request):
 
     search = request.GET.get('search')
     searched = False
-
+    erroruser = False
     if search:
     	product_list = product_list.filter(prodname__icontains=search).distinct()
     	searched = True
@@ -48,9 +48,16 @@ def index(request):
             'searched': searched,
             'query': search,
         }
-        return  login(request, context)
+        uname = request.POST['username']
+        login(request, context)
+        if request.user.is_authenticated:
+            logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
+        else:
+            logger.warning(str(request) + '  User:' + uname + " login failed !")
+            erroruser = True
     regform = RegistrationForm()
     context = {
+        'erroruser': erroruser,
         'product_list': product_list,
         'regform': regform,
         'searched': json.dumps(searched),
@@ -404,7 +411,7 @@ def product(request, product_id):
     product_obj = Product.objects.filter(id=product_id)[:1].get()
     reviews_obj = Review.objects.filter(product=product_obj)
     t_obj = None
-
+    erroruser = False
     if request.user.is_authenticated:
     	t_obj = Transaction.objects.filter(user=request.user, product=product_obj)
     
@@ -423,35 +430,18 @@ def product(request, product_id):
             rev.product = product_obj
             rev.user = request.user
             rev.save()
-
-        regform = RegistrationForm()
-        revform = ReviewForm()
-        context = {
-            'regform': regform,
-            'revform': revform,
-            'product_obj': product_obj,
-            'reviews_obj': reviews_obj,
-            't_obj': t_obj,
-        }
         uname = request.POST['username']
         login(request)
         if request.user.is_authenticated:
-            logger.info(str(request)+ '  '+ request.user.username + " logged in successfully !")
+            logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
         else:
-            logger.error(str(request) + '  ' + uname  + " logged in failed !")
-            context={
-                'erroruser': True,
-                'regform': regform,
-                'revform': revform,
-                'product_obj': product_obj,
-                'reviews_obj': reviews_obj,
-                't_obj': t_obj,
-            }
+            logger.warning(str(request) + '  User:' + uname + " login failed !")
+            erroruser = True
 
-        return render(request, 'ecommerce/product.html', context)
     regform = RegistrationForm()
     revform = ReviewForm()
     context = {
+        'erroruser': erroruser,
         'regform': regform,
         'revform': revform,
         'product_obj': product_obj,

@@ -4,7 +4,11 @@
 {% block body %}
 <div id="analogtab" class="main-container">
 	<div id="content" class="container py-5">
-        
+        {% if erroruser %}
+        <div class="alert alert-danger" role="alert">
+            Invalid username and/or password!
+        </div>
+        {% endif%}
 		<h3>Analog</h3>
 		<div class="row">
 			{% for product in product_list %}
