@@ -228,7 +228,7 @@ def loginmanager(request):
     if request.method == 'POST':
         uname = request.POST['username']
         login(request)
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and( request.user.usertypes == 'Administrator' or request.user.usertypes == 'ProductManager' or request.user.usertypes == 'AccountingManager'):
             logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
             user = User.objects.filter(username=request.POST['username'])[:1].get()
             print(user.usertypes)
@@ -240,6 +240,7 @@ def loginmanager(request):
                     return redirect('/prodman/')
                 if user.usertypes == 'AccountingManager':
                     return redirect('/acctman/')
+
         else:
             logger.warning(str(request) + '  User:' + uname + " login failed !")
             erroruser = True
