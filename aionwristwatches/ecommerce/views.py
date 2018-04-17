@@ -52,87 +52,87 @@ def index(request):
             regform.save()
             return redirect('/')
         
-        fname_passed =  regform.cleaned_data.get('first_name')
-        lname_passed =  regform.cleaned_data.get('last_name')
-        username_passed = regform.cleaned_data.get('username')
-        password_passed = regform.cleaned_data.get('password1')
-        password2_passed = regform.cleaned_data.get('password2')
+#        fname_passed =  regform.cleaned_data.get('first_name')
+#        lname_passed =  regform.cleaned_data.get('last_name')
+#        username_passed = regform.cleaned_data.get('username')
+#        password_passed = regform.cleaned_data.get('password1')
+#        password2_passed = regform.cleaned_data.get('password2')
         
-        print(fname_passed, lname_passed, username_passed, password_passed, password2_passed, password_passed[0].isalpha(), 'YOI')
+#        print(fname_passed, lname_passed, username_passed, password_passed, password2_passed, password_passed[0].isalpha(), 'YOI')
         
-        if not username_passed or not password_passed:
-            error_blank = True
-            context = {
-            'product_list': product_list,
-            'error_blank': error_blank,
-            'searched': searched,
-            'query': search,
-            }
-            return render(request, 'ecommerce/index.html', context)
-        
-        if username_passed.lower() in password_passed.lower():
-            error_similar = True
-            context = {
-            'product_list': product_list,
-            'error_similar': error_similar,
-            'searched': searched,
-            'query': search,
-            }
-            return render(request, 'ecommerce/index.html', context)
-            
-        if fname_passed.lower() in password_passed.lower():
-            error_similar = True
-            context = {
-            'product_list': product_list,
-            'error_similar': error_similar,
-            'searched': searched,
-            'query': search,
-            }
-            return render(request, 'ecommerce/index.html', context)
-            
-        if lname_passed.lower() in password_passed.lower():
-            error_similar = True
-            context = {
-            'product_list': product_list,
-            'error_similar': error_similar,
-            'searched': searched,
-            'query': search,
-            }
-            return render(request, 'ecommerce/index.html', context)
-        
-        # PASSWORD IS BLACKLISTED
-        if password_passed.lower() in BLACKLIST_PASSWORD:
-            error_pblack = True
-            context = {
-            'product_list': product_list,
-            'error_pblack': error_pblack,
-            'searched': searched,
-            'query': search,
-            }
-            return render(request, 'ecommerce/index.html', context)
-        
-        # ALPHANUMERIC
-        first_isalpha = password_passed[0].isalpha()
-        if all(c.isalpha() == first_isalpha for c in password_passed):
-            error_alpha = True
-            context = {
-            'product_list': product_list,
-            'error_alpha': error_alpha,
-            'searched': searched,
-            'query': search,
-            }
-            return render(request, 'ecommerce/index.html', context)
-        
-        # MIN_LENGTH IS 8
-        if len(password_passed) < 8:
-            error_length = True
-            context = {
-            'product_list': product_list,
-            'error_length': error_length,
-            'searched': searched,
-            'query': search,
-            }
-            return render(request, 'ecommerce/index.html', context)
+#        if not username_passed or not password_passed:
+#            error_blank = True
+#            context = {
+#            'product_list': product_list,
+#            'error_blank': error_blank,
+#            'searched': searched,
+#            'query': search,
+#            }
+#            return render(request, 'ecommerce/index.html', context)
+#        
+#        if username_passed.lower() in password_passed.lower():
+#            error_similar = True
+#            context = {
+#            'product_list': product_list,
+#            'error_similar': error_similar,
+#            'searched': searched,
+#            'query': search,
+#            }
+#            return render(request, 'ecommerce/index.html', context)
+#            
+#        if fname_passed.lower() in password_passed.lower():
+#            error_similar = True
+#            context = {
+#            'product_list': product_list,
+#            'error_similar': error_similar,
+#            'searched': searched,
+#            'query': search,
+#            }
+#            return render(request, 'ecommerce/index.html', context)
+#            
+#        if lname_passed.lower() in password_passed.lower():
+#            error_similar = True
+#            context = {
+#            'product_list': product_list,
+#            'error_similar': error_similar,
+#            'searched': searched,
+#            'query': search,
+#            }
+#            return render(request, 'ecommerce/index.html', context)
+#        
+#        # PASSWORD IS BLACKLISTED
+#        if password_passed.lower() in BLACKLIST_PASSWORD:
+#            error_pblack = True
+#            context = {
+#            'product_list': product_list,
+#            'error_pblack': error_pblack,
+#            'searched': searched,
+#            'query': search,
+#            }
+#            return render(request, 'ecommerce/index.html', context)
+#        
+#        # ALPHANUMERIC
+#        first_isalpha = password_passed[0].isalpha()
+#        if all(c.isalpha() == first_isalpha for c in password_passed):
+#            error_alpha = True
+#            context = {
+#            'product_list': product_list,
+#            'error_alpha': error_alpha,
+#            'searched': searched,
+#            'query': search,
+#            }
+#            return render(request, 'ecommerce/index.html', context)
+#        
+#        # MIN_LENGTH IS 8
+#        if len(password_passed) < 8:
+#            error_length = True
+#            context = {
+#            'product_list': product_list,
+#            'error_length': error_length,
+#            'searched': searched,
+#            'query': search,
+#            }
+#            return render(request, 'ecommerce/index.html', context)
             
         # EQUAL PASSWORDS
 #        if password_passed != password2_passed:
