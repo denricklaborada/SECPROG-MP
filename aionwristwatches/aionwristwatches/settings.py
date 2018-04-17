@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
-import os
+import os,re
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -183,3 +183,10 @@ LOGGING = {
         },
     }
 }
+#
+# IGNORABLE_404_URLS = [
+#     re.compile(r'^/apple-touch-icon.*\.png$'),
+#     re.compile(r'^/favicon\.ico$'),
+#     re.compile(r'^/robots\.txt$'),
+#     re.compile(r'^*\.jpg$'),
+# ]

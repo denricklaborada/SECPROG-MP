@@ -48,7 +48,7 @@ def index(request):
             'searched': searched,
             'query': search,
         }
-        return login(request, context)
+        return  login(request, context)
     regform = RegistrationForm()
     context = {
         'product_list': product_list,
@@ -433,13 +433,21 @@ def product(request, product_id):
             'reviews_obj': reviews_obj,
             't_obj': t_obj,
         }
-        try:
-            print("try")
-            login(request)
-        except:
-            print("except")
-            loginerror(request)
-            
+        uname = request.POST['username']
+        login(request)
+        if request.user.is_authenticated:
+            logger.info(str(request)+ '  '+ request.user.username + " logged in successfully !")
+        else:
+            logger.error(str(request) + '  ' + uname  + " logged in failed !")
+            context={
+                'erroruser': True,
+                'regform': regform,
+                'revform': revform,
+                'product_obj': product_obj,
+                'reviews_obj': reviews_obj,
+                't_obj': t_obj,
+            }
+
         return render(request, 'ecommerce/product.html', context)
     regform = RegistrationForm()
     revform = ReviewForm()
