@@ -22,7 +22,7 @@ urlpatterns = [
 	url(r'^', include('ecommerce.urls', namespace='ecommerce')),
 	url(r'session_security/', include('session_security.urls')),
 ]
-
+handler400 = ecommerce_views.error_400
 handler403 = ecommerce_views.error_403
 handler404 = ecommerce_views.error_404
 handler500 = ecommerce_views.error_500

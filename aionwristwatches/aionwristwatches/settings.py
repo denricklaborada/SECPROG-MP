@@ -61,7 +61,7 @@ MIDDLEWARE = [
 ]
 
 IGNORABLE_404_URLS = [
-    re.compile(r'^.*\.(jpg|JPG|jpeg|JPEG|PNG|png)$'),
+    re.compile(r'^.*\.(jpg|JPG|jpeg|JPEG|PNG|png|css|map)$'),
     re.compile(r'^/favicon\.ico$'),
     re.compile(r'^/robots\.txt$'),
 ]
