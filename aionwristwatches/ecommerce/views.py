@@ -9,9 +9,12 @@ from .models import Product, Transaction, Review
 
 logger = logging.getLogger(__name__)
 
+def error_400(request):
+    logger.error(str(request)+ ' 400 Bad request '+ request.user.username + " " + request.user.usertypes)
+    return render(request, 'ecommerce/400.html')
 
 def error_403(request):
-    logger.error(str(request)+ ' 403 Forbidden error '+ request.user.username)
+    logger.error(str(request)+ ' 403 Forbidden error '+ request.user.username + " " + request.user.usertypes)
     return render(request, 'ecommerce/403.html')
 
 def error_404(request):
@@ -50,7 +53,7 @@ def index(request):
         }
         uname = request.POST['username']
         login(request, context)
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and request.user.usertypes == 'Customer':
             logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
         else:
             logger.warning(str(request) + '  User:' + uname + " login failed !")
@@ -120,23 +123,34 @@ def prodman(request):
 
 
 def loginmanager(request):
+    erroruser = False
     if request.user.is_authenticated:
+        logger.info(str(request) + '  User:' + request.user.username + " logged out. ")
         logout(request)
+
     if request.method == 'POST':
-
+        uname = request.POST['username']
         login(request)
-        user = User.objects.filter(username=request.POST['username'])[:1].get()
-        print(user.usertypes)
-        print(user.is_active)
-        if not user.expired:
-            if user.usertypes == 'Administrator':
-                return redirect('/adminman/')
-            if user.usertypes == 'ProductManager':
-                return redirect('/prodman/')
-            if user.usertypes == 'AccountingManager':
-                return redirect('/acctman/')
+        if request.user.is_authenticated:
+            logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
+            user = User.objects.filter(username=request.POST['username'])[:1].get()
+            print(user.usertypes)
+            print(user.is_active)
+            if not user.expired:
+                if user.usertypes == 'Administrator':
+                    return redirect('/adminman/')
+                if user.usertypes == 'ProductManager':
+                    return redirect('/prodman/')
+                if user.usertypes == 'AccountingManager':
+                    return redirect('/acctman/')
+        else:
+            logger.warning(str(request) + '  User:' + uname + " login failed !")
+            erroruser = True
 
-    return render(request, 'ecommerce/loginmanager.html')
+    context ={
+        'erroruser' : erroruser,
+    }
+    return render(request, 'ecommerce/loginmanager.html',context)
 
 
 def adminman(request):
