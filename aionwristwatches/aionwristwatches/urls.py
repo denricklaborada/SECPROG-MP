@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-
+from ecommerce import views as ecommerce_views
+from django.conf.urls import handler400, handler403,handler404,handler500
 urlpatterns = [
 	url(r'^admin/', admin.site.urls),
 	url(r'^', include('ecommerce.urls', namespace='ecommerce')),
 	url(r'session_security/', include('session_security.urls')),
 ]
 
+handler403 = ecommerce_views.error_403
+handler404 = ecommerce_views.error_404
+handler500 = ecommerce_views.error_500
