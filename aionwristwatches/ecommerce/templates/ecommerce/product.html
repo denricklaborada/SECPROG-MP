@@ -26,7 +26,13 @@
 {% endblock%}
 
 {% block body %}
+
 	<div class=" container mt-lg-5 ml-5 mt-4">
+        {% if erroruser %}
+        <div class="alert alert-danger" role="alert">
+            Invalid username and/or password!
+        </div>
+        {% endif%}
     	<div class="row">
     		<div class="ml-lg-5 col-lg-6">
     			<img src="{{ product_obj.image.url }}" class="img-fluid">
