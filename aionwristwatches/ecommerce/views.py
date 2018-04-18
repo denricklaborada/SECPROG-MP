@@ -199,22 +199,26 @@ def acctman(request):
 def checkout(request, product_id):
     product = Product.objects.get(id=product_id)
     errorcredit = False
-    print("CHECKKING OUT")
+    print("CHECKING OUT")
     if request.user.is_authenticated and request.user.usertypes=="Customer" and request.method == "POST":
         user = request.user
         qty = request.POST['quantity']
         total = request.POST['total']
         creditcardnum = request.POST['creditcard']
+        name = request.POST['name']
+        month = request.POST['month']
+        year = request.POST['year']
+        cvv = request.POST['cvv']
         validcredit =  is_luhn_valid(creditcardnum)
         print(validcredit,"VALID")
 
-        if validcredit:
+        if validcredit and (month == 'JAN' or month == 'FEB' or month == 'MAR' or month == 'APR' or month == 'MAY' or month == 'JUN' or month == 'JUL' or month == 'AUG' or month == 'SEP' or month == 'OCT' or month == 'NOV' or month == 'DEC') and (int(year) in range(18, 31)) and (int(cvv) in range(100, 1000)) and (any(x.isalpha() for x in name) and any(x.isspace() for x in name) and all(x.isalpha() or x.isspace() for x in name)):
             trans_inst = Transaction.objects.create(user=user, product=product, quantity=qty, subtotal=total)
             trans_inst.save()
 
             product.quantity = product.quantity - int(qty)
             product.save()
-            logger.info("User: "+ request.user.username+" purchase "+product.prodname+" X "+qty+" "+total+" successfully ")
+            logger.info("User: "+ request.user.username+" purchase "+product.prodname+" x"+qty+" "+total+" successfully")
             return redirect('/')
         else:
             errorcredit = True
