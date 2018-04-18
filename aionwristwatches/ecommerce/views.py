@@ -63,8 +63,8 @@ def index(request):
     error_match = False
     error_exists = False
     
-    BLACKLIST_PASSWORD = ['password', 'pass123', 'password123', 'admin', 'guest']
-    BLACKLIST_USERNAME = [ 'admin', 'administrator', 'root', 'system', 'guest', 'operator', 'super', 'gg', 'test1', 'testing']
+    BLACKLIST_PASSWORD = ['password', 'pass123', 'password123', 'admin', 'guest','123456','qwerty','12345678','qwertyuiop','google','zxcvbnm','111111','1234567890','123123','mynoob','18atcskd2w','1q2w3e4r','654321','letmein','football','iloveyou','welcome','monkey','abc123','passw0rd','dragon','starwars','123456789']
+    BLACKLIST_USERNAME = [ 'admin', 'administrator', 'root', 'system', 'guest','operator','super','gg','test1','testing','user','111111','123456','12345678','abc123','abramov','account','accounting','ad','adm','adver','advert','advertising','afanasev','agafonov','agata','Baseball','business','company','contact','contactus','design','director','dragon','manager','marketing','mysql','oracle','password','postmaster','qwerty','test','user','webmaster']
 
     if search:
         product_list = product_list.filter(prodname__icontains=search).distinct()
@@ -578,6 +578,16 @@ def product(request, product_id):
     reviews_obj = Review.objects.filter(product=product_obj)
     t_obj = None
     erroruser = False
+    error_similar = False
+    error_pblack = False
+    error_length = False
+    error_alpha = False
+    error_match = False
+    error_exists = False
+    
+    BLACKLIST_PASSWORD = ['password', 'pass123', 'password123', 'admin', 'guest','123456','qwerty','12345678','qwertyuiop','google','zxcvbnm','111111','1234567890','123123','mynoob','18atcskd2w','1q2w3e4r','654321','letmein','football','iloveyou','welcome','monkey','abc123','passw0rd','dragon','starwars','123456789']
+    BLACKLIST_USERNAME = [ 'admin', 'administrator', 'root', 'system', 'guest','operator','super','gg','test1','testing','user','111111','123456','12345678','abc123','abramov','account','accounting','ad','adm','adver','advert','advertising','afanasev','agafonov','agata','Baseball','business','company','contact','contactus','design','director','dragon','manager','marketing','mysql','oracle','password','postmaster','qwerty','test','user','webmaster']
+    
     if request.user.is_authenticated:
     	t_obj = Transaction.objects.filter(user=request.user, product=product_obj)
 
@@ -590,6 +600,16 @@ def product(request, product_id):
             print("FORM VALID")
             regform.save()
             return redirect('/')
+        
+        try:
+            fname_passed =  regform.cleaned_data.get('first_name')
+            lname_passed =  regform.cleaned_data.get('last_name')
+            username_passed = request.POST['username']
+            password_passed = regform.cleaned_data.get('password1')
+            password2_passed = request.POST['password2']
+        except:
+            pass
+        
         if revform.is_valid():
             print("REVFORM VALID")
             rev = revform.save(commit=False)
@@ -608,6 +628,40 @@ def product(request, product_id):
                 logger.warning(str(request) + '  User:' + uname + " login failed !")
                 logout(request)
                 erroruser = True
+        elif username_passed and password_passed and fname_passed and lname_passed:
+            
+            # ALPHANUMERIC
+            if not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', password_passed):
+                error_alpha = True
+                
+            # PASSWORD IS BLACKLISTED
+            elif password_passed.lower() in BLACKLIST_PASSWORD:
+                error_pblack = True            
+                
+            elif username_passed.lower() in BLACKLIST_USERNAME:
+                error_pblack = True
+                
+            # MIN_LENGTH IS 8
+            elif len(password_passed) < 8:
+                error_length = True
+            
+            # MATCH?
+            elif password_passed != password2_passed:
+                error_match = True
+
+            # EXISTING USERNAME
+            elif len(User.objects.filter(username=username_passed)) > 0:
+                error_exists = True
+            
+            # USERNAME, FNAME, LNAME != PASSWORD
+            elif username_passed.lower() in password_passed.lower():
+                error_similar = True
+
+            elif fname_passed.lower() in password_passed.lower():
+                error_similar = True
+
+            elif lname_passed.lower() in password_passed.lower():
+                error_similar = True
         else:
             logger.warning(str(request) + '  User:' + uname + " login failed !")
             erroruser = True
@@ -615,6 +669,12 @@ def product(request, product_id):
     regform = RegistrationForm()
     revform = ReviewForm()
     context = {
+        'error_length': error_length,
+        'error_alpha': error_alpha,
+        'error_pblack': error_pblack,
+        'error_similar': error_similar,
+        'error_exists': error_exists,
+        'error_match': error_match,
         'erroruser': erroruser,
         'regform': regform,
         'revform': revform,
