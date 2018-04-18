@@ -11,19 +11,34 @@ from .models import Product, Transaction, Review
 logger = logging.getLogger(__name__)
 
 def error_400(request):
-    logger.error(str(request)+ ' 400 Bad request '+ request.user.username + " " + request.user.usertypes)
+    try:
+        logger.error(str(request) + ' 400 Bad request ' + request.user.username + " " + request.user.usertypes)
+    except:
+        logger.error(str(request) + " 400 Bad request guest")
     return render(request, 'ecommerce/400.html')
 
 def error_403(request):
-    logger.error(str(request)+ ' 403 Forbidden error '+ request.user.username + " " + request.user.usertypes)
+    try:
+        logger.error(str(request)+ ' 403 Forbidden error '+ request.user.username + " " + request.user.usertypes)
+    except:
+        logger.error(str(request) + " 403 Forbidden error guest")
+
+
     return render(request, 'ecommerce/403.html')
 
 def error_404(request):
     logger.error(str(request)+ ' 404 Page not found ' + request.user.username)
+    try:
+        logger.error(str(request) + ' 404 Page not found ' + request.user.username + " " + request.user.usertypes)
+    except:
+        logger.error(str(request) + ' 404 Page not found guest')
     return render(request,'ecommerce/404.html')
     
 def error_500(request):
-    logger.error(str(request)+ ' 500 Internal Server Error ' + request.user.username)
+    try:
+        logger.error(str(request) + ' 500 Internal Server Error ' + request.user.username)
+    except:
+        logger.error(str(request) + " 500 Internal Server Error guest")
     return render(request,'ecommerce/500.html')
     
 def index(request):
@@ -47,9 +62,9 @@ def index(request):
         product_list = product_list.filter(prodname__icontains=search).distinct()
         searched = True
         if request.user.is_authenticated:
-            logger.info("User: " + request.user.username + " search for" + search)
+            logger.info("User: " + request.user.username + " searched for" + search)
         else:
-            logger.info("User: anonymous user search for" + search)
+            logger.info("User: guest searched for" + search)
     if request.method == 'POST':
         regform = RegistrationForm(request.POST)
         print("REQUEST POST")
@@ -81,7 +96,7 @@ def index(request):
             uname = request.POST['username']
         except:
             pass
-        
+
         
         login(request, context)
         if request.user.is_authenticated:
@@ -155,7 +170,7 @@ def myorders(request):
 def acctman(request):
     user = request.user
     if not user.is_authenticated or user.is_authenticated and user.usertypes != "AccountingManager":
-        return error_403(request)
+       return error_403(request)
 
     product_list = Product.objects.all()
     logger.info("Accounting Manager: " + request.user.username + " viewed transactions")
