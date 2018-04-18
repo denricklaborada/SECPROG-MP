@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    "account.middleware.ExpiredPasswordMiddleware",
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'session_security.middleware.SessionSecurityMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -189,3 +190,8 @@ LOGGING = {
         },
     }
 }
+
+
+# PASSWORD EXPIRATION
+ACCOUNT_PASSWORD_USE_HISTORY = True
+ACCOUNT_PASSWORD_EXPIRY = 60*60*24*30  # number of seconds, this is 30 days
