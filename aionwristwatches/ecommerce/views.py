@@ -37,6 +37,8 @@ def index(request):
     error_pblack = False
     error_length = False
     error_alpha = False
+    error_match = False
+    error_exists = False
     
     BLACKLIST_PASSWORD = ['password', 'pass123', 'password123', 'admin', 'guest']
     BLACKLIST_USERNAME = [ 'admin', 'administrator', 'root', 'system', 'guest', 'operator', 'super', 'gg', 'test1', 'testing']
@@ -59,91 +61,14 @@ def index(request):
             regform.save()
             return redirect('/')
         
-#        fname_passed =  regform.cleaned_data.get('first_name')
-#        lname_passed =  regform.cleaned_data.get('last_name')
-#        username_passed = regform.cleaned_data.get('username')
-#        password_passed = regform.cleaned_data.get('password1')
-#        password2_passed = regform.cleaned_data.get('password2')
-        
-#        print(fname_passed, lname_passed, username_passed, password_passed, password2_passed, password_passed[0].isalpha(), 'YOI')
-        
-#        if not username_passed or not password_passed:
-#            error_blank = True
-#            context = {
-#            'product_list': product_list,
-#            'error_blank': error_blank,
-#            'searched': searched,
-#            'query': search,
-#            }
-#            return render(request, 'ecommerce/index.html', context)
-#        
-#        if username_passed.lower() in password_passed.lower():
-#            error_similar = True
-#            context = {
-#            'product_list': product_list,
-#            'error_similar': error_similar,
-#            'searched': searched,
-#            'query': search,
-#            }
-#            return render(request, 'ecommerce/index.html', context)
-#            
-#        if fname_passed.lower() in password_passed.lower():
-#            error_similar = True
-#            context = {
-#            'product_list': product_list,
-#            'error_similar': error_similar,
-#            'searched': searched,
-#            'query': search,
-#            }
-#            return render(request, 'ecommerce/index.html', context)
-#            
-#        if lname_passed.lower() in password_passed.lower():
-#            error_similar = True
-#            context = {
-#            'product_list': product_list,
-#            'error_similar': error_similar,
-#            'searched': searched,
-#            'query': search,
-#            }
-#            return render(request, 'ecommerce/index.html', context)
-#        
-#        # PASSWORD IS BLACKLISTED
-#        if password_passed.lower() in BLACKLIST_PASSWORD:
-#            error_pblack = True
-#            context = {
-#            'product_list': product_list,
-#            'error_pblack': error_pblack,
-#            'searched': searched,
-#            'query': search,
-#            }
-#            return render(request, 'ecommerce/index.html', context)
-#        
-#        # ALPHANUMERIC
-#        first_isalpha = password_passed[0].isalpha()
-#        if all(c.isalpha() == first_isalpha for c in password_passed):
-#            error_alpha = True
-#            context = {
-#            'product_list': product_list,
-#            'error_alpha': error_alpha,
-#            'searched': searched,
-#            'query': search,
-#            }
-#            return render(request, 'ecommerce/index.html', context)
-#        
-#        # MIN_LENGTH IS 8
-#        if len(password_passed) < 8:
-#            error_length = True
-#            context = {
-#            'product_list': product_list,
-#            'error_length': error_length,
-#            'searched': searched,
-#            'query': search,
-#            }
-#            return render(request, 'ecommerce/index.html', context)
-            
-        # EQUAL PASSWORDS
-#        if password_passed != password2_passed:
-#            raise ValidationError("The passwords do not match.")
+        try:
+            fname_passed =  regform.cleaned_data.get('first_name')
+            lname_passed =  regform.cleaned_data.get('last_name')
+            username_passed = request.POST['username']
+            password_passed = regform.cleaned_data.get('password1')
+            password2_passed = request.POST['password2']
+        except:
+            pass
         
         regform = RegistrationForm()
         context = {
@@ -156,6 +81,9 @@ def index(request):
             uname = request.POST['username']
         except:
             pass
+        
+        print(username_passed, password_passed, fname_passed, lname_passed, password2_passed)
+        
         login(request, context)
         if request.user.is_authenticated:
             if request.user.usertypes == 'Customer':
@@ -164,11 +92,46 @@ def index(request):
                 logger.warning(str(request) + '  User:' + uname + " login failed !")
                 logout(request)
                 erroruser = True
+        elif username_passed and password_passed and fname_passed and lname_passed:
+            # USERNAME, FNAME, LNAME != PASSWORD
+            if username_passed.lower() in password_passed.lower():
+                error_similar = True
+
+            if fname_passed.lower() in password_passed.lower():
+                error_similar = True
+
+            if lname_passed.lower() in password_passed.lower():
+                error_similar = True
+
+            # PASSWORD IS BLACKLISTED
+            if password_passed.lower() in BLACKLIST_PASSWORD:
+                error_pblack = True
+
+            # ALPHANUMERIC
+            first_isalpha = password_passed[0].isalpha()
+            if all(c.isalpha() == first_isalpha for c in password_passed):
+                error_alpha = True
+
+            # MIN_LENGTH IS 8
+            if len(password_passed) < 8:
+                error_length = True
+                
+            if password_passed != password2_passed:
+                error_match = True
+                
+            if len(User.objects.filter(username=username_passed)) > 0:
+                error_exists = True
         else:
             logger.warning(str(request) + '  User:' + uname + " login failed !")
             erroruser = True
     regform = RegistrationForm()
     context = {
+        'error_length': error_length,
+        'error_alpha': error_alpha,
+        'error_pblack': error_pblack,
+        'error_similar': error_similar,
+        'error_exists': error_exists,
+        'error_match': error_match,
         'erroruser': erroruser,
         'product_list': product_list,
         'regform': regform,
@@ -417,7 +380,7 @@ def addp(request):
                 len(password) > 0 and len(cpassword) > 0 and len(email) > 0:
             email_pattern = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
 
-            if len(password) < 6 or len(username) < 3:
+            if len(password) < 8 or len(username) < 3:
                 context[
                     "alert"] = "Password must be at least 6 characters long and the username must be at least 3 characters long."
             elif password != cpassword:
