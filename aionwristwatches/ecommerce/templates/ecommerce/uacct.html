@@ -39,6 +39,13 @@
         $("#uname").attr('disabled', false);
         $("#email").attr('disabled', false);
         $("#acctsub").attr('disabled', false);
+
+        $("#fname").attr('required', true);
+        $("#minitial").attr('required', true);
+        $("#lname").attr('required', true);
+        $("#uname").attr('required', true);
+        $("#email").attr('required', true);
+        $("#acctsub").attr('required', true);
     }
 
     function editAddr() {
@@ -56,6 +63,21 @@
         $("#scity").attr('disabled', false);
         $("#spc").attr('disabled', false);
         $("#scountry").attr('disabled', false);
+
+         $("#bhouse_num").attr('required', true);
+        $("#bstreet").attr('required', true);
+        $("#bsubdivision").attr('required', true);
+        $("#bcity").attr('required', true);
+        $("#bpc").attr('required', true);
+        $("#bcountry").attr('required', true);
+        $("#addrsub").attr('required', true);
+
+        $("#shouse_num").attr('required', true);
+        $("#sstreet").attr('required', true);
+        $("#ssubdivision").attr('required', true);
+        $("#scity").attr('required', true);
+        $("#spc").attr('required', true);
+        $("#scountry").attr('required', true);
     }
 
 </script>
@@ -94,7 +116,7 @@
                         </li>
                         <li  class="list-group-item d-inline-flex ">
                             <div class="col-3">Middle Initial</div>
-                            <input id="minitial" name="minitial" class="col-8" type="text" value="{{user.middle_initial}}" pattern="^[A-Za-z]{1}$"disabled />
+                            <input id="minitial" name="minitial" class="col-8" type="text" value="{{user.middle_initial}}" pattern="^[A-Za-z]{1}$" disabled />
                         </li>
                         <li  class="list-group-item d-inline-flex ">
                             <div class="col-3">Last Name</div>
@@ -125,15 +147,15 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-inline-flex ">
                             <div class="col-3">Current Password</div>
-                            <input class="col-8" id="currpass" name="currpass" type="password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" value=""/>
+                            <input class="col-8" id="currpass" name="currpass" type="password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" value="" required/>
                         </li>
                         <li  class="list-group-item d-inline-flex ">
                             <div class="col-3">New Password</div>
-                            <input class="col-8" id="pass1" name="pass1" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" value=""/>
+                            <input class="col-8" id="pass1" name="pass1" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" value="" required/>
                         </li>
                         <li class="list-group-item d-inline-flex ">
                             <div class="col-3">Verify Password</div>
-                            <input class="col-8" id="pass2" name="pass2" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"  value=""/>
+                            <input class="col-8" id="pass2" name="pass2" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"  value="" required/>
                         </li>
                     </ul>
                     {% if alert %}

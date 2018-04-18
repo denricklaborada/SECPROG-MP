@@ -150,7 +150,7 @@
 									</div>
 									<div class="form-group">
 										<label for="id_password">Password</label>
-										<input type="password" id="id_password" name="password" class="form-control" placeholder="Password" required>
+										<input type="password" id="id_password" name="password" class="form-control" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"  required>
 									</div>
 									<button  type="submit" class="btn btn-success btn-block"><small><strong>LOG IN</strong></small></button>
 								</form>
@@ -208,15 +208,15 @@
 	                    <form role="form" method="post" onsubmit="return checkForm(this);">
                             {% csrf_token %}
 	                        <div class="form-group">
-	                            <input type="text" id="id_first_name" name="first_name" class="form-control input-sm" placeholder="First Name" required>
+	                            <input type="text" id="id_first_name" name="first_name" class="form-control input-sm" placeholder="First Name" pattern="^[A-Za-z]+$" required>
 	                        </div>
 
 	                        <div class="form-group">
-	                            <input type="text" id="id_middle_initial" name="middle_initial" class="form-control input-sm" placeholder="Middle Inital" required>
+	                            <input type="text" id="id_middle_initial" name="middle_initial" class="form-control input-sm" placeholder="Middle Inital"  pattern="^[A-Za-z]{1}$" required>
 	                        </div>
 
 	                        <div class="form-group">
-	                            <input type="text" id="id_last_name" name="last_name" class="form-control input-sm" placeholder="Last Name" required>
+	                            <input type="text" id="id_last_name" name="last_name" class="form-control input-sm" placeholder="Last Name" pattern="^[A-Za-z]+$" required>
 	                        </div>
                             
                             <div class="form-group">
@@ -255,32 +255,32 @@
                             {% endblock %}
                             
                             <div class="form-group">
-	                            <input type="email" id="id_email" name="email" class="form-control input-sm" placeholder="Email Address" required>
+	                            <input type="email" id="id_email" name="email" class="form-control input-sm" placeholder="Email Address" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" required>
 	                        </div>
 
 	                        <h6>Billing Address</h6>
 	                        <div class="form-group">
-	                            <input type="text" id="id_bhouse_num" name="bhouse_num" class="form-control input-sm" placeholder="House #" required>
+	                            <input type="text" id="id_bhouse_num" name="bhouse_num" class="form-control input-sm" placeholder="House #" pattern="^\d+$" required>
 	                        </div>
 
 	                        <div class="form-group">
-	                            <input type="text" id="id_bstreet" name="bstreet" class="form-control input-sm" placeholder="Street" required>
+	                            <input type="text" id="id_bstreet" name="bstreet" class="form-control input-sm" placeholder="Street" pattern="^[A-Za-z.]+$"  required>
 	                        </div>
 
 	                        <div class="form-group">
-	                            <input type="text" id="id_bsubdivision" name="bsubdivision" class="form-control input-sm" placeholder="Subdivision" required>
+	                            <input type="text" id="id_bsubdivision" name="bsubdivision" class="form-control input-sm" placeholder="Subdivision" pattern="^[A-Za-z.-_]+$" required>
 	                        </div>
 
 	                        <div class="form-group">
-	                            <input type="text" id="id_bcity" name="bcity" class="form-control input-sm" placeholder="City" required>
+	                            <input type="text" id="id_bcity" name="bcity" class="form-control input-sm" placeholder="City" pattern="^[A-Za-z.-_]+$" required>
 	                        </div>
 
 	                        <div class="form-group">
-	                            <input type="text" id="id_bpc" name="bpc" class="form-control input-sm" placeholder="Postal Code" required>
+	                            <input type="text" id="id_bpc" name="bpc" class="form-control input-sm" placeholder="Postal Code" pattern="^\d{4}$"  required>
 	                        </div>
 
 	                        <div class="form-group">
-	                            <input type="text" id="id_bcountry" name="bcountry" class="form-control input-sm" placeholder="Country" required>
+	                            <input type="text" id="id_bcountry" name="bcountry" class="form-control input-sm" placeholder="Country" pattern="^[A-Za-z]+$" required>
 	                        </div>
 
 	                        <h6>Shipping Address</h6>
@@ -293,27 +293,27 @@
 							    </div>
 							</div>
 	                        <div class="form-group">
-	                            <input type="text" id="id_shouse_num" name="shouse_num" class="form-control input-sm" placeholder="House #" required>
+	                            <input type="text" id="id_shouse_num" name="shouse_num" class="form-control input-sm" placeholder="House #"  pattern="^\d+$" required>
 	                        </div>
 
 	                        <div class="form-group">
-	                            <input type="text" id="id_sstreet" name="sstreet" class="form-control input-sm" placeholder="Street" required>
+	                            <input type="text" id="id_sstreet" name="sstreet" class="form-control input-sm" placeholder="Street" pattern="^[A-Za-z.]+$"  required>
 	                        </div>
 
 	                        <div class="form-group">
-	                            <input type="text" id="id_ssubdivision" name="ssubdivision" class="form-control input-sm" placeholder="Subdivision" required>
+	                            <input type="text" id="id_ssubdivision" name="ssubdivision" class="form-control input-sm" placeholder="Subdivision" pattern="^[A-Za-z.-_]+$" required>
 	                        </div>
 
 	                        <div class="form-group">
-	                            <input type="text" id="id_scity" name="scity" class="form-control input-sm" placeholder="City" required>
+	                            <input type="text" id="id_scity" name="scity" class="form-control input-sm" placeholder="City"  pattern="^[A-Za-z.-_]+$" required>
 	                        </div>
 
 	                        <div class="form-group">
-	                            <input type="text" id="id_spc" name="spc" class="form-control input-sm" placeholder="Postal Code" required>
+	                            <input type="text" id="id_spc" name="spc" class="form-control input-sm" placeholder="Postal Code" pattern="^\d{4}$" required>
 	                        </div>
 
 	                        <div class="form-group">
-	                            <input type="text" id="id_scountry" name="scountry" class="form-control input-sm" placeholder="Country" required>
+	                            <input type="text" id="id_scountry" name="scountry" class="form-control input-sm" placeholder="Country" pattern="^[A-Za-z]+$"  required>
 	                        </div>
 
 	                        <button type="submit" class="btn btn-success btn-block"><small><strong>SIGN UP</strong></small></button>
