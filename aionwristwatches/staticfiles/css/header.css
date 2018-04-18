@@ -35,3 +35,51 @@
   position: relative;
 }
 
+.progress-bar-warning {
+    background-color: yellow;
+}
+
+.progress-bar-danger {
+    background-color: red;
+}
+
+.progress-bar-success {
+    background-color: green;
+}
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+    display:none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 15px;
+    margin-top: 5px;
+}
+
+#message p {
+    padding: 3px 35px;
+    font-size: 14px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "✖";
+}

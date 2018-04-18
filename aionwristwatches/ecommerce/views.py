@@ -174,6 +174,10 @@ def index(request):
     return render(request, 'ecommerce/index.html', context)
 
 def myorders(request):
+    user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes != "Customer":
+        return error_403(request)
+
     if request.user.is_authenticated:
         trans = Transaction.objects.filter(user=request.user)
 
