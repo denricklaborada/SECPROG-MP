@@ -75,7 +75,11 @@
         </a>
 
     </div>
-
+    {% if errorcredit %}
+        <div class="alert alert-danger" role="alert">
+            Invalid credit card transaction failed !
+        </div>
+    {% endif%}
    
     <div class="d-flex container-fluid">
         <div class="col-md-9 col">
@@ -153,7 +157,7 @@
 
             <div class="col-5">
                 <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" size="16" maxlength="16" pattern="\d{16}$" title="Must contain 16 numerical digits" placeholder="" required>
+                <input type="text" class="form-control" name="creditcard" id="cc-number" size="16" maxlength="16" pattern="\d{16}$" title="Must contain 16 numerical digits" placeholder="" required>
 				<small class="text-muted">Must contain 16 numerical digits</small>
                 <div class="invalid-feedback">
                   Credit card number is required

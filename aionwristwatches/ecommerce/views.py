@@ -198,21 +198,33 @@ def acctman(request):
 
 def checkout(request, product_id):
     product = Product.objects.get(id=product_id)
-
+    errorcredit = False
+    print("CHECKKING OUT")
     if request.user.is_authenticated and request.user.usertypes=="Customer" and request.method == "POST":
         user = request.user
         qty = request.POST['quantity']
         total = request.POST['total']
+        creditcardnum = request.POST['creditcard']
+        validcredit =  is_luhn_valid(creditcardnum)
+        print(validcredit,"VALID")
 
-        trans_inst = Transaction.objects.create(user=user, product=product, quantity=qty, subtotal=total)
-        trans_inst.save()
+        if validcredit:
+            trans_inst = Transaction.objects.create(user=user, product=product, quantity=qty, subtotal=total)
+            trans_inst.save()
 
-        product.quantity = product.quantity - int(qty)
-        product.save()
-        logger.info("User: "+ request.user.username+" purchase "+product.prodname+" X "+qty+" "+total+" successfully ")
-        return redirect('/')
-
-    return render(request, 'ecommerce/checkout.html', {'product': product})
+            product.quantity = product.quantity - int(qty)
+            product.save()
+            logger.info("User: "+ request.user.username+" purchase "+product.prodname+" X "+qty+" "+total+" successfully ")
+            return redirect('/')
+        else:
+            errorcredit = True
+            logger.critical("User: " + request.user.username + " purchases " + product.prodname +" invalid credit card transaction failed")
+            print("INVALID CARD")
+    context = {
+        'errorcredit':errorcredit,
+        'product': product,
+    }
+    return render(request, 'ecommerce/checkout.html', context)
 
 
 def prodman(request):
@@ -760,7 +772,17 @@ def product(request, product_id):
     }
     return render(request, 'ecommerce/product.html', context)
     
+def luhn_checksum(card_number):
+    def digits_of(n):
+        return [int(d) for d in str(n)]
+    digits = digits_of(card_number)
+    odd_digits = digits[-1::-2]
+    even_digits = digits[-2::-2]
+    checksum = 0
+    checksum += sum(odd_digits)
+    for d in even_digits:
+        checksum += sum(digits_of(d*2))
+    return checksum % 10
 
-
-
-
+def is_luhn_valid(card_number):
+    return luhn_checksum(card_number) == 0
