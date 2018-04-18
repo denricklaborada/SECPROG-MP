@@ -81,7 +81,6 @@ def index(request):
             password=regform.cleaned_data['password1']
             print("FORM VALID")
             regform.save()
-            regform.save()
             return redirect('/')
         
         try:
@@ -97,27 +96,20 @@ def index(request):
         context = {
             'product_list': product_list,
             'regform': regform,
-            'searched': searched,
-            'query': search,
         }
-        try:
-            uname = request.POST['username']
-        except:
-            pass
-
         
+        print(request.user.is_authenticated, "ME")
         login(request, context)
+        print(request.user.is_authenticated, "YOU")
         if request.user.is_authenticated:
             if request.user.usertypes == 'Customer':
                 logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
             else:
-                logger.warning(str(request) + '  User:' + uname + " login failed !")
+                logger.warning(str(request) + '  User:' + username_passed + " login failed !")
                 logout(request)
                 erroruser = True
-
             return login(request, context)
-        elif username_passed and password_passed and fname_passed and lname_passed:
-            
+        elif password_passed and username_passed and fname_passed and lname_passed:
             # ALPHANUMERIC
             if not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', password_passed):
                 error_alpha = True
@@ -152,7 +144,7 @@ def index(request):
                 error_similar = True
 
         else:
-            logger.warning(str(request) + '  User:' + uname + " login failed !")
+            logger.warning(str(request) + '  User:' + username_passed + " login failed !")
             erroruser = True
     regform = RegistrationForm()
     context = {
