@@ -173,9 +173,6 @@ def index(request):
     }
     return render(request, 'ecommerce/index.html', context)
 
-def loginerror(request):
-    return render(request, 'ecommerce/loginerror.html')
-
 def myorders(request):
     if request.user.is_authenticated:
         trans = Transaction.objects.filter(user=request.user)
