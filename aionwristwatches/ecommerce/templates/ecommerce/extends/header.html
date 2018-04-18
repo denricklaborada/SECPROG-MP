@@ -453,30 +453,23 @@
 	        </div>
     	</div>
         
-                    {% if error_blank == True %}
-                            <div class=" alert alert-danger col-6 text-uppercase text-center" role="alert" style="margin-left: 25%;">
-                                 <i class="fa fa-times-circle-o" style="margin-top: 10px; font-size: 30px;"></i> username/password should not be left blank.
-                            </div>
-                        {% endif %}
-        
                     {% if error_length == True %}
-                            <div class=" alert alert-danger col-6 text-uppercase text-center" role="alert" style="margin-left: 25%;">
-                                 <i class="fa fa-times-circle-o" style="margin-top: 10px; font-size: 30px;"></i> The new password must be at least 8 characters long.
+                            <div class=" alert alert-danger col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
+                                The new password must be at least 8 characters long.
                             </div>
                         {% endif %}
                             {% if error_alpha == True %}
-                            <div class=" alert alert-danger col-6 text-uppercase text-center" role="alert" style="margin-left: 25%;">
-                                 <i class="fa fa-times-circle-o" style="margin-top: 10px; font-size: 30px;"></i> The password must contain at least one letter and at least one digit or punctuation character.
+                            <div class=" alert alert-danger col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
+                                 The password must contain at least one letter and at least one digit or punctuation character.
                             </div>
                         {% endif %}
                         {% if error_pblack == True %}
-                            <div class=" alert alert-danger col-6 text-uppercase text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
-                                 <i class="fa fa-times-circle-o" style="font-size: 30px;"></i> Invalid username/password.
+                            <div class=" alert alert-danger col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">Invalid username/password.
                             </div>
                         {% endif %}
                         {% if error_similar == True %}
-                            <div class=" alert alert-danger col-6 text-uppercase text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
-                                 <i class="fa fa-times-circle-o" style="font-size: 30px;"></i> Password should not contain your first name, last name, or username
+                            <div class=" alert alert-danger col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
+                                 Password should not contain your first name, last name, or username
                             </div>
                         {% endif %}
         
