@@ -82,7 +82,6 @@ def index(request):
         except:
             pass
         
-        print(username_passed, password_passed, fname_passed, lname_passed, password2_passed)
         
         login(request, context)
         if request.user.is_authenticated:
@@ -115,10 +114,10 @@ def index(request):
             # MIN_LENGTH IS 8
             if len(password_passed) < 8:
                 error_length = True
-                
+
             if password_passed != password2_passed:
                 error_match = True
-                
+
             if len(User.objects.filter(username=username_passed)) > 0:
                 error_exists = True
         else:
