@@ -37,6 +37,8 @@ def index(request):
     error_pblack = False
     error_length = False
     error_alpha = False
+    error_match = False
+    error_exists = False
     
     BLACKLIST_PASSWORD = ['password', 'pass123', 'password123', 'admin', 'guest']
     BLACKLIST_USERNAME = [ 'admin', 'administrator', 'root', 'system', 'guest', 'operator', 'super', 'gg', 'test1', 'testing']
@@ -58,17 +60,11 @@ def index(request):
         try:
             fname_passed =  regform.cleaned_data.get('first_name')
             lname_passed =  regform.cleaned_data.get('last_name')
-            username_passed = regform.cleaned_data.get('username')
+            username_passed = request.POST['username']
             password_passed = regform.cleaned_data.get('password1')
-            password2_passed = regform.cleaned_data.get('password2')
+            password2_passed = request.POST['password2']
         except:
             pass
-        
-#        print(fname_passed, lname_passed, username_passed, password_passed, password2_passed, password_passed[0].isalpha(), 'YOI')
-
-        # EQUAL PASSWORDS
-#        if password_passed != password2_passed:
-#            raise ValidationError("The passwords do not match.")
         
         regform = RegistrationForm()
         context = {
@@ -81,6 +77,9 @@ def index(request):
             uname = request.POST['username']
         except:
             pass
+        
+        print(username_passed, password_passed, fname_passed, lname_passed, password2_passed)
+        
         login(request, context)
         if request.user.is_authenticated:
             if request.user.usertypes == 'Customer':
@@ -112,6 +111,12 @@ def index(request):
             # MIN_LENGTH IS 8
             if len(password_passed) < 8:
                 error_length = True
+                
+            if password_passed != password2_passed:
+                error_match = True
+                
+            if len(User.objects.filter(username=username_passed)) > 0:
+                error_exists = True
         else:
             logger.warning(str(request) + '  User:' + uname + " login failed !")
             erroruser = True
@@ -121,6 +126,8 @@ def index(request):
         'error_alpha': error_alpha,
         'error_pblack': error_pblack,
         'error_similar': error_similar,
+        'error_exists': error_exists,
+        'error_match': error_match,
         'erroruser': erroruser,
         'product_list': product_list,
         'regform': regform,
@@ -361,7 +368,7 @@ def addp(request):
                 len(password) > 0 and len(cpassword) > 0 and len(email) > 0:
             email_pattern = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
 
-            if len(password) < 6 or len(username) < 3:
+            if len(password) < 8 or len(username) < 3:
                 context[
                     "alert"] = "Password must be at least 6 characters long and the username must be at least 3 characters long."
             elif password != cpassword:

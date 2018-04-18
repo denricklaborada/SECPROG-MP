@@ -458,6 +458,16 @@
                                 The new password must be at least 8 characters long.
                             </div>
                         {% endif %}
+                    {% if error_match == True %}
+                            <div class=" alert alert-danger col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
+                                Passwords do not match.
+                            </div>
+                        {% endif %}
+                    {% if error_exists == True %}
+                            <div class=" alert alert-danger col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
+                                Sorry, the username already exists.
+                            </div>
+                        {% endif %}
                             {% if error_alpha == True %}
                             <div class=" alert alert-danger col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
                                  The password must contain at least one letter and at least one digit or punctuation character.
