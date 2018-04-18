@@ -410,7 +410,7 @@ def addp(request):
 
             if len(password) < 8 or len(username) < 3:
                 context[
-                    "alert"] = "Password must be at least 6 characters long and the username must be at least 3 characters long."
+                    "alert"] = "Password must be at least 8 characters long and the username must be at least 3 characters long."
             elif password != cpassword:
                 context["alert"] = "Passwords do not match."
             elif not email_pattern.match(email):
@@ -456,9 +456,8 @@ def adda(request):
                 len(password) > 0 and len(cpassword) > 0 and len(email) > 0:
             email_pattern = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
 
-            if len(password) < 6 or len(username) < 3:
-                context[
-                    "alert"] = "Password must be at least 6 characters long and the username must be at least 3 characters long."
+            if len(password) < 8 or len(username) < 3:
+                context["alert"] = "Password must be at least 8 characters long and the username must be at least 3 characters long."
             elif password != cpassword:
                 context["alert"] = "Passwords do not match."
             elif not email_pattern.match(email):
@@ -488,6 +487,9 @@ def uacct(request):
     user = request.user
     if not user.is_authenticated or user.is_authenticated and user.usertypes != "Customer":
         return error_403(request)
+    context = {
+        "alert": None
+    }
     if request.method == "POST":
         user = request.user
         try:
@@ -516,18 +518,39 @@ def uacct(request):
             print('not account')
 
             try:
+                
                 currpass = request.POST['currpass']
                 pass1 = request.POST['pass1']
                 pass2 = request.POST['pass2']
-
-                if user.check_password(currpass) and len(pass1) > 0 and len(pass2) > 0 and pass1 == pass2:
+                
+                BLACKLIST_PASSWORD = ['password', 'pass123', 'password123', 'admin', 'guest','123456','qwerty','12345678','qwertyuiop','google','zxcvbnm','111111','1234567890','123123','mynoob','18atcskd2w','1q2w3e4r','654321','letmein','football','iloveyou','welcome','monkey','abc123','passw0rd','dragon','starwars','123456789']
+                
+                if pass1 != pass2:
+                    context["alert"] = "Passwords do not match."
+                elif currpass == pass1:
+                    context["alert"] = "Your new password must differ from your previous password."
+                elif pass1.lower() in BLACKLIST_PASSWORD:
+                    context["alert"] = "Invalid username/password."
+                elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', pass1):
+                    context["alert"] = "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter and one number."
+                elif len(pass1) < 8:
+                    context["alert"] = "Password must be at least 8 characters long."
+                elif (user.username).lower() in pass1.lower():
+                    context["alert"] = "Password should not contain your first name, last name, or username"
+                elif (user.first_name).lower() in pass1.lower():
+                     context["alert"] = "Password should not contain your first name, last name, or username"
+                elif (user.last_name).lower() in pass1.lower():
+                     context["alert"] = "Password should not contain your first name, last name, or username"
+                elif user.check_password(currpass) and len(pass1) > 0 and len(pass2) > 0 and pass1 == pass2:
                     user.set_password(pass1)
                     user.save()
                     logger.info("User: " + request.user.username + " successfully changed user account password")
                     return redirect('/')
                 else:
-                    logger.warning("User: " + request.user.username + "user account password was not changed")
+                        logger.warning("User: " + request.user.username + "user account password was not changed")
 
+                
+                
             except:
                 print('not password')
 
@@ -571,7 +594,7 @@ def uacct(request):
                 except:
                     print('not address')
 
-    return render(request, 'ecommerce/uacct.html')
+    return render(request, 'ecommerce/uacct.html', context)
 
 def product(request, product_id):
     product_obj = Product.objects.filter(id=product_id)[:1].get()

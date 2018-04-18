@@ -136,6 +136,9 @@
                             <input class="col-8" id="pass2" name="pass2" type="password" value=""/>
                         </li>
                     </ul>
+                    {% if alert %}
+                    {{ alert }}
+                {% endif %}
                     <div class="text-center mt-1 pt-2"><input type="submit" class="btn btn-success" value="Save"/></div>
                     <input type="hidden" name="next" value="{{ next }}">
                 </form>
