@@ -220,7 +220,7 @@
 	                        </div>
                             
                             <div class="form-group">
-	                            <input type="text" id="id_username1" name="username" class="form-control input-sm" placeholder="Username" onChange="checkCommonUsername();" required>
+	                            <input type="text" id="id_username1" name="username" class="form-control input-sm" placeholder="Username" pattern="^(\w([,.+-@]*[a-zA-Z0-9])*){5,150}" onChange="checkCommonUsername();" required>
 	                        </div>
                             
                             <div style="margin-top: 10px;" class="registrationFormAlert" id="divCheckCommonUsername"></div>

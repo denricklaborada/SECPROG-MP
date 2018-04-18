@@ -90,23 +90,23 @@
                     <ul class="list-group list-group-flush">
                         <li  class="list-group-item d-inline-flex ">
                             <div class="col-3">First Name</div>
-                            <input id="fname" name="fname" class="col-8" type="text" value="{{user.first_name}}" disabled />
+                            <input id="fname" name="fname" class="col-8" type="text" value="{{user.first_name}}" pattern="^[A-Za-z]+$" disabled />
                         </li>
                         <li  class="list-group-item d-inline-flex ">
                             <div class="col-3">Middle Initial</div>
-                            <input id="minitial" name="minitial" class="col-8" type="text" value="{{user.middle_initial}}" disabled />
+                            <input id="minitial" name="minitial" class="col-8" type="text" value="{{user.middle_initial}}" pattern="^[A-Za-z]{1}$"disabled />
                         </li>
                         <li  class="list-group-item d-inline-flex ">
                             <div class="col-3">Last Name</div>
-                            <input id="lname" name="lname" class="col-8" type="text" value="{{user.last_name}}" disabled />
+                            <input id="lname" name="lname" class="col-8" type="text" value="{{user.last_name}}" pattern="^[A-Za-z]+$" disabled />
                         </li>
                         <li  class="list-group-item d-inline-flex ">
                             <div class="col-3">Username</div>
-                            <input id="uname" name="uname" class="col-8" type="text" value="{{user.username}}" disabled />
+                            <input id="uname" name="uname" class="col-8" type="text" value="{{user.username}}" pattern="^(\w([,.+-@]*[a-zA-Z0-9])*){5,150}" disabled />
                         </li>
                         <li  class="list-group-item d-inline-flex ">
                             <div class="col-3">Email</div>
-                            <input id="email" name="email" class="col-8" type="text" value="{{user.email}}" disabled />
+                            <input id="email" name="email" class="col-8" type="text" value="{{user.email}}" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" disabled />
                         </li>
 
                     </ul>
@@ -129,11 +129,11 @@
                         </li>
                         <li  class="list-group-item d-inline-flex ">
                             <div class="col-3">New Password</div>
-                            <input class="col-8" id="pass1" name="pass1" type="password" value=""/>
+                            <input class="col-8" id="pass1" name="pass1" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" value=""/>
                         </li>
                         <li class="list-group-item d-inline-flex ">
                             <div class="col-3">Verify Password</div>
-                            <input class="col-8" id="pass2" name="pass2" type="password" value=""/>
+                            <input class="col-8" id="pass2" name="pass2" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"  value=""/>
                         </li>
                     </ul>
                     {% if alert %}
@@ -155,27 +155,27 @@
                         <ul class="list-group list-group-flush">
                             <li class=" d-inline-flex mt-1 ">
                                 <div class="col-3">House #</div>
-                                <input class="col-8" id="bhouse_num" name="bhouse_num" type="text" value="{{user.bhouse_num}}" disabled />
+                                <input class="col-8" id="bhouse_num" name="bhouse_num" type="text" value="{{user.bhouse_num}}" pattern="^\d+$" disabled />
                             </li>
                             <li class=" d-inline-flex mt-1">
                                 <div class="col-3">Street</div>
-                                <input class="col-8" id="bstreet" name="bstreet" type="text" value="{{user.bstreet}}" disabled />
+                                <input class="col-8" id="bstreet" name="bstreet" type="text" value="{{user.bstreet}}" pattern="^[A-Za-z.]+$" disabled />
                             </li>
                             <li class=" d-inline-flex mt-1 ">
                                 <div class="col-3">Subdivision</div>
-                                <input class="col-8" id="bsubdivision" name="bsubdivision" type="text" value="{{user.bsubdivision}}" disabled />
+                                <input class="col-8" id="bsubdivision" name="bsubdivision" type="text" value="{{user.bsubdivision}}" pattern="^[A-Za-z.-_]+$" disabled />
                             </li>
                             <li class=" d-inline-flex mt-1 ">
                                 <div class="col-3">City</div>
-                                <input class="col-8" id="bcity" name="bcity" type="text" value="{{user.bcity}}" disabled />
+                                <input class="col-8" id="bcity" name="bcity" type="text" value="{{user.bcity}}" pattern="^[A-Za-z.-_]+$" disabled />
                             </li>
                             <li class=" d-inline-flex mt-1 ">
                                 <div class="col-3">Postal Code</div>
-                                <input class="col-8" id="bpc" name="bpc" type="text" value="{{user.bpc}}" disabled />
+                                <input class="col-8" id="bpc" name="bpc" type="text" value="{{user.bpc}}" pattern="^\d{4}$"  disabled />
                             </li>
                             <li class=" d-inline-flex mt-1 ">
                                 <div class="col-3">Country</div>
-                                <input class="col-8" id="bcountry" name="bcountry" type="text" value="{{user.bcountry}}" disabled />
+                                <input class="col-8" id="bcountry" name="bcountry" type="text" value="{{user.bcountry}}" pattern="^[A-Za-z]+$" disabled />
                             </li>
                         </ul>
                     </div>
@@ -184,32 +184,32 @@
                         <ul class="list-group list-group-flush">
                             <li class=" d-inline-flex mt-1 ">
                                 <div class="col-3">House #</div>
-                                <input class="col-8" id="shouse_num" name="shouse_num" type="text" value="{{user.shouse_num}}" disabled />
+                                <input class="col-8" id="shouse_num" name="shouse_num" type="text" value="{{user.shouse_num}}" pattern="^\d+$" disabled />
                             </li>
                             <li class=" d-inline-flex mt-1">
                                 <div class="col-3">Street</div>
-                                <input class="col-8" id="sstreet" name="sstreet" type="text" value="{{user.sstreet}}" disabled />
+                                <input class="col-8" id="sstreet" name="sstreet" type="text" value="{{user.sstreet}}" pattern="^[A-Za-z.]+$" disabled />
                             </li>
                             <li class=" d-inline-flex mt-1 ">
                                 <div class="col-3">Subdivision</div>
-                                <input class="col-8" id="ssubdivision" name="ssubdivision" type="text" value="{{user.ssubdivision}}" disabled />
+                                <input class="col-8" id="ssubdivision" name="ssubdivision" type="text" value="{{user.ssubdivision}}" pattern="^[A-Za-z.-_]+$" disabled />
                             </li>
                             <li class=" d-inline-flex mt-1 ">
                                 <div class="col-3">City</div>
-                                <input class="col-8" id="scity" name="scity" type="text" value="{{user.scity}}" disabled />
+                                <input class="col-8" id="scity" name="scity" type="text" value="{{user.scity}}" pattern="^[A-Za-z.-_]+$" disabled />
                             </li>
                             <li class=" d-inline-flex mt-1 ">
                                 <div class="col-3">Postal Code</div>
-                                <input class="col-8" id="spc" name="spc" type="text" value="{{user.spc}}" disabled />
+                                <input class="col-8" id="spc" name="spc" type="text" value="{{user.spc}}" pattern="^\d{4}$" disabled />
                             </li>
                             <li class=" d-inline-flex mt-1 ">
                                 <div class="col-3">Country</div>
-                                <input class="col-8" id="scountry" name="scountry" type="text" value="{{user.scountry}}" disabled />
+                                <input class="col-8" id="scountry" name="scountry" type="text" value="{{user.scountry}}" pattern="^[A-Za-z]+$" disabled />
                             </li>
                         </ul>
                     </div>
                     <div class="text-center mt-1 pt-2"><input type="submit" id="addrsub" class="btn btn-success" value="Save" disabled /></div>
-                    <input type="hidden" name="next" value="{{ next }}">
+                    <input type="hidden" name="next" value="{{ next }}"disabled>
                 </form>
             </div>
         </div>
