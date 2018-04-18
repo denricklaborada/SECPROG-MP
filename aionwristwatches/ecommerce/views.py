@@ -299,21 +299,44 @@ def changepass(request):
     user = request.user
     if not user.is_authenticated or user.is_authenticated and user.usertypes == 'Customer':
         return error_403(request)
+    context = {
+        "alert": None
+    }
     try:
         currpass = request.POST['currpass']
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
+        
+        BLACKLIST_PASSWORD = ['password', 'pass123', 'password123', 'admin', 'guest','123456','qwerty','12345678','qwertyuiop','google','zxcvbnm','111111','1234567890','123123','mynoob','18atcskd2w','1q2w3e4r','654321','letmein','football','iloveyou','welcome','monkey','abc123','passw0rd','dragon','starwars','123456789']
+        
         if not user.check_password(currpass):
-            return HttpResponseNotFound('<h1>Incorrect Password</h1>')                              # <---- ERROR PAGE HERE
-        if user.check_password(currpass) and len(pass1) > 0 and len(pass2) > 0 and pass1 == pass2:
+            context["alert"] = "Wrong password entered."
+        elif pass1 != pass2:
+            context["alert"] = "Passwords do not match."
+        elif currpass == pass1:
+            context["alert"] = "Your new password must differ from your previous password."
+        elif pass1.lower() in BLACKLIST_PASSWORD:
+            context["alert"] = "Invalid username/password."
+        elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', pass1):
+            context["alert"] = "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter and one number."
+        elif len(pass1) < 8:
+            context["alert"] = "Password must be at least 8 characters long."
+        elif (user.username).lower() in pass1.lower():
+            context["alert"] = "Password should not contain your first name, last name, or username"
+        elif (user.first_name).lower() in pass1.lower():
+             context["alert"] = "Password should not contain your first name, last name, or username"
+        elif (user.last_name).lower() in pass1.lower():
+             context["alert"] = "Password should not contain your first name, last name, or username"
+        elif user.check_password(currpass) and len(pass1) > 0 and len(pass2) > 0 and pass1 == pass2:
             user.set_password(pass1)
             user.save()
             logger.info("User: " + request.user.username +" "+ request.user.usertypes +" changed password successfully")
             return redirect('/loginmanager/')
-    except :
-        logger.warning("User: " + request.user.username +" "+ request.user.usertypes +" password was not changed")
-        pass
-    return render(request, 'ecommerce/changepass.html')
+        else:
+            logger.warning("User: " + request.user.username +" "+ request.user.usertypes +" password was not changed")
+
+    except : pass
+    return render(request, 'ecommerce/changepass.html',context)
 
 
 def proddelete(request):
@@ -403,16 +426,27 @@ def addp(request):
         password = request.POST["password"]
         cpassword = request.POST["cpassword"]
         email = request.POST["email"]
-
+        
+        BLACKLIST_PASSWORD = ['password', 'pass123', 'password123', 'admin', 'guest','123456','qwerty','12345678','qwertyuiop','google','zxcvbnm','111111','1234567890','123123','mynoob','18atcskd2w','1q2w3e4r','654321','letmein','football','iloveyou','welcome','monkey','abc123','passw0rd','dragon','starwars','123456789']
+        
         if len(first) > 0 and len(last) > 0 and len(username) > 0 and \
                 len(password) > 0 and len(cpassword) > 0 and len(email) > 0:
             email_pattern = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
 
-            if len(password) < 8 or len(username) < 3:
-                context[
-                    "alert"] = "Password must be at least 8 characters long and the username must be at least 3 characters long."
-            elif password != cpassword:
+            if password != cpassword:
                 context["alert"] = "Passwords do not match."
+            elif password.lower() in BLACKLIST_PASSWORD:
+                context["alert"] = "Invalid username/password."
+            elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', password):
+                context["alert"] = "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter and one number."
+            elif len(password) < 8:
+                context["alert"] = "Password must be at least 8 characters long."
+            elif username.lower() in password.lower():
+                context["alert"] = "Password should not contain your first name, last name, or username"
+            elif first.lower() in password.lower():
+                 context["alert"] = "Password should not contain your first name, last name, or username"
+            elif last.lower() in password.lower():
+                 context["alert"] = "Password should not contain your first name, last name, or username"
             elif not email_pattern.match(email):
                 context["alert"] = "Invalid email address"
             elif len(User.objects.filter(username=username)) > 0:
@@ -433,7 +467,7 @@ def addp(request):
             context["alert"] = "Not enough information was given"
             logger.info("Administrator: " + request.user.username + " product manager account was not created not enough information was given")
 
-    return render(request, 'ecommerce/addpman.html')
+    return render(request, 'ecommerce/addpman.html', context)
 
 
 def adda(request):
@@ -451,15 +485,27 @@ def adda(request):
         password = request.POST["password"]
         cpassword = request.POST["cpassword"]
         email = request.POST["email"]
+        
+        BLACKLIST_PASSWORD = ['password', 'pass123', 'password123', 'admin', 'guest','123456','qwerty','12345678','qwertyuiop','google','zxcvbnm','111111','1234567890','123123','mynoob','18atcskd2w','1q2w3e4r','654321','letmein','football','iloveyou','welcome','monkey','abc123','passw0rd','dragon','starwars','123456789']
 
         if len(first) > 0 and len(last) > 0 and len(username) > 0 and \
                 len(password) > 0 and len(cpassword) > 0 and len(email) > 0:
             email_pattern = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
 
-            if len(password) < 8 or len(username) < 3:
-                context["alert"] = "Password must be at least 8 characters long and the username must be at least 3 characters long."
-            elif password != cpassword:
+            if password != cpassword:
                 context["alert"] = "Passwords do not match."
+            elif password.lower() in BLACKLIST_PASSWORD:
+                context["alert"] = "Invalid username/password."
+            elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', password):
+                context["alert"] = "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter and one number."
+            elif len(password) < 8:
+                context["alert"] = "Password must be at least 8 characters long."
+            elif username.lower() in password.lower():
+                context["alert"] = "Password should not contain your first name, last name, or username"
+            elif first.lower() in password.lower():
+                 context["alert"] = "Password should not contain your first name, last name, or username"
+            elif last.lower() in password.lower():
+                 context["alert"] = "Password should not contain your first name, last name, or username"
             elif not email_pattern.match(email):
                 context["alert"] = "Invalid email address"
             elif len(User.objects.filter(username=username)) > 0:
@@ -467,7 +513,6 @@ def adda(request):
             elif len(User.objects.filter(email=email)) > 0:
                 context["alert"] = "That email is already in use"
             else:
-                print("haha")
                 am_inst = User.objects.create_user(username=username,
                                                    email=email,
                                                    password=password, first_name=first, last_name=last,
@@ -525,7 +570,9 @@ def uacct(request):
                 
                 BLACKLIST_PASSWORD = ['password', 'pass123', 'password123', 'admin', 'guest','123456','qwerty','12345678','qwertyuiop','google','zxcvbnm','111111','1234567890','123123','mynoob','18atcskd2w','1q2w3e4r','654321','letmein','football','iloveyou','welcome','monkey','abc123','passw0rd','dragon','starwars','123456789']
                 
-                if pass1 != pass2:
+                if not user.check_password(currpass):
+                    context["alert"] = "Wrong password entered."
+                elif pass1 != pass2:
                     context["alert"] = "Passwords do not match."
                 elif currpass == pass1:
                     context["alert"] = "Your new password must differ from your previous password."

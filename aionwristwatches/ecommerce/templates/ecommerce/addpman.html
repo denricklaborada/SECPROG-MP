@@ -39,13 +39,14 @@
                     </li>
 
                 </ul>
+                   {% if alert %}
+                    {{ alert }}
+                {% endif %}
                 {% csrf_token %}
                 <div class="text-center mt-1 pt-2">
                     <input type="submit" class="btn btn-primary" value="SAVE"/>
                 </div>
-                {% if alert %}
-                    {{ alert }}
-                {% endif %}
+                
                </form>
             </div>
         </div>
