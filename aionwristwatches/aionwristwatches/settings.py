@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    "account.middleware.ExpiredPasswordMiddleware",
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'session_security.middleware.SessionSecurityMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -155,8 +156,8 @@ LOGOUT_REDIRECT_URL = '/'
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_SECURITY_WARN_AFTER = 290
-SESSION_SECURITY_EXPIRE_AFTER = 360
+SESSION_SECURITY_WARN_AFTER = 295
+SESSION_SECURITY_EXPIRE_AFTER = 300
 
 LOGGING = {
     'version': 1,
@@ -189,3 +190,8 @@ LOGGING = {
         },
     }
 }
+
+
+# PASSWORD EXPIRATION
+ACCOUNT_PASSWORD_USE_HISTORY = True
+ACCOUNT_PASSWORD_EXPIRY = 60*60*24*30  # number of seconds, this is 30 days
