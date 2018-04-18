@@ -218,7 +218,7 @@ def checkout(request, product_id):
 
             product.quantity = product.quantity - int(qty)
             product.save()
-            logger.info("User: "+ request.user.username+" purchase "+product.prodname+" X "+qty+" "+total+" successfully ")
+            logger.info("User: "+ request.user.username+" purchase "+product.prodname+" x"+qty+" "+total+" successfully")
             return redirect('/')
         else:
             errorcredit = True
