@@ -42,9 +42,12 @@ def index(request):
     BLACKLIST_USERNAME = [ 'admin', 'administrator', 'root', 'system', 'guest', 'operator', 'super', 'gg', 'test1', 'testing']
 
     if search:
-    	product_list = product_list.filter(prodname__icontains=search).distinct()
-    	searched = True
-
+        product_list = product_list.filter(prodname__icontains=search).distinct()
+        searched = True
+        if request.user.is_authenticated:
+            logger.info("User: " + request.user.username + " search for" + search)
+        else:
+            logger.info("User: anonymous user search for" + search)
     if request.method == 'POST':
         regform = RegistrationForm(request.POST)
         print("REQUEST POST")
@@ -52,6 +55,7 @@ def index(request):
         if regform.is_valid():
             password=regform.cleaned_data['password1']
             print("FORM VALID")
+            regform.save()
             regform.save()
             return redirect('/')
         
@@ -180,7 +184,7 @@ def myorders(request):
 
     if request.user.is_authenticated:
         trans = Transaction.objects.filter(user=request.user)
-
+        logger.info("User: " + request.user.username + " viewed personal orders")
         return render(request, 'ecommerce/myorders.html', {'trans': trans, })
 
     return redirect('/')
@@ -192,7 +196,7 @@ def acctman(request):
         return error_403(request)
 
     product_list = Product.objects.all()
-    
+    logger.info("Accounting Manager: " + request.user.username + " viewed transactions")
     context = {
         'product_list': product_list,
     }
@@ -202,7 +206,7 @@ def acctman(request):
 def checkout(request, product_id):
     product = Product.objects.get(id=product_id)
 
-    if request.method == "POST":
+    if request.user.is_authenticated and request.user.usertypes=="Customer" and request.method == "POST":
         user = request.user
         qty = request.POST['quantity']
         total = request.POST['total']
@@ -212,7 +216,7 @@ def checkout(request, product_id):
 
         product.quantity = product.quantity - int(qty)
         product.save()
-
+        logger.info("User: "+ request.user.username+" purchase "+product.prodname+" X "+qty+" "+total+" successfully ")
         return redirect('/')
 
     return render(request, 'ecommerce/checkout.html', {'product': product})
@@ -222,8 +226,9 @@ def prodman(request):
     user = request.user
     if not user.is_authenticated or user.is_authenticated and user.usertypes != "ProductManager":
         return error_403(request)
+
     product_list = Product.objects.all()
-    
+    logger.info("Product Manager: " + request.user.username + " viewed product lists")
     context = {
         'product_list': product_list,
     }
@@ -273,6 +278,7 @@ def adminman(request):
     user = request.user
     if not user.is_authenticated or user.is_authenticated and user.usertypes != "Administrator":
         return error_403(request)
+    logger.info("Administrator: " + request.user.username + " viewed admin page")
     return render(request, 'ecommerce/adminman.html')
 
 
@@ -280,6 +286,7 @@ def prodmng(request):
     user = request.user
     if not user.is_authenticated or user.is_authenticated and user.usertypes != "Administrator":
         return error_403(request)
+    logger.info("Administrator: " + request.user.username + " viewed product managers page")
     prodmanaccts = User.objects.filter(usertypes="ProductManager")
     context={
         'prodmanaccts':prodmanaccts
@@ -290,6 +297,7 @@ def acctmng(request):
     user = request.user
     if not user.is_authenticated or user.is_authenticated and user.usertypes != "Administrator":
         return error_403(request)
+    logger.info("Administrator: " + request.user.username + " viewed accounting managers page")
     acctmanaccts = User.objects.filter(usertypes="AccountingManager")
     context={
         'acctmanaccts':acctmanaccts
@@ -309,8 +317,11 @@ def changepass(request):
         if user.check_password(currpass) and len(pass1) > 0 and len(pass2) > 0 and pass1 == pass2:
             user.set_password(pass1)
             user.save()
+            logger.info("User: " + request.user.username +" "+ request.user.usertypes +" changed password successfully")
             return redirect('/loginmanager/')
-    except :pass
+    except :
+        logger.warning("User: " + request.user.username +" "+ request.user.usertypes +" password was not changed")
+        pass
     return render(request, 'ecommerce/changepass.html')
 
 
@@ -324,7 +335,7 @@ def proddelete(request):
         product = Product.objects.get(id=id)
         product.is_active = False
         product.save()
-
+    logger.info("Product Manager: " + request.user.username + " discontinued the product " + product.prodname )
     return HttpResponse('Success')
 
 
@@ -353,7 +364,7 @@ def prodadd(request):
             product.image = request.FILES["image"]
 
         product.save()
-
+    logger.info("Product Manager: " + request.user.username + " added new product " + product.prodname)
     return HttpResponse('Success')
 
 
@@ -381,6 +392,7 @@ def prodedit(request):
             product.image = request.FILES["image"]
 
         product.save()
+        logger.info("Product Manager: " + request.user.username + " editted product information of " + product.prodname)
 
     return HttpResponse('Success')
 
@@ -424,8 +436,11 @@ def addp(request):
 
                 pm_inst.save()
                 context["alert"] = "Product manager created"
+                logger.info("Administrator: " + request.user.username + " successfully created product manager account " + pm_inst.username)
+
         else:
             context["alert"] = "Not enough information was given"
+            logger.info("Administrator: " + request.user.username + " product manager account was not created not enough information was given")
 
     return render(request, 'ecommerce/addpman.html')
 
@@ -469,8 +484,10 @@ def adda(request):
                                                    usertypes='AccountingManager', temporary=True)
 
                 am_inst.save()
+                logger.info("Administrator: " + request.user.username + " successfully created account manager account " + am_inst.username)
                 context["alert"] = "Accounting manager created"
         else:
+            logger.info("Administrator: " + request.user.username + " accounting manager account was not created not enough information was given")
             context["alert"] = "Not enough information was given"
 
     return render(request, 'ecommerce/addaman.html', context)
@@ -498,6 +515,10 @@ def uacct(request):
                 user.username = uname
                 user.email = email
                 user.save()
+                logger.info("User: " + request.user.username + " successfully edited personal profile information")
+            else:
+                logger.warning("User: " + request.user.username + " personal profile information was not edited")
+
 
 
         except:
@@ -511,8 +532,10 @@ def uacct(request):
                 if user.check_password(currpass) and len(pass1) > 0 and len(pass2) > 0 and pass1 == pass2:
                     user.set_password(pass1)
                     user.save()
-
+                    logger.info("User: " + request.user.username + " successfully changed user account password")
                     return redirect('/')
+                else:
+                    logger.warning("User: " + request.user.username + "user account password was not changed")
 
             except:
                 print('not password')
@@ -550,6 +573,9 @@ def uacct(request):
                         user.scountry = scountry
 
                         user.save()
+                        logger.info("User: " + request.user.username + " successfully edited billing/shipping address information")
+                    else:
+                        logger.warning("User: " + request.user.username + " billing/shipping address information was not edited")
 
                 except:
                     print('not address')
@@ -563,7 +589,7 @@ def product(request, product_id):
     erroruser = False
     if request.user.is_authenticated:
     	t_obj = Transaction.objects.filter(user=request.user, product=product_obj)
-    
+
     if request.method == 'POST':
         regform = RegistrationForm(request.POST)
         revform = ReviewForm(request.POST)
@@ -579,6 +605,8 @@ def product(request, product_id):
             rev.product = product_obj
             rev.user = request.user
             rev.save()
+            logger.info("User: " + request.user.username + " wrote a review on product " + product_obj.prodname)
+            
         try:uname = request.POST['username']
         except:pass
         login(request)
