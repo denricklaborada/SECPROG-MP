@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^acctman/$', views.acctman, name='acctman'),
     url(r'^product/(?P<product_id>[0-9]+)/$', views.product, name='product'),
     url(r'^checkout/(?P<product_id>[0-9]+)/$', views.checkout, name='checkout'),
-	url(r'^logout/$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
+	url(r'^logout/$', views.outlog, name='logout'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

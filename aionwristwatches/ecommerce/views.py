@@ -10,6 +10,14 @@ from .models import Product, Transaction, Review
 
 logger = logging.getLogger(__name__)
 
+def outlog(request):
+    try:
+        uname = request.user.username
+        logger.info(str(request) + '  User:' + uname + " logged out !")
+    except:
+        logger.info(str(request) + '  User: logged out !')
+    return logout(request, next_page='/')
+
 def error_400(request):
     try:
         logger.error(str(request) + ' 400 Bad request ' + request.user.username + " " + request.user.usertypes)
