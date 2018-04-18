@@ -115,34 +115,40 @@ def index(request):
                 logout(request)
                 erroruser = True
         elif username_passed and password_passed and fname_passed and lname_passed:
-            # USERNAME, FNAME, LNAME != PASSWORD
-            if username_passed.lower() in password_passed.lower():
-                error_similar = True
-
-            if fname_passed.lower() in password_passed.lower():
-                error_similar = True
-
-            if lname_passed.lower() in password_passed.lower():
-                error_similar = True
-
-            # PASSWORD IS BLACKLISTED
-            if password_passed.lower() in BLACKLIST_PASSWORD:
-                error_pblack = True
-
+            
             # ALPHANUMERIC
-            first_isalpha = password_passed[0].isalpha()
-            if all(c.isalpha() == first_isalpha for c in password_passed):
+            if not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', password_passed):
                 error_alpha = True
-
+                
+            # PASSWORD IS BLACKLISTED
+            elif password_passed.lower() in BLACKLIST_PASSWORD:
+                error_pblack = True            
+                
+            elif username_passed.lower() in BLACKLIST_USERNAME:
+                error_pblack = True
+                
             # MIN_LENGTH IS 8
-            if len(password_passed) < 8:
+            elif len(password_passed) < 8:
                 error_length = True
-
-            if password_passed != password2_passed:
+            
+            # MATCH?
+            elif password_passed != password2_passed:
                 error_match = True
 
-            if len(User.objects.filter(username=username_passed)) > 0:
+            # EXISTING USERNAME
+            elif len(User.objects.filter(username=username_passed)) > 0:
                 error_exists = True
+            
+            # USERNAME, FNAME, LNAME != PASSWORD
+            elif username_passed.lower() in password_passed.lower():
+                error_similar = True
+
+            elif fname_passed.lower() in password_passed.lower():
+                error_similar = True
+
+            elif lname_passed.lower() in password_passed.lower():
+                error_similar = True
+
         else:
             logger.warning(str(request) + '  User:' + uname + " login failed !")
             erroruser = True
