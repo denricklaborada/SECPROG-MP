@@ -148,7 +148,10 @@ def index(request):
             'searched': searched,
             'query': search,
         }
-        uname = request.POST['username']
+        try:
+            uname = request.POST['username']
+        except:
+            pass
         login(request, context)
         if request.user.is_authenticated:
             if request.user.usertypes == 'Customer':
@@ -233,7 +236,10 @@ def loginmanager(request):
         logout(request)
 
     if request.method == 'POST':
-        uname = request.POST['username']
+        try:
+            uname = request.POST['username']
+        except:
+            pass
         login(request)
         if request.user.is_authenticated:
             if request.user.usertypes == 'Administrator' or request.user.usertypes == 'ProductManager' or request.user.usertypes == 'AccountingManager':
@@ -572,10 +578,16 @@ def product(request, product_id):
             rev.product = product_obj
             rev.user = request.user
             rev.save()
-        uname = request.POST['username']
+        try:uname = request.POST['username']
+        except:pass
         login(request)
         if request.user.is_authenticated:
-            logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
+            if request.user.usertypes == 'Customer':
+                logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
+            else:
+                logger.warning(str(request) + '  User:' + uname + " login failed !")
+                logout(request)
+                erroruser = True
         else:
             logger.warning(str(request) + '  User:' + uname + " login failed !")
             erroruser = True
