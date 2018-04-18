@@ -13,9 +13,9 @@ logger = logging.getLogger(__name__)
 def outlog(request):
     try:
         uname = request.user.username
-        logger.info(str(request) + '  User:' + uname + " logged out !")
+        logger.info(str(request) + '  User:' + uname + " logged out!")
     except:
-        logger.info(str(request) + '  User: logged out !')
+        logger.info(str(request) + '  User: logged out!')
     return logout(request, next_page='/')
 
 def error_400(request):
@@ -114,6 +114,8 @@ def index(request):
                 logger.warning(str(request) + '  User:' + uname + " login failed !")
                 logout(request)
                 erroruser = True
+
+            return login(request, context)
         elif username_passed and password_passed and fname_passed and lname_passed:
             
             # ALPHANUMERIC
@@ -252,11 +254,13 @@ def loginmanager(request):
                     if user.usertypes == 'AccountingManager':
                         return redirect('/acctman/')
             else:
-                logger.warning(str(request) + '  User:' + uname + " login failed !")
+                logger.warning(str(request) + '  User:' + uname + " login failed!")
                 logout(request)
                 erroruser = True
+
+            return login(request)
         else:
-            logger.warning(str(request) + '  User:' + uname + " login failed !")
+            logger.warning(str(request) + '  User:' + uname + " login failed!")
             erroruser = True
 
     context ={
@@ -693,11 +697,13 @@ def product(request, product_id):
         login(request)
         if request.user.is_authenticated:
             if request.user.usertypes == 'Customer':
-                logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
+                logger.info(str(request) + '  User:' + request.user.username + " login successfully!")
             else:
-                logger.warning(str(request) + '  User:' + uname + " login failed !")
+                logger.warning(str(request) + '  User:' + uname + " login failed!")
                 logout(request)
                 erroruser = True
+
+            return login(request)
         elif username_passed and password_passed and fname_passed and lname_passed:
             
             # ALPHANUMERIC
@@ -733,7 +739,7 @@ def product(request, product_id):
             elif lname_passed.lower() in password_passed.lower():
                 error_similar = True
         else:
-            logger.warning(str(request) + '  User:' + uname + " login failed !")
+            logger.warning(str(request) + '  User:' + uname + " login failed!")
             erroruser = True
 
     regform = RegistrationForm()
