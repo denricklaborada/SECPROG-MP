@@ -220,14 +220,14 @@
 	                        </div>
                             
                             <div class="form-group">
-	                            <input type="text" id="id_username1" name="username" class="form-control input-sm" placeholder="Username" pattern="^(\w([,.+-@]*[a-zA-Z0-9])*){5,150}" onChange="checkCommonUsername();" required>
+	                            <input type="text" id="id_username1" name="username" class="form-control input-sm" placeholder="Username" pattern="^(\w([,.+-@]*[a-zA-Z0-9])*){5,150}" title="Must be 5 characters long" onChange="checkCommonUsername();" required>
 	                        </div>
                             
                             <div style="margin-top: 10px;" class="registrationFormAlert" id="divCheckCommonUsername"></div>
                             
                             <div class="form-group">
                                 <div class=" ">
-                                    <input type="password" placeholder="Password" name="password1" class=" form-control password_strength" id="id_password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters. Password strength meter must be filled." onChange="checkPassword();" required>
+                                    <input type="password" placeholder="Password" name="password1" class=" form-control password_strength" id="id_password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters." onChange="checkPassword();" required>
                                     
                                     <div style="margin-top: 10px;" class="registrationFormAlert" id="divCheckPassword"></div>
                                         <div id="message">
@@ -324,9 +324,22 @@
 	        </div>
     	</div>
         
-        {% if error_length %}
+        
+        {% if signup %}
+                <div class=" alert alert-success col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
+                    Signup successful! Please log-in to continue.
+                </div>
+        {% elif error_length %}
                 <div class=" alert alert-danger col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
                     The new password must be at least 8 characters long.
+                </div>
+        {% elif error_username %}
+                <div class=" alert alert-danger col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
+                    Username must be 5 characters long.
+                </div>
+        {% elif error_email_exists %}
+                <div class=" alert alert-danger col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
+                    Email address already used. Please try another one.
                 </div>
         {% elif error_match %}
                 <div class=" alert alert-danger col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
@@ -334,7 +347,7 @@
                 </div>
         {% elif error_exists %}
                 <div class=" alert alert-danger col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
-                    Sorry, the username already exists.
+                    Sorry, the username already exists. Please try another one.
                 </div>
         {% elif error_alpha %}
         <div class=" alert alert-danger col-6 text-center" role="alert" style="margin-top: 10px; margin-left: 25%;">
