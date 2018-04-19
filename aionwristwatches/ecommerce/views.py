@@ -261,6 +261,48 @@ def prodman(request):
     }
     return render(request, 'ecommerce/prodman.html', context)
 
+def resetpass(request):
+    user = request.user
+    if not user.is_authenticated or user.is_authenticated and user.usertypes == 'Customer':
+        return error_403(request)
+    context = {
+        "alert": None
+    }
+    try:
+        currpass = request.POST['currpass']
+        pass1 = request.POST['pass1']
+        pass2 = request.POST['pass2']
+        
+        BLACKLIST_PASSWORD = ['password', 'pass123', 'password123', 'admin', 'guest','123456','qwerty','12345678','qwertyuiop','google','zxcvbnm','111111','1234567890','123123','mynoob','18atcskd2w','1q2w3e4r','654321','letmein','football','iloveyou','welcome','monkey','abc123','passw0rd','dragon','starwars','123456789']
+        
+        if not user.check_password(currpass):
+            context["alert"] = "Wrong password entered."
+        elif pass1 != pass2:
+            context["alert"] = "Passwords do not match."
+        elif currpass == pass1:
+            context["alert"] = "Your new password must differ from your previous password."
+        elif pass1.lower() in BLACKLIST_PASSWORD:
+            context["alert"] = "Invalid username/password."
+        elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', pass1):
+            context["alert"] = "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter and one number."
+        elif len(pass1) < 8:
+            context["alert"] = "Password must be at least 8 characters long."
+        elif (user.username).lower() in pass1.lower():
+            context["alert"] = "Password should not contain your first name, last name, or username"
+        elif (user.first_name).lower() in pass1.lower():
+             context["alert"] = "Password should not contain your first name, last name, or username"
+        elif (user.last_name).lower() in pass1.lower():
+             context["alert"] = "Password should not contain your first name, last name, or username"
+        elif user.check_password(currpass) and len(pass1) > 0 and len(pass2) > 0 and pass1 == pass2:
+            user.set_password(pass1)
+            user.save()
+            logger.info("User: " + request.user.username +" "+ request.user.usertypes +" changed password successfully")
+            return redirect('/loginmanager/')
+        else:
+            logger.warning("User: " + request.user.username +" "+ request.user.usertypes +" password was not changed")
+
+    except : pass
+    return render(request, 'ecommerce/resetpass.html',context)
 
 def loginmanager(request):
     erroruser = False
@@ -273,11 +315,18 @@ def loginmanager(request):
             uname = request.POST['username']
         except:
             pass
+
+        
         login(request)
         if request.user.is_authenticated:
             if request.user.usertypes == 'Administrator' or request.user.usertypes == 'ProductManager' or request.user.usertypes == 'AccountingManager':
                 logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
                 user = User.objects.filter(username=request.POST['username'])[:1].get()
+                if user.is_prev_logged == False:
+                    print("YAY")
+                    user.is_prev_logged = True
+                    user.save()
+                    return redirect('/resetpass/')
                 print(user.usertypes)
                 print(user.is_active)
                 if not user.expired:

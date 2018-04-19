@@ -77,6 +77,9 @@ temporary.contribute_to_class(User, 'temporary')
 expired = models.BooleanField(default=False)
 expired.contribute_to_class(User, 'expired')
 
+is_prev_logged = models.BooleanField(default=False)
+is_prev_logged.contribute_to_class(User, 'is_prev_logged')
+
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

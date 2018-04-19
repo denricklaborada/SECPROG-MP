@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<script src="{{ STATIC_URL }} /static/js/jquery.min.js"></script>
+    	<script src="{{ STATIC_URL }} /static/js/bootstrap.min.js"></script>
+    	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/header3.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'fonts/css/font-awesome.min.css' %}">
+        
+        {% block extrahead %}{% endblock %}
+<!--    TO LOOK FOR ICONS    https://fontawesome.bootstrapcheatsheets.com/#-->
+		<title>Aion Wristwatches Staff Site</title>
+	</head>
+    {% block extrascript %}
+    {% endblock %}
+	<body>
+    {% include 'session_security/all.html' %}
+    {% if user.is_authenticated and user.usertypes != 'Customer' %}
+		<nav id="navbar" class="navbar navbar-expand-lg navbar-dark" >
+      {% if user.usertypes == 'Administrator'%}
+  			<a id="id_title" class="navbar-brand ml-5" href="">
+  				<img src="{{ STATIC_URL }} /static/brand/watch.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
+  				Aion Wristwatches Staff 
+  			</a>
+			{% elif user.usertypes == 'ProductManager'%}
+			  <a id="id_title1" class="navbar-brand ml-5" href="">
+  				<img src="{{ STATIC_URL }} /static/brand/watch.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
+  				Aion Wristwatches Staff
+  			</a>
+			{% else %}
+			  <a id="id_title2" class="navbar-brand ml-5" href="">
+  				<img src="{{ STATIC_URL }} /static/brand/watch.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
+  				Aion Wristwatches Staff
+  			</a>
+			{% endif %}
+       <div id="user-tools" class="col-9">
+           <small>
+             <bold id="id_navitems">Welcome,</bold>
+              <strong id="id_navitems" class="text-uppercase">{{user.username}}</strong>.
+          </small>
+      </div>
+		</nav>
+      {%endif%}
+      
+    	{% block body %}
+    	{% endblock %}
+	</body>
+</html>

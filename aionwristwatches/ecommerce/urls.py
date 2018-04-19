@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^adminman/prodmng/$',views.prodmng, name='prodmng'),
     url(r'^adminman/acctmng/$',views.acctmng, name='acctmng'),
     url(r'^changepass/$', views.changepass, name='changepass'),
+    url(r'^resetpass/$', views.resetpass, name='resetpass'),
     url(r'^adminman/prodmng/addp/$', views.addp, name='addp'),
     url(r'^adminman/acctmng/adda/$', views.adda, name='adda'),
     url(r'^acctman/$', views.acctman, name='acctman'),

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os,re
+import pytz
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -196,6 +197,7 @@ LOGGING = {
 }
 
 ACCOUNT_EMAIL_UNIQUE = True
+#ACCOUNT_TIMEZONES = pytz.timezone('Asia/Singapore')
 SITE_ID = 2
 # PASSWORD EXPIRATION
 ACCOUNT_PASSWORD_USE_HISTORY = True

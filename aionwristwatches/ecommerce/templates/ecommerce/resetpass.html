@@ -1,0 +1,43 @@
+{% extends 'ecommerce/extends/header4.html' %}
+{% load static %}
+{% block extrahead %}
+   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" >
+  <link href="{% static 'css/dataTables.bootstrap4.css' %}" rel="stylesheet" type="text/css" >
+<link rel="stylesheet" type="text/css" href="{% static 'css/editpman.css' %}">
+{% endblock%}
+
+{% block body %}
+<div id="accttab" class="container mt-5 col-7 " >
+        <div class="card">
+            <div id="title" class="card-header"><strong class="p-3">FIRST TIME LOG-IN: CHANGE PASSWORD</strong></div>
+            <div class = "card-body">
+               <form action="#" method="POST">
+                <ul class="list-group list-group-flush">
+                   <li  class="list-group-item d-inline-flex ">
+                        <div class="col-3">Current Password</div>
+                        <input class="col-7" type="password" name="currpass"/>
+                    </li>
+                    <li  class="list-group-item d-inline-flex ">
+                        <div class="col-3">Password</div>
+                        <input class="col-7" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" value="" name="pass1"/>
+                    </li>
+                    <li  class="list-group-item d-inline-flex ">
+                        <div class="col-3">Retype Password</div>
+                        <input class="col-7" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" value="" name="pass2"/>
+                    </li>
+
+
+                </ul>
+                   {% if alert %}
+                    {{ alert }}
+                {% endif %}
+                {% csrf_token %}
+                <div class="text-center mt-1 pt-2">
+                    <input type="submit" class="btn btn-primary" value="SAVE"/>
+                </div>
+                
+               </form>
+            </div>
+        </div>
+    </div>
+{%endblock%}
