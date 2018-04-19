@@ -208,7 +208,7 @@
 	                    <form role="form" method="post">
                             {% csrf_token %}
 	                        <div class="form-group">
-	                            <input type="text" id="id_first_name" name="first_name" class="form-control input-sm" placeholder="First Name" pattern="^[A-Za-z]+$" required>
+	                            <input type="text" id="id_first_name" name="first_name" class="form-control input-sm" placeholder="First Name" pattern="^[A-Za-z ]+$" required>
 	                        </div>
 
 	                        <div class="form-group">
@@ -216,7 +216,7 @@
 	                        </div>
 
 	                        <div class="form-group">
-	                            <input type="text" id="id_last_name" name="last_name" class="form-control input-sm" placeholder="Last Name" pattern="^[A-Za-z]+$" required>
+	                            <input type="text" id="id_last_name" name="last_name" class="form-control input-sm" placeholder="Last Name" pattern="^[A-Za-z ]+$" required>
 	                        </div>
                             
                             <div class="form-group">
