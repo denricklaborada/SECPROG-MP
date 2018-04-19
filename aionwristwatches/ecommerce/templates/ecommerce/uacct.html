@@ -151,11 +151,11 @@
                         </li>
                         <li  class="list-group-item d-inline-flex ">
                             <div class="col-3">New Password</div>
-                            <input class="col-8" id="pass1" name="pass1" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" value="" required/>
+                            <input class="col-8" id="pass1" name="pass1" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?_&])[A-Za-z\d$@$!%*?_&]{8,}$" value="" required/>
                         </li>
                         <li class="list-group-item d-inline-flex ">
                             <div class="col-3">Verify Password</div>
-                            <input class="col-8" id="pass2" name="pass2" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"  value="" required/>
+                            <input class="col-8" id="pass2" name="pass2" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?_&])[A-Za-z\d$@$!%*?_&]{8,}$"  value="" required/>
                         </li>
                     </ul>
                     {% if alert %}

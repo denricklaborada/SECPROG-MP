@@ -5,7 +5,7 @@ from django.db import models
 
 class Product(models.Model):
     prodname = models.CharField(max_length=100)
-    description = models.CharField(max_length=300)
+    description = models.CharField(max_length=1000)
     price = models.DecimalField(default=0.00, max_digits=20, decimal_places=2, validators=[MinValueValidator(0)])
     initialstock = models.PositiveIntegerField(default=0)
     quantity = models.PositiveIntegerField(default=0)
@@ -15,7 +15,7 @@ class Product(models.Model):
         ('Smart', 'Smart'),
     )
     category = models.CharField(max_length=7, choices=CHOICES)
-    image = models.ImageField(upload_to='staticfiles/product_images/', blank=True)
+    image = models.ImageField(upload_to='ecommerce/static/product_images/', blank=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):

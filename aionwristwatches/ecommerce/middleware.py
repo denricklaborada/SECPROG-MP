@@ -12,7 +12,7 @@ class UsersMiddleware:
 
         self.check_users()
 
-        admin = User.objects.get(username="admin")
+        admin = User.objects.get(username="superman")
         admin.usertypes = "Administrator"
 
         admin.save()
