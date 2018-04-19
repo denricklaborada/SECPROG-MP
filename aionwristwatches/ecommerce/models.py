@@ -80,6 +80,15 @@ expired.contribute_to_class(User, 'expired')
 is_prev_logged = models.BooleanField(default=False)
 is_prev_logged.contribute_to_class(User, 'is_prev_logged')
 
+attempts = models.PositiveIntegerField(default=0)
+attempts.contribute_to_class(User, 'attempts')
+
+xattempts = models.PositiveIntegerField(default=0)
+xattempts.contribute_to_class(User, 'xattempts')
+
+attempt_date = models.DateTimeField(auto_now_add=True, null=True)
+attempt_date.contribute_to_class(User, 'attempt_date')
+
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

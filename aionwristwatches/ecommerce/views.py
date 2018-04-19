@@ -7,7 +7,8 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, ReviewForm
 from .models import Product, Transaction, Review
-import exceptions.LockedOut
+#import exceptions.LockedOut
+import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -311,6 +312,7 @@ def resetpass(request):
 
 def loginmanager(request):
     erroruser = False
+    lockedout = False
     if request.user.is_authenticated:
         logger.info(str(request) + '  User:' + request.user.username + " logged out. ")
         logout(request)
@@ -323,13 +325,32 @@ def loginmanager(request):
 
         
         login(request)
+        
         if request.user.is_authenticated:
-            if request.user.usertypes == 'Administrator' or request.user.usertypes == 'ProductManager' or request.user.usertypes == 'AccountingManager':
+            if request.user.usertypes != 'Customer':
                 logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
+                
                 user = User.objects.filter(username=request.POST['username'])[:1].get()
-                if request.user.usertypes == 'ProductManager' or request.user.usertypes == 'AccountingManager':
-                    if user.is_prev_logged == False:
+                print(user.username, "USAH", user.attempts, user.attempt_date, user.xattempts)
+                if request.user.usertypes != 'Administrator':
+                    if user.attempts >= 1 and user.is_prev_logged == False:
+                        user.is_active = False
+                        user.attempts = 0
+                        user.save()
+                        lockedout = True
+                        context ={
+                            'erroruser' : erroruser,
+                            'lockedout' : lockedout,
+                        }
+                        return render(request, 'ecommerce/loginmanager.html',context)
+                    
+                    if user.is_prev_logged == False and user.attempts == 0:
+                        user.attempts += 1
+                        user.save()
                         return redirect('/resetpass/')
+                        
+                user.attempts += 1
+                user.save()
                 print(user.usertypes)
                 print(user.is_active)
                 if not user.expired:
@@ -340,17 +361,38 @@ def loginmanager(request):
                     if user.usertypes == 'AccountingManager':
                         return redirect('/acctman/')
             else:
+                
+                user = User.objects.filter(username=uname)[:1].get()
                 logger.warning(str(request) + '  User:' + uname + " login failed!")
                 logout(request)
+                user.xattempts += 1
+                user.save()
                 erroruser = True
 
             return login(request)
         else:
+            
+            user = User.objects.filter(username=uname)[:1].get()
             logger.warning(str(request) + '  User:' + uname + " login failed!")
+            if user.usertypes != 'Customer' and user.usertypes != 'Administrator':
+                user.xattempts += 1
+                user.save()
+                    
+                if user.xattempts >= 3 and user.is_prev_logged == True:
+                    user.is_active = False
+                    user.xattempts = 0
+                    user.save()
+                    lockedout = True
+                    context ={
+                        'lockedout' : lockedout,
+                    }
+                    return render(request, 'ecommerce/loginmanager.html',context)
+                
             erroruser = True
 
     context ={
         'erroruser' : erroruser,
+        'lockedout' : lockedout,
     }
     return render(request, 'ecommerce/loginmanager.html',context)
 
