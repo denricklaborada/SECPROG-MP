@@ -295,6 +295,7 @@ def resetpass(request):
              context["alert"] = "Password should not contain your first name, last name, or username"
         elif user.check_password(currpass) and len(pass1) > 0 and len(pass2) > 0 and pass1 == pass2:
             user.set_password(pass1)
+            user.is_prev_logged = True
             user.save()
             logger.info("User: " + request.user.username +" "+ request.user.usertypes +" changed password successfully")
             return redirect('/loginmanager/')
@@ -322,11 +323,9 @@ def loginmanager(request):
             if request.user.usertypes == 'Administrator' or request.user.usertypes == 'ProductManager' or request.user.usertypes == 'AccountingManager':
                 logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
                 user = User.objects.filter(username=request.POST['username'])[:1].get()
-                if user.is_prev_logged == False:
-                    print("YAY")
-                    user.is_prev_logged = True
-                    user.save()
-                    return redirect('/resetpass/')
+                if request.user.usertypes == 'ProductManager' or request.user.usertypes == 'AccountingManager':
+                    if user.is_prev_logged == False:
+                        return redirect('/resetpass/')
                 print(user.usertypes)
                 print(user.is_active)
                 if not user.expired:
