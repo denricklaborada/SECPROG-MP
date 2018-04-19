@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, ReviewForm
 from .models import Product, Transaction, Review
+import exceptions.LockedOut
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +49,7 @@ def error_500(request):
     except:
         logger.error(str(request) + " 500 Internal Server Error guest")
     return render(request,'ecommerce/500.html')
-    
+
 def index(request):
     product_list = Product.objects.all()
 
@@ -112,8 +113,11 @@ def index(request):
             'product_list': product_list,
             'regform': regform,
         }
+        try:
+            login(request, context)
+        except LockedOut:
+            messages.warning(request, 'Your account has been locked out because of too many failed login attempts.')
         
-        login(request, context)
         if request.user.is_authenticated:
             if request.user.usertypes == 'Customer':
                 logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
