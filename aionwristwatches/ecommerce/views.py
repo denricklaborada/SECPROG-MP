@@ -686,6 +686,9 @@ def product(request, product_id):
     error_alpha = False
     error_match = False
     error_exists = False
+    signup = False
+    error_email_exists = False
+    error_username = False
     
     BLACKLIST_PASSWORD = ['password', 'pass123', 'password123', 'admin', 'guest','123456','qwerty','12345678','qwertyuiop','google','zxcvbnm','111111','1234567890','123123','mynoob','18atcskd2w','1q2w3e4r','654321','letmein','football','iloveyou','welcome','monkey','abc123','passw0rd','dragon','starwars','123456789']
     BLACKLIST_USERNAME = [ 'admin', 'administrator', 'root', 'system', 'guest','operator','super','gg','test1','testing','user','111111','123456','12345678','abc123','abramov','account','accounting','ad','adm','adver','advert','advertising','afanasev','agafonov','agata','Baseball','business','company','contact','contactus','design','director','dragon','manager','marketing','mysql','oracle','password','postmaster','qwerty','test','user','webmaster']
@@ -701,7 +704,12 @@ def product(request, product_id):
             password=regform.cleaned_data['password1']
             print("FORM VALID")
             regform.save()
-            return redirect('/')
+            signup = True
+            
+            context = {
+                'signup': signup,
+            }
+            return render(request, 'ecommerce/product.html', context)
         
         try:
             fname_passed =  regform.cleaned_data.get('first_name')
@@ -709,6 +717,7 @@ def product(request, product_id):
             username_passed = request.POST['username']
             password_passed = regform.cleaned_data.get('password1')
             password2_passed = request.POST['password2']
+            email_passed = request.POST['email']
         except:
             pass
         
@@ -732,10 +741,15 @@ def product(request, product_id):
                 erroruser = True
 
             return login(request)
-        elif username_passed and password_passed and fname_passed and lname_passed:
-            
+        elif password_passed and username_passed and fname_passed and lname_passed:
             # ALPHANUMERIC
-            if not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', password_passed):
+            if len(username_passed) < 5:
+                error_username = True
+                
+            elif len(User.objects.filter(email=email_passed)) > 0:
+                error_email_exists = True
+                
+            elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', password_passed):
                 error_alpha = True
                 
             # PASSWORD IS BLACKLISTED
@@ -780,6 +794,8 @@ def product(request, product_id):
         'error_exists': error_exists,
         'error_match': error_match,
         'erroruser': erroruser,
+        'error_email_exists': error_email_exists,
+        'error_username': error_username,
         'regform': regform,
         'revform': revform,
         'product_obj': product_obj,
