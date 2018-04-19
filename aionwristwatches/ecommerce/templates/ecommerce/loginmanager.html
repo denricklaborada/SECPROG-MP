@@ -17,7 +17,11 @@
     <div class="main">
         <div class="text-center"><h5><strong>Staff Login</strong></h5></div>
         
-        {% if erroruser == True %}
+        {% if lockedout == True %}
+        <div class="alert alert-danger" role="alert">
+            Your account has been locked. Contact your local administrator.
+        </div>
+        {% elif erroruser == True %}
         <div class="alert alert-danger" role="alert">
             The username/password you entered did not match our records. Please try again.
         </div>

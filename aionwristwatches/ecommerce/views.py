@@ -7,7 +7,6 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, ReviewForm
 from .models import Product, Transaction, Review
-
 logger = logging.getLogger(__name__)
 
 def outlog(request):
@@ -325,6 +324,7 @@ def loginmanager(request):
                 logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
                 
                 user = User.objects.filter(username=request.POST['username'])[:1].get()
+                
                 print(user.username, "USAH", user.attempts, user.attempt_date, user.xattempts)
                 if request.user.usertypes != 'Administrator':
                     if user.attempts >= 1 and user.is_prev_logged == False:
@@ -345,12 +345,6 @@ def loginmanager(request):
                         
                 user.attempts += 1
                 user.save()
-
-                if user.is_prev_logged == False:
-                    print("YAY")
-                    user.is_prev_logged = True
-                    user.save()
-                    return redirect('/resetpass/')
                 print(user.usertypes)
                 print(user.is_active)
                 if not user.expired:
