@@ -7,7 +7,6 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, ReviewForm
 from .models import Product, Transaction, Review
-import exceptions.LockedOut
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +48,7 @@ def error_500(request):
     except:
         logger.error(str(request) + " 500 Internal Server Error guest")
     return render(request,'ecommerce/500.html')
-
+    
 def index(request):
     product_list = Product.objects.all()
 
@@ -113,11 +112,8 @@ def index(request):
             'product_list': product_list,
             'regform': regform,
         }
-        try:
-            login(request, context)
-        except LockedOut:
-            messages.warning(request, 'Your account has been locked out because of too many failed login attempts.')
         
+        login(request, context)
         if request.user.is_authenticated:
             if request.user.usertypes == 'Customer':
                 logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
@@ -299,7 +295,6 @@ def resetpass(request):
              context["alert"] = "Password should not contain your first name, last name, or username"
         elif user.check_password(currpass) and len(pass1) > 0 and len(pass2) > 0 and pass1 == pass2:
             user.set_password(pass1)
-            user.is_prev_logged = True
             user.save()
             logger.info("User: " + request.user.username +" "+ request.user.usertypes +" changed password successfully")
             return redirect('/loginmanager/')
@@ -327,9 +322,11 @@ def loginmanager(request):
             if request.user.usertypes == 'Administrator' or request.user.usertypes == 'ProductManager' or request.user.usertypes == 'AccountingManager':
                 logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
                 user = User.objects.filter(username=request.POST['username'])[:1].get()
-                if request.user.usertypes == 'ProductManager' or request.user.usertypes == 'AccountingManager':
-                    if user.is_prev_logged == False:
-                        return redirect('/resetpass/')
+                if user.is_prev_logged == False:
+                    print("YAY")
+                    user.is_prev_logged = True
+                    user.save()
+                    return redirect('/resetpass/')
                 print(user.usertypes)
                 print(user.is_active)
                 if not user.expired:
@@ -344,7 +341,6 @@ def loginmanager(request):
                 logout(request)
                 erroruser = True
 
-            return login(request)
         else:
             logger.warning(str(request) + '  User:' + uname + " login failed!")
             erroruser = True
@@ -407,8 +403,8 @@ def changepass(request):
             context["alert"] = "Your new password must differ from your previous password."
         elif pass1.lower() in BLACKLIST_PASSWORD:
             context["alert"] = "Invalid username/password."
-        elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', pass1):
-            context["alert"] = "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter and one number."
+        elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?_&])[A-Za-z\d$@$!%*?_&]{8,}$', pass1):
+            context["alert"] = "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter, one special character and one number."
         elif len(pass1) < 8:
             context["alert"] = "Password must be at least 8 characters long."
         elif (user.username).lower() in pass1.lower():
@@ -527,8 +523,8 @@ def addp(request):
                 context["alert"] = "Passwords do not match."
             elif password.lower() in BLACKLIST_PASSWORD:
                 context["alert"] = "Invalid username/password."
-            elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', password):
-                context["alert"] = "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter and one number."
+            elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?_&])[A-Za-z\d$@$!%*?_&]{8,}$', password):
+                context["alert"] = "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter, one special character and one number."
             elif len(password) < 8:
                 context["alert"] = "Password must be at least 8 characters long."
             elif username.lower() in password.lower():
@@ -586,8 +582,8 @@ def adda(request):
                 context["alert"] = "Passwords do not match."
             elif password.lower() in BLACKLIST_PASSWORD:
                 context["alert"] = "Invalid username/password."
-            elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', password):
-                context["alert"] = "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter and one number."
+            elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?_&])[A-Za-z\d$@$!%*?_&]{8,}$', password):
+                context["alert"] = "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter, one special character and one number."
             elif len(password) < 8:
                 context["alert"] = "Password must be at least 8 characters long."
             elif username.lower() in password.lower():
@@ -668,8 +664,8 @@ def uacct(request):
                     context["alert"] = "Your new password must differ from your previous password."
                 elif pass1.lower() in BLACKLIST_PASSWORD:
                     context["alert"] = "Invalid username/password."
-                elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', pass1):
-                    context["alert"] = "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter and one number."
+                elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?_&])[A-Za-z\d$@$!%*?_&]{8,}$', pass1):
+                    context["alert"] = "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter, one special character and one number."
                 elif len(pass1) < 8:
                     context["alert"] = "Password must be at least 8 characters long."
                 elif (user.username).lower() in pass1.lower():
@@ -807,7 +803,7 @@ def product(request, product_id):
             elif len(User.objects.filter(email=email_passed)) > 0:
                 error_email_exists = True
                 
-            elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', password_passed):
+            elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?_&])[A-Za-z\d$@$!%*?_&]{8,}$', password_passed):
                 error_alpha = True
                 
             # PASSWORD IS BLACKLISTED

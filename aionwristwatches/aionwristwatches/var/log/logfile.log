@@ -18,3 +18,134 @@ ERROR 13-Apr-2018 15:16:00 12912 : <WSGIRequest: GET '/ecommerce/static/product_
 ERROR 13-Apr-2018 15:16:01 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/8999313_fpx.jpeg'> 404 Page not found 
 ERROR 13-Apr-2018 15:16:01 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/Garmin_Unisex_Forerunner_35_Blue_Silicone_Strap_GPS_Sma_kCD1lwr.jpeg'> 404 Page not found 
 ERROR 13-Apr-2018 15:16:02 12912 : <WSGIRequest: GET '/ecommerce/static/product_images/Alta_HR_Heart_Rate_Wristband_Smart_Watch.jpeg'> 404 Page not found 
+ERROR 19-Apr-2018 11:42:03 8616 : <WSGIRequest: GET '/'> 500 Internal Server Error 
+ERROR 19-Apr-2018 11:42:04 8616 : <WSGIRequest: GET '/favicon.ico'> 500 Internal Server Error 
+ERROR 19-Apr-2018 11:42:13 8616 : <WSGIRequest: GET '/'> 500 Internal Server Error 
+ERROR 19-Apr-2018 11:42:14 8616 : <WSGIRequest: GET '/favicon.ico'> 500 Internal Server Error 
+ERROR 19-Apr-2018 11:42:22 8616 : <WSGIRequest: GET '/admin/'> 500 Internal Server Error 
+ERROR 19-Apr-2018 11:42:23 8616 : <WSGIRequest: GET '/favicon.ico'> 500 Internal Server Error 
+INFO 19-Apr-2018 11:50:11 8904 : <WSGIRequest: GET '/loginmanager/'>  User:admin logged out. 
+WARNING 19-Apr-2018 11:50:19 8904 : <WSGIRequest: POST '/loginmanager/'>  User:prodman1 login failed!
+WARNING 19-Apr-2018 11:50:36 8904 : <WSGIRequest: POST '/loginmanager/'>  User:prodman1 login failed!
+INFO 19-Apr-2018 11:55:36 8904 : <WSGIRequest: POST '/loginmanager/'>  User:admin login successfully !
+INFO 19-Apr-2018 11:56:12 8904 : <WSGIRequest: POST '/'>  User:prodman1 login successfully !
+ERROR 19-Apr-2018 11:56:22 8904 : <WSGIRequest: GET '/prodman/'> 403 Forbidden error prodman1 Customer
+INFO 19-Apr-2018 12:04:57 10492 : <WSGIRequest: POST '/loginmanager/'>  User:superman login successfully !
+INFO 19-Apr-2018 12:06:12 10492 : <WSGIRequest: GET '/loginmanager/'>  User:iamgod logged out. 
+INFO 19-Apr-2018 12:06:18 10492 : <WSGIRequest: POST '/loginmanager/'>  User:superman login successfully !
+INFO 19-Apr-2018 12:06:19 10492 : Administrator: superman viewed admin page
+INFO 19-Apr-2018 12:13:03 10200 : <WSGIRequest: GET '/loginmanager/'>  User:iamgod logged out. 
+INFO 19-Apr-2018 12:13:11 10200 : <WSGIRequest: POST '/loginmanager/'>  User:superman login successfully !
+INFO 19-Apr-2018 12:13:11 10200 : Administrator: superman viewed admin page
+INFO 19-Apr-2018 12:13:27 10200 : User: superman Administrator changed password successfully
+INFO 19-Apr-2018 12:13:37 10200 : <WSGIRequest: POST '/loginmanager/'>  User:superman login successfully !
+INFO 19-Apr-2018 12:13:37 10200 : Administrator: superman viewed admin page
+INFO 19-Apr-2018 12:19:41 8536 : Administrator: superman successfully created product manager account theflash
+INFO 19-Apr-2018 12:19:47 8536 : Administrator: superman viewed admin page
+INFO 19-Apr-2018 12:21:51 8536 : Administrator: superman successfully created account manager account wonderman
+INFO 19-Apr-2018 12:21:59 8536 : <WSGIRequest: GET '/loginmanager/'>  User:superman logged out. 
+INFO 19-Apr-2018 12:22:07 8536 : <WSGIRequest: POST '/loginmanager/'>  User:theflash login successfully !
+INFO 19-Apr-2018 12:23:00 8536 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 12:33:31 8536 : <WSGIRequest: POST '/loginmanager/'>  User:theflash login successfully !
+INFO 19-Apr-2018 12:33:32 8536 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 12:35:23 8536 : Product Manager: theflash added new product Rolex Oyster Perpetual 39 Blue Dial
+INFO 19-Apr-2018 12:35:24 8536 : Product Manager: theflash viewed product lists
+ERROR 19-Apr-2018 12:41:47 8536 : <WSGIRequest: GET '/prodman/'> 403 Forbidden error guest
+INFO 19-Apr-2018 12:42:54 10304 : <WSGIRequest: POST '/loginmanager/'>  User:theflash login successfully !
+INFO 19-Apr-2018 12:42:55 10304 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 12:43:50 10304 : Product Manager: theflash added new product OMEGA Speedmaster Chronograph Men's Watch
+INFO 19-Apr-2018 12:43:50 10304 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 12:46:16 10304 : Product Manager: theflash added new product TUDOR Heritage Black Bay Automatic Leather Watch
+INFO 19-Apr-2018 12:46:17 10304 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 12:54:04 10304 : Product Manager: theflash added new product SEIKO Divers Automatic Men's Watch
+INFO 19-Apr-2018 12:54:04 10304 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 12:58:06 10304 : Product Manager: theflash added new product ZENITH Chronomaster El Primero Chronograph Automatic Silver Dial Watch
+INFO 19-Apr-2018 12:58:07 10304 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 13:02:42 10304 : Product Manager: theflash added new product BREITLING Superocean II Automatic Chronometer Watch
+INFO 19-Apr-2018 13:02:42 10304 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 13:06:09 10304 : Product Manager: theflash added new product CASIO G-Shock Military Watch
+INFO 19-Apr-2018 13:06:09 10304 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 13:10:50 10304 : Product Manager: theflash added new product GUCCI I- Digital Dial Blue Rubber Watch
+INFO 19-Apr-2018 13:10:50 10304 : Product Manager: theflash viewed product lists
+ERROR 19-Apr-2018 14:00:19 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/gucci-i-gucci-digital-dial-blue-rubber.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:00:19 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/gucci-i-gucci-digital-dial-blue-rubber.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:00:20 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/rolex-oyster-perpetual-39-blue-dial-stainless-steel-role_OR2a7yG.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:00:20 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/rolex-oyster-perpetual-39-blue-dial-stainless-steel-role_OR2a7yG.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:00:20 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/omega-speedmaster-chronograph.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:00:20 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/omega-speedmaster-chronograph.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:00:20 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/tudor-heritage-black_bay-automatic-men_s-leather-watch.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:00:20 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/tudor-heritage-black_bay-automatic-men_s-leather-watch.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:00:21 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/casio-g-shock-military.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:00:21 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/casio-g-shock-military.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:00:21 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/seiko-divers-automatic.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:00:21 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/seiko-divers-automatic.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:00:21 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/zenith-chronomaster-el-primero-chronograph-automatic-silver-dial.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:00:21 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/zenith-chronomaster-el-primero-chronograph-automatic-silver-dial.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:00:21 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/breitling-superocean-ii-automatic-chronometer-white-dial.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:00:21 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/breitling-superocean-ii-automatic-chronometer-white-dial.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:01:31 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/casio-g-shock-military.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:01:31 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/casio-g-shock-military.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:01:32 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/tudor-heritage-black_bay-automatic-men_s-leather-watch.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:01:32 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/tudor-heritage-black_bay-automatic-men_s-leather-watch.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:01:32 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/zenith-chronomaster-el-primero-chronograph-automatic-silver-dial.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:01:32 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/zenith-chronomaster-el-primero-chronograph-automatic-silver-dial.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:01:32 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/gucci-i-gucci-digital-dial-blue-rubber.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:01:32 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/gucci-i-gucci-digital-dial-blue-rubber.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:01:32 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/rolex-oyster-perpetual-39-blue-dial-stainless-steel-role_OR2a7yG.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:01:32 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/rolex-oyster-perpetual-39-blue-dial-stainless-steel-role_OR2a7yG.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:01:32 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/omega-speedmaster-chronograph.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:01:32 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/omega-speedmaster-chronograph.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:01:32 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/seiko-divers-automatic.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:01:32 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/seiko-divers-automatic.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:01:33 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/breitling-superocean-ii-automatic-chronometer-white-dial.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:01:33 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/breitling-superocean-ii-automatic-chronometer-white-dial.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:02:26 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/casio-g-shock-military.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:02:26 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/casio-g-shock-military.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:02:27 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/zenith-chronomaster-el-primero-chronograph-automatic-silver-dial.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:02:27 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/zenith-chronomaster-el-primero-chronograph-automatic-silver-dial.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:02:27 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/gucci-i-gucci-digital-dial-blue-rubber.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:02:27 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/gucci-i-gucci-digital-dial-blue-rubber.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:02:27 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/rolex-oyster-perpetual-39-blue-dial-stainless-steel-role_OR2a7yG.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:02:27 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/rolex-oyster-perpetual-39-blue-dial-stainless-steel-role_OR2a7yG.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:02:27 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/omega-speedmaster-chronograph.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:02:27 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/omega-speedmaster-chronograph.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:02:27 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/tudor-heritage-black_bay-automatic-men_s-leather-watch.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:02:27 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/tudor-heritage-black_bay-automatic-men_s-leather-watch.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:02:27 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/seiko-divers-automatic.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:02:27 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/seiko-divers-automatic.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:02:28 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/breitling-superocean-ii-automatic-chronometer-white-dial.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:02:28 11660 : <WSGIRequest: GET '/ecommerce/static/product_images/breitling-superocean-ii-automatic-chronometer-white-dial.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:08:05 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/rolex-oyster-perpetual-39-blue-dial-stainless-steel-role_OR2a7yG.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:08:05 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/rolex-oyster-perpetual-39-blue-dial-stainless-steel-role_OR2a7yG.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:08:06 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/omega-speedmaster-chronograph.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:08:06 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/omega-speedmaster-chronograph.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:08:06 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/tudor-heritage-black_bay-automatic-men_s-leather-watch.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:08:06 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/tudor-heritage-black_bay-automatic-men_s-leather-watch.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:08:07 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/seiko-divers-automatic.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:08:07 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/seiko-divers-automatic.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:08:07 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/zenith-chronomaster-el-primero-chronograph-automatic-silver-dial.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:08:07 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/zenith-chronomaster-el-primero-chronograph-automatic-silver-dial.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:08:07 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/breitling-superocean-ii-automatic-chronometer-white-dial.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:08:07 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/breitling-superocean-ii-automatic-chronometer-white-dial.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:08:07 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/casio-g-shock-military.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:08:07 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/casio-g-shock-military.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:08:08 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/gucci-i-gucci-digital-dial-blue-rubber.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:08:08 9508 : <WSGIRequest: GET '/ecommerce/static/product_images/gucci-i-gucci-digital-dial-blue-rubber.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:11:38 936 : <WSGIRequest: GET '/ecommerce/static/product_images/rolex-oyster-perpetual-39-blue-dial-stainless-steel-role_OR2a7yG.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:11:38 936 : <WSGIRequest: GET '/ecommerce/static/product_images/rolex-oyster-perpetual-39-blue-dial-stainless-steel-role_OR2a7yG.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:11:38 936 : <WSGIRequest: GET '/ecommerce/static/product_images/omega-speedmaster-chronograph.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:11:38 936 : <WSGIRequest: GET '/ecommerce/static/product_images/omega-speedmaster-chronograph.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:11:38 936 : <WSGIRequest: GET '/ecommerce/static/product_images/tudor-heritage-black_bay-automatic-men_s-leather-watch.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:11:38 936 : <WSGIRequest: GET '/ecommerce/static/product_images/tudor-heritage-black_bay-automatic-men_s-leather-watch.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:11:39 936 : <WSGIRequest: GET '/ecommerce/static/product_images/seiko-divers-automatic.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:11:39 936 : <WSGIRequest: GET '/ecommerce/static/product_images/seiko-divers-automatic.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:11:39 936 : <WSGIRequest: GET '/ecommerce/static/product_images/zenith-chronomaster-el-primero-chronograph-automatic-silver-dial.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:11:39 936 : <WSGIRequest: GET '/ecommerce/static/product_images/zenith-chronomaster-el-primero-chronograph-automatic-silver-dial.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:11:39 936 : <WSGIRequest: GET '/ecommerce/static/product_images/breitling-superocean-ii-automatic-chronometer-white-dial.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:11:39 936 : <WSGIRequest: GET '/ecommerce/static/product_images/breitling-superocean-ii-automatic-chronometer-white-dial.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:11:39 936 : <WSGIRequest: GET '/ecommerce/static/product_images/casio-g-shock-military.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:11:39 936 : <WSGIRequest: GET '/ecommerce/static/product_images/casio-g-shock-military.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:11:39 936 : <WSGIRequest: GET '/staticfiles/product_images/gucci-i-gucci-digital-dial-blue-rubber_cfHHg4N.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:11:39 936 : <WSGIRequest: GET '/staticfiles/product_images/gucci-i-gucci-digital-dial-blue-rubber_cfHHg4N.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:12:39 2824 : <WSGIRequest: GET '/staticfiles/product_images/gucci-i-gucci-digital-dial-blue-rubber_cfHHg4N.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:12:39 2824 : <WSGIRequest: GET '/staticfiles/product_images/gucci-i-gucci-digital-dial-blue-rubber_cfHHg4N.jpg'> 404 Page not found guest
