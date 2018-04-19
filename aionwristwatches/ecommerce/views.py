@@ -62,6 +62,7 @@ def index(request):
     error_alpha = False
     error_match = False
     error_exists = False
+    error_inv_email = False
     signup = False
     error_email_exists = False
     error_username = False
@@ -161,6 +162,10 @@ def index(request):
             elif lname_passed.lower() in password_passed.lower():
                 error_similar = True
 
+            elif not re.match(r"^[a-zA-Z0-9_.]+@.+\.(com|org)$", email_passed):
+                error_inv_email = True
+
+
         else:
             logger.warning(str(request) + '  User:' + username_passed + " login failed !")
             erroruser = True
@@ -174,6 +179,7 @@ def index(request):
         'error_match': error_match,
         'error_email_exists': error_email_exists,
         'error_username': error_username,
+        'error_inv_email': error_inv_email,
         'erroruser': erroruser,
         'product_list': product_list,
         'regform': regform,
