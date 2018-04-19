@@ -149,3 +149,114 @@ ERROR 19-Apr-2018 14:11:39 936 : <WSGIRequest: GET '/staticfiles/product_images/
 ERROR 19-Apr-2018 14:11:39 936 : <WSGIRequest: GET '/staticfiles/product_images/gucci-i-gucci-digital-dial-blue-rubber_cfHHg4N.jpg'> 404 Page not found guest
 ERROR 19-Apr-2018 14:12:39 2824 : <WSGIRequest: GET '/staticfiles/product_images/gucci-i-gucci-digital-dial-blue-rubber_cfHHg4N.jpg'> 404 Page not found 
 ERROR 19-Apr-2018 14:12:39 2824 : <WSGIRequest: GET '/staticfiles/product_images/gucci-i-gucci-digital-dial-blue-rubber_cfHHg4N.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:24:04 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/seiko-divers-automatic.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:24:04 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/seiko-divers-automatic.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:24:04 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/zenith-chronomaster-el-primero-chronograph-automatic-silver-dial.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:24:04 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/zenith-chronomaster-el-primero-chronograph-automatic-silver-dial.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:24:04 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/breitling-superocean-ii-automatic-chronometer-white-dial.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:24:04 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/breitling-superocean-ii-automatic-chronometer-white-dial.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:24:04 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/rolex-oyster-perpetual-39-blue-dial-stainless-steel-role_OR2a7yG.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:24:04 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/rolex-oyster-perpetual-39-blue-dial-stainless-steel-role_OR2a7yG.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:24:05 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/omega-speedmaster-chronograph.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:24:05 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/omega-speedmaster-chronograph.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:24:05 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/tudor-heritage-black_bay-automatic-men_s-leather-watch.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:24:05 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/tudor-heritage-black_bay-automatic-men_s-leather-watch.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:24:05 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/casio-g-shock-military.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:24:05 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/casio-g-shock-military.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:24:05 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/gucci-i-gucci-digital-dial-blue-rubber_qKO75fc.jpg'> 404 Page not found 
+ERROR 19-Apr-2018 14:24:05 8112 : <WSGIRequest: GET '/ecommerce/static/product_images/gucci-i-gucci-digital-dial-blue-rubber_qKO75fc.jpg'> 404 Page not found guest
+ERROR 19-Apr-2018 14:24:05 8112 : <WSGIRequest: GET '/favicon.ico'> 404 Page not found 
+ERROR 19-Apr-2018 14:24:05 8112 : <WSGIRequest: GET '/favicon.ico'> 404 Page not found guest
+ERROR 19-Apr-2018 14:24:10 8112 : <WSGIRequest: GET '/favicon.ico'> 404 Page not found 
+ERROR 19-Apr-2018 14:24:10 8112 : <WSGIRequest: GET '/favicon.ico'> 404 Page not found guest
+WARNING 19-Apr-2018 14:26:03 9256 : <WSGIRequest: POST '/loginmanager/'>  User:theflash login failed!
+INFO 19-Apr-2018 14:26:23 9256 : <WSGIRequest: POST '/loginmanager/'>  User:theflash login successfully !
+INFO 19-Apr-2018 14:26:24 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:26:47 9256 : <WSGIRequest: POST '/loginmanager/'>  User:theflash login successfully !
+INFO 19-Apr-2018 14:26:47 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:31:27 9256 : Product Manager: theflash added new product PUMA Optical Cardiac Digital Dial PU911291001
+INFO 19-Apr-2018 14:31:27 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:32:58 9256 : Product Manager: theflash added new product Fenix 3 HR Smart Watch - Black
+INFO 19-Apr-2018 14:32:59 9256 : Product Manager: theflash added new product Fenix 3 HR Smart Watch - Black
+INFO 19-Apr-2018 14:32:59 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:33:16 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:33:43 9256 : Product Manager: theflash discontinued the product Fenix 3 HR Smart Watch - Black
+INFO 19-Apr-2018 14:33:44 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:33:50 9256 : Product Manager: theflash added new product CASIO Baby G Digital Dial Black Resin
+INFO 19-Apr-2018 14:33:50 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:33:51 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:35:07 9256 : <WSGIRequest: POST '/'>  User:daredevil login successfully !
+INFO 19-Apr-2018 14:35:38 9256 : Product Manager: theflash added new product Forerunner 35 Smart HRM Watch - White
+INFO 19-Apr-2018 14:35:44 9256 : Product Manager: theflash added new product Forerunner 35 Smart HRM Watch - White
+INFO 19-Apr-2018 14:35:45 9256 : Product Manager: theflash added new product Forerunner 35 Smart HRM Watch - White
+INFO 19-Apr-2018 14:35:48 9256 : Product Manager: theflash added new product JET SET of Sweden Bubble Touch Digital Dial Turquoise Rubber
+INFO 19-Apr-2018 14:35:57 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:35:58 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:36:17 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:36:27 9256 : Product Manager: theflash discontinued the product Forerunner 35 Smart HRM Watch - White
+INFO 19-Apr-2018 14:36:27 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:36:59 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:37:06 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:37:38 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:37:58 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:37:58 9256 : Product Manager: theflash discontinued the product Forerunner 35 Smart HRM Watch - White
+CRITICAL 19-Apr-2018 14:38:38 9256 : User: daredevil purchases Rolex Oyster Perpetual 39 Blue Dial invalid credit card transaction failed
+INFO 19-Apr-2018 14:38:49 9256 : Product Manager: theflash discontinued the product Forerunner 35 Smart HRM Watch - White
+INFO 19-Apr-2018 14:38:50 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:39:29 9256 : Product Manager: theflash added new product TIMEX Ironman Lime Green Digital Watch
+INFO 19-Apr-2018 14:39:30 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:40:25 9256 : User: daredevil purchase Rolex Oyster Perpetual 39 Blue Dial x1 399998 successfully
+INFO 19-Apr-2018 14:40:37 9256 : User: daredevil viewed personal orders
+INFO 19-Apr-2018 14:41:03 9256 : Product Manager: theflash added new product Vivosmart HR Activity Tracker Smart Watch - Black
+INFO 19-Apr-2018 14:41:05 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:41:32 9256 : User: daredevil wrote a review on product Rolex Oyster Perpetual 39 Blue Dial
+INFO 19-Apr-2018 14:41:32 9256 : <WSGIRequest: POST '/product/38/'>  User:daredevil login successfully!
+INFO 19-Apr-2018 14:42:08 9256 : User: daredevil wrote a review on product Rolex Oyster Perpetual 39 Blue Dial
+INFO 19-Apr-2018 14:42:08 9256 : <WSGIRequest: POST '/product/38/'>  User:daredevil login successfully!
+INFO 19-Apr-2018 14:43:03 9256 : Product Manager: theflash added new product Spark 3 Cardio Music Smart Watch - Black - Small
+INFO 19-Apr-2018 14:43:03 9256 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:44:16 4940 : User: daredevil wrote a review on product Rolex Oyster Perpetual 39 Blue Dial
+INFO 19-Apr-2018 14:44:16 4940 : <WSGIRequest: POST '/product/38/'>  User:daredevil login successfully!
+INFO 19-Apr-2018 14:47:02 4940 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:48:48 4940 : <WSGIRequest: POST '/'>  User:captainamerica login successfully !
+INFO 19-Apr-2018 14:49:07 4940 : Product Manager: theflash added new product Surge Small Activity and Heart Rate Tracker - Black
+INFO 19-Apr-2018 14:49:08 4940 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:50:34 4940 : Product Manager: theflash added new product A360 Fitness Tracker with Wrist-Based Heart Rate - Large
+INFO 19-Apr-2018 14:50:35 4940 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:51:13 2056 : <WSGIRequest: GET '/logout/'>  User:daredevil logged out!
+INFO 19-Apr-2018 14:52:19 2056 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 14:52:36 2056 : <WSGIRequest: POST '/'>  User:batman registered successfully!
+INFO 19-Apr-2018 14:55:43 2056 : <WSGIRequest: POST '/'>  User:batman login successfully !
+INFO 19-Apr-2018 14:57:04 2056 : User: batman purchase Vivosmart HR Activity Tracker Smart Watch - Black x1 50000 successfully
+INFO 19-Apr-2018 14:57:24 2056 : User: batman viewed personal orders
+ERROR 19-Apr-2018 14:57:38 2056 : <WSGIRequest: GET '/prodman/'> 403 Forbidden error guest
+INFO 19-Apr-2018 14:57:59 2056 : User: batman wrote a review on product Vivosmart HR Activity Tracker Smart Watch - Black
+INFO 19-Apr-2018 14:57:59 2056 : <WSGIRequest: POST '/product/55/'>  User:batman login successfully!
+INFO 19-Apr-2018 14:58:37 2056 : <WSGIRequest: GET '/logout/'>  User: logged out!
+WARNING 19-Apr-2018 14:58:45 2056 : <WSGIRequest: POST '/'>  User:batman login failed !
+WARNING 19-Apr-2018 14:59:00 2056 : <WSGIRequest: POST '/'>  User:batman login failed !
+INFO 19-Apr-2018 15:01:43 2056 : <WSGIRequest: POST '/loginmanager/'>  User:superman login successfully !
+INFO 19-Apr-2018 15:01:44 2056 : Administrator: superman viewed admin page
+INFO 19-Apr-2018 15:01:47 2056 : Administrator: superman viewed product managers page
+INFO 19-Apr-2018 15:01:50 2056 : Administrator: superman viewed admin page
+INFO 19-Apr-2018 15:01:53 2056 : <WSGIRequest: GET '/loginmanager/'>  User:superman logged out. 
+WARNING 19-Apr-2018 15:01:59 2056 : <WSGIRequest: POST '/loginmanager/'>  User:superman login failed!
+WARNING 19-Apr-2018 15:02:04 2056 : <WSGIRequest: POST '/loginmanager/'>  User:superman login failed!
+INFO 19-Apr-2018 15:02:14 2056 : <WSGIRequest: POST '/loginmanager/'>  User:superman login successfully !
+INFO 19-Apr-2018 15:02:14 2056 : Administrator: superman viewed admin page
+INFO 19-Apr-2018 15:02:18 2056 : Administrator: superman viewed product managers page
+INFO 19-Apr-2018 15:02:22 2056 : <WSGIRequest: GET '/loginmanager/'>  User:superman logged out. 
+INFO 19-Apr-2018 15:02:33 2056 : <WSGIRequest: POST '/loginmanager/'>  User:theflash login successfully !
+INFO 19-Apr-2018 15:02:34 2056 : Product Manager: theflash viewed product lists
+INFO 19-Apr-2018 15:02:43 2056 : <WSGIRequest: GET '/loginmanager/'>  User:theflash logged out. 
+INFO 19-Apr-2018 15:02:50 2056 : <WSGIRequest: POST '/loginmanager/'>  User:superman login successfully !
+INFO 19-Apr-2018 15:02:51 2056 : Administrator: superman viewed admin page
+INFO 19-Apr-2018 15:02:53 2056 : Administrator: superman viewed accounting managers page
+INFO 19-Apr-2018 15:02:57 2056 : <WSGIRequest: GET '/loginmanager/'>  User:superman logged out. 
+WARNING 19-Apr-2018 15:03:18 2056 : <WSGIRequest: POST '/loginmanager/'>  User:wonderman login failed!
+INFO 19-Apr-2018 15:03:30 2056 : <WSGIRequest: POST '/loginmanager/'>  User:wonderman login successfully !
+INFO 19-Apr-2018 15:03:56 2056 : Accounting Manager: wonderman viewed transactions
+INFO 19-Apr-2018 15:04:03 2056 : Accounting Manager: wonderman viewed transactions
+INFO 19-Apr-2018 15:04:30 2056 : Accounting Manager: wonderman viewed transactions
+INFO 19-Apr-2018 15:04:32 2056 : Accounting Manager: wonderman viewed transactions
+ERROR 19-Apr-2018 15:04:37 2056 : <WSGIRequest: GET '/prodman/'> 403 Forbidden error wonderman AccountingManager

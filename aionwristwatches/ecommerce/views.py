@@ -87,6 +87,7 @@ def index(request):
             print("FORM VALID")
             regform.save()
             signup = True
+            logger.info(str(request) + '  User:' + request.POST['username'] + " registered successfully!")
             
             context = {
                 'signup': signup,
@@ -794,7 +795,6 @@ def product(request, product_id):
                 logout(request)
                 erroruser = True
 
-            return login(request)
         elif password_passed and username_passed and fname_passed and lname_passed:
             # ALPHANUMERIC
             if len(username_passed) < 5:
