@@ -15,7 +15,7 @@ class Product(models.Model):
         ('Smart', 'Smart'),
     )
     category = models.CharField(max_length=7, choices=CHOICES)
-    image = models.ImageField(upload_to='ecommerce/static/product_images/', blank=True)
+    image = models.ImageField(upload_to='staticfiles/product_images/', blank=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
