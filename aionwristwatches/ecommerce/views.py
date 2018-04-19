@@ -62,6 +62,9 @@ def index(request):
     error_alpha = False
     error_match = False
     error_exists = False
+    signup = False
+    error_email_exists = False
+    error_username = False
     
     BLACKLIST_PASSWORD = ['password', 'pass123', 'password123', 'admin', 'guest','123456','qwerty','12345678','qwertyuiop','google','zxcvbnm','111111','1234567890','123123','mynoob','18atcskd2w','1q2w3e4r','654321','letmein','football','iloveyou','welcome','monkey','abc123','passw0rd','dragon','starwars','123456789']
     BLACKLIST_USERNAME = [ 'admin', 'administrator', 'root', 'system', 'guest','operator','super','gg','test1','testing','user','111111','123456','12345678','abc123','abramov','account','accounting','ad','adm','adver','advert','advertising','afanasev','agafonov','agata','Baseball','business','company','contact','contactus','design','director','dragon','manager','marketing','mysql','oracle','password','postmaster','qwerty','test','user','webmaster']
@@ -75,14 +78,23 @@ def index(request):
             logger.info("User: guest searched for" + search)
     if request.method == 'POST':
         regform = RegistrationForm(request.POST)
+        
         print("REQUEST POST")
         
         if regform.is_valid():
             password=regform.cleaned_data['password1']
             print("FORM VALID")
             regform.save()
-            regform.save()
-            return redirect('/')
+            signup = True
+            
+            context = {
+                'signup': signup,
+                'product_list': product_list,
+                'regform': regform,
+                'searched': json.dumps(searched),
+                'query': search,
+            }
+            return render(request, 'ecommerce/index.html', context)
         
         try:
             fname_passed =  regform.cleaned_data.get('first_name')
@@ -90,6 +102,7 @@ def index(request):
             username_passed = request.POST['username']
             password_passed = regform.cleaned_data.get('password1')
             password2_passed = request.POST['password2']
+            email_passed = request.POST['email']
         except:
             pass
         
@@ -97,29 +110,26 @@ def index(request):
         context = {
             'product_list': product_list,
             'regform': regform,
-            'searched': searched,
-            'query': search,
         }
-        try:
-            uname = request.POST['username']
-        except:
-            pass
-
         
         login(request, context)
         if request.user.is_authenticated:
             if request.user.usertypes == 'Customer':
                 logger.info(str(request) + '  User:' + request.user.username + " login successfully !")
             else:
-                logger.warning(str(request) + '  User:' + uname + " login failed !")
+                logger.warning(str(request) + '  User:' + username_passed + " login failed !")
                 logout(request)
                 erroruser = True
-
             return login(request, context)
-        elif username_passed and password_passed and fname_passed and lname_passed:
-            
+        elif password_passed and username_passed and fname_passed and lname_passed:
             # ALPHANUMERIC
-            if not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', password_passed):
+            if len(username_passed) < 5:
+                error_username = True
+                
+            elif len(User.objects.filter(email=email_passed)) > 0:
+                error_email_exists = True
+                
+            elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$', password_passed):
                 error_alpha = True
                 
             # PASSWORD IS BLACKLISTED
@@ -152,7 +162,7 @@ def index(request):
                 error_similar = True
 
         else:
-            logger.warning(str(request) + '  User:' + uname + " login failed !")
+            logger.warning(str(request) + '  User:' + username_passed + " login failed !")
             erroruser = True
     regform = RegistrationForm()
     context = {
@@ -162,6 +172,8 @@ def index(request):
         'error_similar': error_similar,
         'error_exists': error_exists,
         'error_match': error_match,
+        'error_email_exists': error_email_exists,
+        'error_username': error_username,
         'erroruser': erroruser,
         'product_list': product_list,
         'regform': regform,
@@ -199,22 +211,26 @@ def acctman(request):
 def checkout(request, product_id):
     product = Product.objects.get(id=product_id)
     errorcredit = False
-    print("CHECKKING OUT")
+    print("CHECKING OUT")
     if request.user.is_authenticated and request.user.usertypes=="Customer" and request.method == "POST":
         user = request.user
         qty = request.POST['quantity']
         total = request.POST['total']
         creditcardnum = request.POST['creditcard']
+        name = request.POST['name']
+        month = request.POST['month']
+        year = request.POST['year']
+        cvv = request.POST['cvv']
         validcredit =  is_luhn_valid(creditcardnum)
         print(validcredit,"VALID")
 
-        if validcredit:
+        if validcredit and (month == 'JAN' or month == 'FEB' or month == 'MAR' or month == 'APR' or month == 'MAY' or month == 'JUN' or month == 'JUL' or month == 'AUG' or month == 'SEP' or month == 'OCT' or month == 'NOV' or month == 'DEC') and (int(year) in range(18, 31)) and (int(cvv) in range(100, 1000)) and (any(x.isalpha() for x in name) and any(x.isspace() for x in name) and all(x.isalpha() or x.isspace() for x in name)):
             trans_inst = Transaction.objects.create(user=user, product=product, quantity=qty, subtotal=total)
             trans_inst.save()
 
             product.quantity = product.quantity - int(qty)
             product.save()
-            logger.info("User: "+ request.user.username+" purchase "+product.prodname+" X "+qty+" "+total+" successfully ")
+            logger.info("User: "+ request.user.username+" purchase "+product.prodname+" x"+qty+" "+total+" successfully")
             return redirect('/')
         else:
             errorcredit = True

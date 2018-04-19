@@ -23,8 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'us=i3c7x$a^z&ma#qjb_1w4*9v7tdtrnxfxgtxu^&am!i)di2-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -42,9 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',
     'mathfilters',
-    'zxcvbn_password',
-
+#    'zxcvbn_password',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -53,12 +54,14 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    "account.middleware.ExpiredPasswordMiddleware",
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'session_security.middleware.SessionSecurityMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'ecommerce.middleware.UsersMiddleware',
+    "account.middleware.LocaleMiddleware",
+    "account.middleware.TimezoneMiddleware",
+    "account.middleware.ExpiredPasswordMiddleware",
 ]
 
 IGNORABLE_404_URLS = [
@@ -80,6 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "account.context_processors.account",
             ],
         },
     },
@@ -118,13 +122,13 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
-    {
-        'NAME': 'zxcvbn_password.ZXCVBNValidator',
-        'OPTIONS': {
-            'min_score': 3,
-            'user_attributes': ('username', 'email', 'first_name', 'last_name')
-        }
-    }
+#    {
+#        'NAME': 'zxcvbn_password.ZXCVBNValidator',
+#        'OPTIONS': {
+#            'min_score': 3,
+#            'user_attributes': ('username', 'email', 'first_name', 'last_name')
+#        }
+#    }
 ]
 
 # Internationalization
@@ -191,7 +195,8 @@ LOGGING = {
     }
 }
 
-
+ACCOUNT_EMAIL_UNIQUE = True
+SITE_ID = 2
 # PASSWORD EXPIRATION
 ACCOUNT_PASSWORD_USE_HISTORY = True
 ACCOUNT_PASSWORD_EXPIRY = 60*60*24*30  # number of seconds, this is 30 days

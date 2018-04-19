@@ -15,27 +15,27 @@
                 <ul class="list-group list-group-flush">
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">First Name</div>
-                        <input class="col-8" type="text" value="" name="first"/>
+                        <input class="col-8" type="text" value="" name="first" pattern="^[A-Za-z]+$" required/>
                     </li>
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">Last Name</div>
-                        <input class="col-8" type="text" value="" name="last"/>
+                        <input class="col-8" type="text" value="" name="last" pattern="^[A-Za-z]+$" required/>
                     </li>
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">Username</div>
-                        <input class="col-8" type="text" value="" name="username"/>
+                        <input class="col-8" type="text" value="" name="username" pattern="^(\w([,.+-@]*[a-zA-Z0-9])*){5,150}" >
                     </li>
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">Password</div>
-                        <input class="col-8" type="password" value="" name="password"/>
+                        <input class="col-8" type="password" value="" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" required/>
                     </li>
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">Retype Password</div>
-                        <input class="col-8" type="password" value="" name="cpassword"/>
+                        <input class="col-8" type="password" value="" name="cpassword" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" required/>
                     </li>
                     <li  class="list-group-item d-inline-flex ">
                         <div class="col-3">Email</div>
-                        <input class="col-8" type="text" value="" name="email"/>
+                        <input class="col-8" type="text" value="" name="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" required/>
                     </li>
 
                 </ul>

@@ -54,10 +54,10 @@ yourlabs.SessionSecurity.prototype = {
     expire: function() {
         this.expired = true;
         if (this.returnToUrl !== undefined) {
-            window.location.href = this.returnToUrl;
+            window.location.href = '/';
         }
         else {
-            window.location.reload();
+            window.location.href = '/';
         }
     },
     
